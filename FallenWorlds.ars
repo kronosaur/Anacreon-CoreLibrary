@@ -1,0 +1,739 @@
+//	FallenWorlds.ars
+//
+//	Fallen Worlds Scenario
+//	Copyright (c) 2012 by Kronosaur Productions, LLC. All Rights Reserved.
+
+Scenario fallenWorlds.scenario
+	{
+	name: "Fallen Worlds"
+	players: (1 100)
+	mapSize: (3255 3255)
+
+	libraries: (core.library)
+
+	createParams: ()
+
+	onCreate: fallenWorldsCreate
+		
+	creation: (
+
+		//	Create worlds suitable for player capitals
+		
+		{ create:worlds
+			count:100
+			
+			region:sectorRegion 
+			minDist:200
+			minEdgeDist:100
+			
+			sovereign:core.independent
+			
+			traits: (
+				core.biotechFate
+				core.earthLikeTrillumWorld
+				core.highImperialCulture
+				)
+			}
+			
+		//	Create the remaining worlds randomly
+
+		{ create:worlds
+			count:5000
+			
+			region:sectorRegion
+			minDist:16
+			
+			sovereign:core.independent
+			
+			traits: (
+				worldTechTable
+				core.defaultWorldClassTable
+				core.highImperialCulture
+				)
+
+			resources: (
+				{	type: core.infantry
+					value: { type:gaussian
+						median: { type:byTechAndPopulation
+							value: (
+								(preIndustrial		0.1)
+								(industrial			0.1)
+								(atomic				0.1)
+								(digital			0.09)
+								(spacefaring		0.08)
+								(fusion				0.07)
+								(biotech			0.05)
+								(antimatter			0.04)
+								(quantum			0.04)
+								(postIndustrial		0.04)
+								)
+							}
+							
+						low: 75
+						high: 150
+						}
+					}
+				)
+			}
+
+		//	Create Mesophon Traders
+
+		{ create:sovereigns
+			count: 1
+			type: core.traderEmpire
+			}
+			
+		//	Create Warlord NPEs
+		
+		{ create:sovereigns
+			count: 4
+			type: fallenWorlds.warlordEmpire
+			
+			worlds: (
+				{ count:0
+					criteria: (
+						{ type:distance lessThan:50 }
+						{ type:techLevel oneOf:(atomic digital spacefaring) }
+						)
+					}
+				)
+			}
+		)
+	}
+
+SovereignType core.playerEmpire
+	{
+	capital: {
+		criteria: (
+//			{ type:techLevel oneOf:(biotech) }
+//			{ type:traits oneOf:(core.desertWorld core.earthLikeWorld core.oceanWorld core.undergroundWorld) }
+			{ type:traits oneOf:(core.earthLikeTrillumWorld) }
+			)
+
+		resources: (
+			{	type: core.infantry
+				value: { type:gaussian	median:2000		low:90		high:200	}
+				}
+					
+			{	type: core.explorerVanguard
+				value: { type:gaussian	median:500		low:75		high:150	}
+				}
+					
+			{	type: core.jumptransportReliant
+				value: { type:gaussian	median:2000		low:75		high:150	}
+				}
+					
+			{	type: core.jumpshipStinger
+				value: { type:gaussian	median:1000		low:75		high:150	}
+				}
+			)
+		}
+
+	impartTraits: (core.fireAndMovement)
+	}
+	
+SovereignType fallenWorlds.warlordEmpire
+	{
+	name: "warlord empire"
+	
+	sovereignName: { type:random
+		value:
+			("Anor Kingdom" "Bok Empire" "Caledonia" "Kingdom of Dagronna" "Efreet Republic"
+			"Faorn Empire" "Gaulton Empire" "Haleborn Kingdom" "Imryrr Empire" "Kingdom of Johenna"
+			"Kalidorn" "Lastrome Oligarchy" "Muriel Union" "Ni'altor Empire" "Olos Guaran" 
+			"Psyphor Domain" "Rone Kingdom" "Surolon" "Lok Trall" "Ur'anor Republic")
+		}
+
+	capital: {
+		criteria: (
+			{ type:techLevel oneOf:(fusion biotech antimatter) }
+			{ type:traits noneOf:(core.barrenWorld) }
+			)
+
+		resources: (
+			{	type: core.infantry
+				value: { type:gaussian	median:2000		low:90		high:200	}
+				}
+						
+			{	type: core.jumptransportReliant
+				value: { type:gaussian	median:2000		low:75		high:150	}
+				}
+						
+			{	type: core.jumpshipStinger
+				value: { type:gaussian	median:1000		low:75		high:150	}
+				}
+						
+			{	type: core.jumpcruiserAdamant
+				value: { type:gaussian	median:200		low:75		high:150	}
+				}
+			)
+		}
+
+	npeOnly: true
+	ai: {
+		
+		}
+	}
+
+Trait core.earthLikeTrillumWorld
+	{
+	category: worldClass
+	name: "Earth-like world"
+	density: 1.0
+	radius: 1.0
+
+	impartTraits: (
+		core.earthLikeBiosphere
+		
+		{	type:table
+			value: (
+				(60		core.hexacarbideCommon)
+				(30		core.hexacarbideUncommon)
+				(10		core.hexacarbideAbundant)
+				)
+			}
+
+		core.trillumCommon
+		)
+
+	imageLarge: { type:constant
+		resource:core.earthLikeWorldHemisphere
+		size: (800 800)
+		}
+
+	imageSmall: { type:constant
+		resource: core.worldClassIcons
+		pos: (96 0)
+		size: (48 48)
+		}
+	}
+
+Region sectorRegion 
+	{
+	shape: rectangle
+	pos: (0 0)
+	size: (3255 3255)
+	}
+
+Table worldTechTable
+	{
+	type: table
+	value: (
+		(3		core.preIndustrialFate)
+		(8		core.industrialFate)
+		(12		core.atomicFate)
+		(23		core.digitalFate)
+		(20		core.spacefaringFate)
+		(12		core.fusionFate)
+		(8		core.biotechFate)
+		(6		core.antimatterFate)
+		(5		core.quantumFate)
+		(3		core.postIndustrialFate)
+		)
+	}
+
+//	fallenWorldsCreate ---------------------------------------------------------
+//
+//	This is called to create the scenario. We create all the nebulae for the
+//	scenario.
+
+(define fallenWorldsCreate (lambda (params)
+	(block (
+
+		//	The size of the map is fixed. LATER: Get this from params
+
+		(mapSize 3255)
+
+		//	Pick a random angle for the main filament (only from 0 to 180 since
+		//	a line is symmetric).
+
+		(filamentAngle (* PI (random)))
+		(filamentHalfLength (* mapSize 0.55))
+		(filamentStart (vecToXY filamentAngle filamentHalfLength))
+		(filamentEnd (vecToXY filamentAngle (- filamentHalfLength)))
+		(filamentWidth (* mapSize 0.1))
+
+		//	Create a filament descriptor
+
+		(filamentTree (calcFilamentTree
+			32
+			filamentStart 
+			filamentEnd 
+			filamentWidth 
+			filamentWidth 
+			(* 4 filamentWidth)
+			4
+			))
+		)
+
+		//	Create nebula
+
+		(createFilamentNebula filamentTree)
+		)
+	))
+
+//	Constants and Helpers ------------------------------------------------------
+
+(define PI 3.14159265358979)
+(define TAU	6.28318530717958)
+(define HALF_PI 1.57079632679489)
+
+(define calcArcDescList (lambda (mapDesc)
+	(block (
+
+		//	The map will have between 2 and 5 arcs of nebulosity. The arc have 
+		//	their origin at the galactic center (and are full circles instead of
+		//	spirals, just for ease of computation).
+		//
+		//	Also calculate the average distance between arcs.
+
+		(arcCount (random '(2 3 3 3 3 4 4 5)))
+		(arcTotalDist (* 0.8 (@ mapDesc 'mapSize)))	//	radial distance from first arc to last arc
+		(arcAveDist (/ arcTotalDist (- arcCount 1)))
+
+		//	Compute the radial distance of the first arc (closest to Galactic Core)
+		//	relative to the center of the map.
+
+		(arcDistStart (+ 
+			(* -0.5 arcTotalDist)
+			(* 0.25 (- (random) 0.5) arcAveDist)
+			))
+
+		//	Compute the average arc-angle of the arcs (it should be enough to 
+		//	cross the entire map.
+
+		(arcAveArcAngle (/ (* 1.414 (@ mapDesc 'mapSize)) (@ mapDesc 'mapDist)))
+		(arcAngleStart (+ (@ mapDesc 'mapBearing) (* -0.5 arcAveArcAngle)))
+
+		//	Rifts are half the arc length
+
+		(riftAveArcAngle (* 0.3 arcAveArcAngle))
+		(riftAngleStart (+ arcAngleStart (* 0.5 (- arcAveArcAngle riftAveArcAngle))))
+		)
+
+		//	Compute metrics for each arc
+
+		(map (make 'sequence 1 arcCount) nil i
+			{
+				center: '(0 0)	//	Centered on Galactic Core
+				radius: (+ (@ mapDesc 'mapDist) arcDistStart (* $i arcAveDist))
+				angleStart: arcAngleStart
+				angleEnd: (+ arcAngleStart arcAveArcAngle)
+				minWidth: (* 0.05 (@ mapDesc 'mapSize))
+				maxWidth: (* 0.20 (@ mapDesc 'mapSize))
+				pointCount: 100
+
+				rifts: (list {
+					center: '(0 0)
+					radius: (+ (@ mapDesc 'mapDist) arcDistStart (* $i arcAveDist))
+					angleStart: riftAngleStart
+					angleEnd: (+ riftAngleStart riftAveArcAngle)
+					minWidth: (* 0.1 (@ mapDesc 'mapSize))
+					maxWidth: (* 0.15 (@ mapDesc 'mapSize))
+					pointCount: 50
+					})
+				}
+			)
+		)
+	))
+
+(define calcFilamentBranches (lambda (mainDesc dev levels)
+	(block (
+		(mainLen (@ (vecToPolar (vec- (@ (@ mainDesc 0) 'pos) (@ (@ mainDesc -1) 'pos))) 1))
+		(minBranchCount (max 1 (round (/ mainLen 1000))))
+		(maxBranchCount (max 1 (round (/ mainLen 500))))
+
+		(branchCount (random minBranchCount maxBranchCount))
+		(branchDist (/ (count mainDesc) branchCount))
+
+		(startPos (random 0 (- (count mainDesc) 1)))
+		(branchPoints
+			(map (make 'sequence 1 branchCount) nil i
+				(@ mainDesc (mod (floor (+ startPos (* $i branchDist) (* 0.25 (random) branchDist))) (count mainDesc)))
+				)
+			)
+		)
+
+		(map branchPoints nil branchPoint
+			(block (
+				(subLen (* (+ 0.25 (* 0.5 (random))) mainLen))
+				(endPt (vec+ (@ branchPoint 'pos) (vec* (@ branchPoint 'tangentVec) (if (> (random) 0.5) subLen (- subLen)))))
+				)
+				(calcFilamentTree
+					(count mainDesc)
+					(@ branchPoint 'pos)
+					endPt
+					(* 0.5 (@ branchPoint 'width))
+					(@ branchPoint 'width)
+					(* dev 0.5)
+					(- levels 1)
+					)
+				)
+			)
+		)
+	))
+
+(define calcFilamentDesc (lambda (pointCount startPt endPt minWidth maxWidth dev)
+	(block (
+		(array (make 'sequence 1 pointCount))
+
+		(startWidth (+ minWidth (* (random) (- maxWidth minWidth))))
+		(endWidth (+ minWidth (* (random) (- maxWidth minWidth))))
+
+		(minLineWidth (min startWidth endWidth))
+		(maxLineWidth (max startWidth endWidth))
+		)
+
+		//	Set the two end points of the array
+
+		(set@ array 0 {
+			pos: startPt
+			width: startWidth
+			})
+
+		(set@ array (- pointCount 1) {
+			pos: endPt
+			width: endWidth
+			})
+
+		//	Now recurse
+
+		(perturbFilamentShape
+			array
+			0
+			(- pointCount 1)
+			(* minLineWidth 0.9)
+			(* maxLineWidth 1.1)
+			dev
+			)
+
+		//	Set the edges of each point based on the width
+
+		(setFilamentEdges array)
+
+		//	Return the array
+
+		array
+		)
+	))
+
+(define calcFilamentPolygon (lambda (filamentDesc)
+	(append
+		(map filamentDesc nil thePoint (@ thePoint 'leftPos))
+		(reverseArray (map filamentDesc nil thePoint (@ thePoint 'rightPos)))
+		)
+	))
+
+(define calcFilamentTree (lambda (pointCount startPt endPt minWidth maxWidth dev levels)
+	(block (
+		(filamentDesc (calcFilamentDesc pointCount startPt endPt minWidth maxWidth dev))
+		)
+		{
+			desc: filamentDesc
+			subDesc: (if (> levels 1) (calcFilamentBranches filamentDesc dev levels))
+			hasRift: (>= levels 3)
+			hasBrights: (>= levels 3)
+			}
+		)
+	))
+
+(define calcHalfWidthArray (lambda (pointCount minWidth maxWidth)
+	(block (
+		(upCount (floor (* 0.5 pointCount)))
+		(downCount (- pointCount upCount))
+
+		//	Generate sequence from 0 to 1 and 1 to 0. 
+
+		(upSequence (map (make 'sequence 0 (- upCount 1)) nil i (/ i upCount)))
+		(downSequence (map (make 'sequence (- downCount 1) 0) nil i (/ i upCount)))
+		(sequence (append upSequence downSequence))
+
+		//	Calc min and max
+
+		(widthRange (- maxWidth minWidth))
+		)
+
+		//	Generate and return widths
+
+		(map sequence nil i
+			(* 0.5 (+ minWidth (* i widthRange)))
+			)
+		)
+	))
+
+(define calcMapDesc (lambda (mapSize)
+	{
+		mapSize: mapSize
+
+		//	Randomly choose the location of this scenario map relative to the
+		//	Galactic Core. We assume we are always between 22,000 and 32,000
+		//	light years away, in a random direction.
+
+		mapDist: (random 22000 32000)
+		mapBearing: (* TAU (random))
+
+		//	Compute the coordinates of the map center relative to the Galactic
+		//	Core.
+
+		mapCenter: (vecToXY mapBearing mapDist)
+		}
+	))
+
+(define calcNebulaArcPolygon (lambda (arcDesc mapCenter)
+	(block (
+		(mapCenterTrans (vec- '(0 0) mapCenter))
+		(pointCountActual (max 2 (@ arcDesc 'pointCount)))
+
+		//	Generate a list of angles for each point in the arc
+
+		(angleRange (- (@ arcDesc 'angleEnd) (@ arcDesc 'angleStart)))
+		(angleInc (/ angleRange (- pointCountActual 1)))
+		(angleArray (map (make 'sequence 1 pointCountActual) nil i
+			(+ (@ arcDesc 'angleStart) (* $i angleInc))
+			))
+
+		//	Generate an array of half-widths, one for each point in the arc
+
+		(halfWidthArray (calcHalfWidthArray pointCountActual (@ arcDesc 'minWidth) (@ arcDesc 'maxWidth)))
+
+		//	Generate the far points for this arc (relative to map center)
+
+		(farPoints
+			(map halfWidthArray nil halfWidth
+				(vec+ (@ arcDesc 'center) mapCenterTrans
+					(vecToXY (@ angleArray $i) (+ (@ arcDesc 'radius) halfWidth))
+					)
+				)
+			)
+
+		//	Generate the near points (we reverse them because we want to end up 
+		//	with a closed polygon).
+
+		(nearPoints (reverseArray
+			(map halfWidthArray nil halfWidth
+				(vec+ (@ arcDesc 'center) mapCenterTrans
+					(vecToXY (@ angleArray $i) (- (@ arcDesc 'radius) halfWidth))
+					)
+				)
+			))
+		)
+
+		//	Return the polygon as a list of points
+
+		(append farPoints nearPoints)
+		)
+	))
+
+(define createArcs (lambda (mapDesc arcDescList)
+	(enum arcDescList arcDesc
+		(block ()
+
+			//	Create dark nebula all along the arc
+
+			(unvCreateRegion 'core.darkNebula (calcNebulaArcPolygon arcDesc (@ mapDesc 'mapCenter)) {
+				procedure: 'turbulentLands
+				detail: 50
+				scale: 100
+				})
+
+			//	Create a rift in the center
+
+			(enum (@ arcDesc 'rifts) riftDesc
+				(unvCreateRegion 'core.transpaceRift (calcNebulaArcPolygon riftDesc (@ mapDesc 'mapCenter)) {
+					procedure: 'fracturedIslands
+					detail: 25
+					})
+				)
+			)
+		)
+	))
+
+(define createFilamentNebula (lambda (filamentTree)
+	(block (
+		(mainFilamentDesc (@ filamentTree 'desc))
+		(mainPoly (calcFilamentPolygon mainFilamentDesc))
+		)
+
+		//	Create the bright areas first
+
+		(if (@ filamentTree 'hasBrights)
+			(block (
+				(segment (@ mainFilamentDesc (floor (* 0.5 (count mainFilamentDesc)))))
+
+				(maxRadius (* 2.0 (@ segment 'width)))
+				(minRadius (* 0.25 maxRadius))
+				(radiusRange (- maxRadius minRadius))
+
+				(posOffset (* maxRadius (@ segment 'tangentVec)))
+				(centerPos 
+					(random 
+						(list 
+							(vec+ (@ segment 'leftPos) posOffset)
+							(vec- (@ segment 'rightPos) posOffset)
+							)
+						)
+					)
+
+				(pointCount 20)
+				(angleInc (/ TAU pointCount))
+				(angle 0)
+
+				(points (map (make 'sequence 0 (- pointCount 1)) nil i
+					(block (
+						(edgeOffset (vecToXY angle (+ minRadius (* radiusRange (random)))))
+						(edgePos (vec+ centerPos edgeOffset))
+						)
+						(set! angle (+ angle angleInc))
+						edgePos
+						)
+					))
+				)
+
+				(unvCreateRegion 'core.brightNebula points {
+					procedure: 'turbulentLands
+					detail: 25
+					scale: 100
+					})
+				)
+			)
+
+		//	Create dark nebula filaments
+
+		(unvCreateRegion 'core.darkNebula mainPoly {
+			procedure: 'turbulentLands
+			detail: 50
+			scale: 100
+			})
+
+		(enum (@ filamentTree 'subDesc) subTree
+			(createFilamentNebula subTree)
+			)
+
+		//	Create rifts on the main nebula filament
+
+		(if (@ filamentTree 'hasRift)
+			(unvCreateRegion 'core.transpaceRift mainPoly {
+				procedure: 'fracturedIslands
+				detail: 25
+				scale: 100
+				})
+			)
+		)
+	))
+
+//	perturbFilamentShape -------------------------------------------------------
+//
+//	Define a recursive function that sets the elements of an array
+//	from startIndex to endIndex. We expect the array to consist of 
+//	structs, each with the following fields:
+//
+//	pos: The position of the center line
+//	width: The width of the filament at this point
+
+(define perturbFilamentShape (lambda (array startIndex endIndex minWidth maxWidth dev)
+	(block (
+		(midIndex (+ startIndex (floor (/ (- endIndex startIndex) 2))))
+		)
+
+		(switch
+
+			//	If we have no mid-point then we're done.
+
+			(= midIndex startIndex)
+				true
+
+			//	Otherwise we generate the metrics for the mid-point
+			//	and recurse if necessary.
+
+			(block (
+				(midWidth (+ minWidth (* (random) (- maxWidth minWidth))))
+				(lineVec (vec- (@ (@ array endIndex) 'pos) (@ (@ array startIndex) 'pos)))
+				(tangentVec (vecRotate (vecToUnit lineVec) HALF_PI))
+				(offset (- (* 2.0 (random) dev) dev))
+				(midLine (vec+ 
+					(@ (@ array startIndex) 'pos)
+					(vec* lineVec 0.5)
+					))
+				(midPos (vec+ midLine (vec* tangentVec offset)))
+
+				(maxStartWidth (max minWidth (@ (@ array startIndex) 'width)))
+				(minStartWidth (min minWidth (@ (@ array startIndex) 'width)))
+				(maxEndWidth (max minWidth (@ (@ array endIndex) 'width)))
+				(minEndWidth (min minWidth (@ (@ array endIndex) 'width)))
+				)
+
+				(set@ array midIndex {
+					pos: midPos
+					width: midWidth
+					})
+
+				//	Recurse if necessary
+
+				(if (>= (- midIndex startIndex) 2)
+					(perturbFilamentShape
+						array
+						startIndex
+						midIndex
+						(* minStartWidth 0.8)
+						(* maxStartWidth 1.2)
+						(* dev 0.5)
+						)
+					)
+
+				(if (>= (- endIndex midIndex) 2)
+					(perturbFilamentShape
+						array
+						midIndex
+						endIndex
+						(* minEndWidth 0.8)
+						(* maxEndWidth 1.2)
+						(* dev 0.5)
+						)
+					)
+				)
+			)
+		)
+	))
+
+(define reverseArray (lambda (array)
+	(block (
+		(lastPoint (- (count array) 1))
+		)
+
+		(switch
+			(<= lastPoint 0)
+				array
+
+			(map array nil x
+				(@ array (- lastPoint $i))
+				)
+			)
+		)
+	))
+
+(define setFilamentEdges (lambda (array)
+	(enum array thePoint
+		(block (
+			(nextPt (@ array (+ $i 1)))
+			(nextLineVec (vec- (@ nextPt 'pos) (@ thePoint 'pos)))
+			(nextTangentVec (vecRotate (vecToUnit nextLineVec) HALF_PI))
+
+			(prevPt (if (> $i 0) (@ array (- $i 1)) nil))
+			(prevLineVec (vec- (@ thePoint 'pos) (@ prevPt 'pos)))
+			(prevTangentVec (vecRotate (vecToUnit prevLineVec) HALF_PI))
+
+			(tangentVec (switch
+				(not prevPt)	nextTangentVec
+				(not nextPt)	prevTangentVec
+								(vec* (vec+ nextTangentVec prevTangentVec) 0.5)
+				))
+
+			(halfWidth (* (@ thePoint 'width) 0.5))
+			)
+
+			(set@ thePoint 'tangentVec tangentVec)
+			(set@ thePoint 'leftPos (vec+ (@ thePoint 'pos) (vec* tangentVec halfWidth)))
+			(set@ thePoint 'rightPos (vec+ (@ thePoint 'pos) (vec* tangentVec (- halfWidth))))
+			)
+		)
+	))
