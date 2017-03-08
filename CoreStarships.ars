@@ -1,0 +1,475 @@
+//	CoreStarships.ars
+//
+//	Anacreon Core Library
+//	Copyright (c) 2014 by Kronosaur Productions, LLC. All Rights Reserved.
+
+//	Designations ---------------------------------------------------------------
+
+Trait core.starshipAutofacDesignation {
+	category: designation
+	name: "starship components autofac"
+	minTechLevel: 6
+	exclusions: (core.inNebula)
+	
+	industry: (
+		{ type:core.starshipAutofac alloc:max }
+
+		{ type:core.chronimiumProcessor alloc:demand }
+		{ type:core.hexacarbideFoundry alloc:demand }
+		{ type:core.trillumExtractor alloc:demand }
+
+		{ type:core.imperialAdministration alloc:demand }
+		{ type:core.consumerGoodsAutofac alloc:demand }
+		)
+
+	description: "This autofac produces components required for building starships."
+
+	imageMedium: { type:constant
+		resource: core.designationIcons
+		pos: (0 640)
+		size: (128 128)
+		}
+
+	imageSmall: { type:constant
+		resource: core.designationIconsSmall
+		pos: (0 240)
+		size: (48 48)
+		}
+	}
+	
+Trait core.starshipYardsDesignation {
+	category: designation
+	name: "starship yards"
+	role: shipyard
+	minTechLevel: 5
+	exclusions: (core.inNebula)
+	
+	industry: (
+		{ type:core.starshipYards alloc:max }
+
+		{ type:core.chronimiumProcessor alloc:demand }
+		{ type:core.hexacarbideFoundry alloc:demand }
+		{ type:core.trillumExtractor alloc:demand }
+
+		{ type:core.imperialAdministration alloc:demand }
+		{ type:core.consumerGoodsAutofac alloc:demand }
+		)
+
+	description: "Starship yards build starships, which are powerful but slow."
+
+	imageMedium: { type:constant
+		resource: core.designationIcons
+		pos: (0 512)
+		size: (128 128)
+		}
+
+	imageSmall: { type:constant
+		resource: core.designationIconsSmall
+		pos: (0 192)
+		size: (48 48)
+		}
+	}
+
+//	Units ----------------------------------------------------------------------
+
+ResourceType core.gunshipSirius {
+	category: maneuveringUnit
+	name: "Sirius-class gunship"
+	role: gunship
+	attackValue: 67
+	FTL: 3.0
+	mass: 15.0
+	maxDeltaV: 1.5
+	scanner: 0.1
+	visibility: 0.15
+	halfLife: 10.0
+
+	attack: { name:"K3X mass driver" count:1 damage:60 type:direct range:5.0 area:0.0 }
+	defense: { armor:50 }
+	unitsPerCell: 16
+
+	production: {
+		workUnits: 525.0
+		inputs: (
+			{ type:core.trillum amount:8.0 }
+			{ type:core.hexacarbide amount:10.0 }
+			)
+		minTechLevel: 5
+		maxTechLevel: 7
+		}
+	}
+
+ResourceType core.starfrigateDefiance {
+	category: maneuveringUnit
+	name: "Defiance-class starfrigate"
+	role: starfrigate
+	attackValue: 1017
+	FTL: 0.2
+	mass: 110.0
+	maxDeltaV: 0.25
+	scanner: 0.5
+	visibility: 1.1
+	halfLife: 20.0
+
+	attack: { name:"positron lancer" count:1 damage:300 type:direct range:20.0 area:0.1 }
+	defense: { armor:500 counters:{ missile:4 } }
+	unitsPerCell: 2
+
+	production: {
+		workUnits: 5000.0
+		inputs: (
+			{ type:core.trillum amount:40.0 }
+			{ type:core.hexacarbide amount:50.0 }
+			{ type:core.positronLancer amount:1.0 }
+			{ type:core.reactorS100 amount:1.0 }
+			)
+		minTechLevel: 6
+		maxTechLevel: 8
+		}
+	}
+
+ResourceType core.starcruiserVictory {
+	category: maneuveringUnit
+	name: "Victory-class starcruiser"
+	role: starcruiser
+	attackValue: 2000
+	FTL: 0.2
+	mass: 350.0
+	maxDeltaV: 0.1
+	scanner: 0.5
+	visibility: 3.5
+	halfLife: 20.0
+
+	attack: { name:"Sekron-90 missile" count:1 damage:300 type:missile strength:4 range:20.0 area:0.3 }
+	defense: { armor:1600 }
+	unitsPerCell: 1
+
+	production: {
+		workUnits: 9500.0
+		inputs: (
+			{ type:core.trillum amount:60.0 }
+			{ type:core.hexacarbide amount:150.0 }
+			{ type:core.chronimium amount:10.0 }
+			{ type:core.heavyMissileLauncher amount:1.0 }
+			{ type:core.reactorN8 amount:1.0 }
+			)
+		minTechLevel: 7
+		maxTechLevel: 9
+		}
+	}
+
+ResourceType core.gunshipMinotaur {
+	category: maneuveringUnit
+	name: "Minotaur-class gunship"
+	role: gunship
+	attackValue: 145
+	FTL: 5.0
+	mass: 12.0
+	maxDeltaV: 1.75
+	scanner: 0.1
+	visibility: 0.12
+	halfLife: 12.0
+
+	attack: { name:"slam cannon" count:1 damage:100 type:direct range:10.0 area:0.0 }
+	defense: { armor:90 }
+	unitsPerCell: 16
+
+	production: {
+		workUnits: 600.0
+		inputs: (
+			{ type:core.trillum amount:12.0 }
+			{ type:core.hexacarbide amount:10.0 }
+			{ type:core.chronimium amount:8.0 }
+			)
+		minTechLevel: 8
+		minTechLevelToDisplay: 8
+		}
+	}
+
+ResourceType core.starfrigateGorgos {
+	category: maneuveringUnit
+	name: "Gorgos-class starfrigate"
+	role: starfrigate
+	attackValue: 2429
+	FTL: 0.2
+	mass: 200.0
+	maxDeltaV: 0.25
+	scanner: 0.5
+	visibility: 2.0
+	halfLife: 25.0
+
+	attack: { name:"Basilisk cannon" count:1 damage:400 type:direct range:30.0 area:0.2 }
+	defense: { armor:1200 counters:{ missile:4 } }
+	unitsPerCell: 2
+
+	production: {
+		workUnits: 5200.0
+		inputs: (
+			{ type:core.trillum amount:50.0 }
+			{ type:core.hexacarbide amount:75.0 }
+			{ type:core.chronimium amount:20.0 }
+			{ type:core.basiliskCannon amount:1.0 }
+			{ type:core.reactorR50 amount:1.0 }
+			)
+		minTechLevel: 9
+		minTechLevelToDisplay: 9
+		}
+	}
+
+ResourceType core.starcruiserMegathere {
+	category: maneuveringUnit
+	name: "Megathere-class starcruiser"
+	role: starcruiser
+	attackValue: 6625
+	FTL: 0.2
+	mass: 500.0
+	maxDeltaV: 0.1
+	scanner: 0.5
+	visibility: 5.0
+	halfLife: 25.0
+
+	attack: { name:"Grond missile" count:1 damage:500 type:missile strength:4 range:20.0 area:0.4 }
+	defense: { armor:3500 counters:{ missile:2 } }
+	unitsPerCell: 1
+
+	production: {
+		workUnits:10000.0
+		inputs: (
+			{ type:core.trillum amount:80.0 }
+			{ type:core.hexacarbide amount:200.0 }
+			{ type:core.chronimium amount:50.0 }
+			{ type:core.grondLauncher amount:1.0 }
+			{ type:core.reactorX9 amount:1.0 }
+			)
+		minTechLevel: 10
+		minTechLevelToDisplay: 10
+		}
+	}
+
+//	Commodities and Materials --------------------------------------------------
+
+ResourceType core.basiliskCannon {
+	category: commodity
+	name: "Basilisk cannon"
+	role: shipComponent
+	isCargo: true
+	mass: 2
+	
+	halfLife: 10.0
+
+	production: {
+		workUnits: 620.0
+		inputs: (
+			{ type:core.trillum amount:10.0 }
+			{ type:core.hexacarbide amount:3.0 }
+			{ type:core.chronimium amount:6.0 }
+			)
+		minTechLevel: 9
+		minTechLevelToDisplay: 8
+		}
+	}
+	
+ResourceType core.grondLauncher {
+	category: commodity
+	name: "Grond launcher"
+	role: shipComponent
+	isCargo: true
+	mass: 20
+	
+	halfLife: 10.0
+
+	production: {
+		workUnits: 1000.0
+		inputs: (
+			{ type:core.trillum amount:20.0 }
+			{ type:core.hexacarbide amount:5.0 }
+			{ type:core.chronimium amount:10.0 }
+			)
+		minTechLevel: 10
+		minTechLevelToDisplay: 8
+		}
+	}
+	
+ResourceType core.heavyMissileLauncher {
+	category: commodity
+	name: "heavy missile launcher"
+	role: shipComponent
+	isCargo: true
+	mass: 1.5
+	
+	halfLife: 10.0
+
+	production: {
+		workUnits: 620.0
+		inputs: (
+			{ type:core.trillum amount:4.0 }
+			{ type:core.hexacarbide amount:5.0 }
+			{ type:core.chronimium amount:1.0 }
+			)
+		minTechLevel: 7
+		}
+	}
+	
+ResourceType core.positronLancer {
+	category: commodity
+	name: "positron lancer"
+	role: shipComponent
+	isCargo: true
+	mass: 2
+	
+	halfLife: 10.0
+
+	production: {
+		workUnits: 580.0
+		inputs: (
+			{ type:core.trillum amount:20.0 }
+			{ type:core.hexacarbide amount:5.0 }
+			)
+		minTechLevel: 6
+		}
+	}
+	
+ResourceType core.reactorN8 {
+	category: commodity
+	name: "N8 reactor"
+	role: shipComponent
+	isCargo: true
+	mass: 15
+	
+	halfLife: 10.0
+
+	production: {
+		workUnits: 2000.0
+		inputs: (
+			{ type:core.trillum amount:50.0 }
+			{ type:core.hexacarbide amount:20.0 }
+			{ type:core.chronimium amount:5.0 }
+			)
+		minTechLevel: 7
+		}
+	}
+	
+ResourceType core.reactorR50 {
+	category: commodity
+	name: "R50 reactor"
+	role: shipComponent
+	isCargo: true
+	mass: 15
+	
+	halfLife: 10.0
+
+	production: {
+		workUnits: 1200.0
+		inputs: (
+			{ type:core.trillum amount:35.0 }
+			{ type:core.hexacarbide amount:12.0 }
+			{ type:core.chronimium amount:10.0 }
+			)
+		minTechLevel: 9
+		minTechLevelToDisplay: 8
+		}
+	}
+	
+ResourceType core.reactorS100 {
+	category: commodity
+	name: "S100 reactor"
+	role: shipComponent
+	isCargo: true
+	mass: 7
+	
+	halfLife: 10.0
+
+	production: {
+		workUnits: 1120.0
+		inputs: (
+			{ type:core.trillum amount:30.0 }
+			{ type:core.hexacarbide amount:10.0 }
+			)
+		minTechLevel: 6
+		}
+	}
+	
+ResourceType core.reactorX9 {
+	category: commodity
+	name: "X9 reactor"
+	role: shipComponent
+	isCargo: true
+	mass: 20
+	
+	halfLife: 10.0
+
+	production: {
+		workUnits: 2500.0
+		inputs: (
+			{ type:core.trillum amount:30.0 }
+			{ type:core.hexacarbide amount:5.0 }
+			{ type:core.chronimium amount:20.0 }
+			)
+		minTechLevel: 10
+		minTechLevelToDisplay: 8
+		}
+	}
+	
+//	Industry -------------------------------------------------------------------
+
+Trait core.fleetStarshipHQ {
+	name: "fleet HQ"
+	category: industry
+	role: shipyardIndustry
+
+	production: (
+		core.infantry
+		core.gunshipSirius
+		core.starfrigateDefiance
+		core.starcruiserVictory
+		core.gunshipMinotaur
+		core.starfrigateGorgos
+		core.starcruiserMegathere
+		)
+
+	defaultAlloc: { alloc:max }
+	designationOnly: true
+	workingConditions: 7
+	}
+	
+Trait core.starshipAutofac {
+	name: "starship autofac"
+	category: industry
+	role: componentIndustry
+	
+	production: (
+		core.positronLancer
+		core.heavyMissileLauncher
+		core.reactorS100
+		core.reactorN8
+		core.reactorR50
+		core.basiliskCannon
+		core.reactorX9
+		core.grondLauncher
+		)
+
+	defaultAlloc: { alloc:max }
+	designationOnly: true
+	autoProductAlloc: true
+	workingConditions: 7
+	}
+	
+Trait core.starshipYards {
+	name: "starship yards"
+	category: industry
+	role: shipyardIndustry
+
+	production: (
+		core.gunshipSirius
+		core.starfrigateDefiance
+		core.starcruiserVictory
+		core.gunshipMinotaur
+		core.starfrigateGorgos
+		core.starcruiserMegathere
+		)
+
+	defaultAlloc: { alloc:max }
+	designationOnly: true
+	workingConditions: 7
+	}
+	

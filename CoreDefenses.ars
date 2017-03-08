@@ -1,0 +1,359 @@
+//	CoreDefenses.ars
+//
+//	Anacreon Core Library
+//	Copyright (c) 2012 by Kronosaur Productions, LLC. All Rights Reserved.
+
+//	Designations ---------------------------------------------------------------
+
+Trait core.citadelDesignation {
+	category: designation
+	name: "citadel"
+	role: citadel
+	minTechLevel: 5
+	
+	industry: (
+		{ type:core.citadelComplex alloc:max }
+
+		{ type:core.chronimiumProcessor alloc:demand }
+		{ type:core.hexacarbideFoundry alloc:demand }
+		{ type:core.trillumExtractor alloc:demand }
+
+		{ type:core.imperialAdministration alloc:demand }
+		{ type:core.consumerGoodsAutofac alloc:demand }
+		)
+
+	description: "Citadels build long-range attack missiles capable of targeting enemy fleets up to 100 light-years away. They also produce infantry."
+
+	imageMedium: { type:constant
+		resource: core.designationIcons
+		pos: (256 384)
+		size: (128 128)
+		}
+
+	imageSmall: { type:constant
+		resource: core.designationIconsSmall
+		pos: (96 144)
+		size: (48 48)
+		}
+	}
+
+//	Units ----------------------------------------------------------------------
+
+ResourceType core.autocannonSatellite
+	{
+	category: orbitalUnit
+	name: "autocannon satellite"
+	attackValue: 24
+	mass: 2.0
+	halfLife: 5.0
+
+	attack: { name:"x-ray laser cannon" count:1 damage:16 type:direct range:10.0 area:0.0 }
+	defense: { armor:16 }
+
+	production: {
+		workUnits: 70.0
+		inputs: (
+			{ type:core.trillum amount:2.0 }
+			{ type:core.hexacarbide amount:1.0 }
+			)
+		minTechLevel: 5
+		}
+	}
+
+ResourceType core.armoredSatellite
+	{
+	category: orbitalUnit
+	name: "armored satellite"
+	attackValue: 125
+	mass: 25.0
+	halfLife: 5.0
+
+	attack: { name:"H5 interceptor" count:1 damage:30 type:missile strength:2 range:10.0 area:0.3 }
+	defense: { armor:130 }
+
+	production: {
+		workUnits: 265.0
+		inputs: (
+			{ type:core.trillum amount:4.0 }
+			{ type:core.hexacarbide amount:12.0 }
+			{ type:core.chronimium amount:0.5 }
+			)
+		minTechLevel: 7
+		}
+	}
+
+ResourceType core.battlestationTitan
+	{
+	category: orbitalUnit
+	name: "Titan-class battlestation"
+	attackValue: 1450
+	mass: 100.0
+	halfLife: 5.0
+
+	attack: { name:"Sekron-90 missile" count:1 damage:300 type:missile strength:4 range:20.0 area:0.3 }
+	defense: { armor:500 }
+
+	production: {
+		workUnits: 600.0
+		inputs: (
+			{ type:core.trillum amount:15.0 }
+			{ type:core.hexacarbide amount:40.0 }
+			{ type:core.chronimium amount:2.0 }
+			{ type:core.heavyMissileLauncher amount:1.0 }
+			)
+		minTechLevel: 9
+		}
+	}
+
+ResourceType core.GDM
+	{
+	category: fixedUnit						//	Fixed units are installations on the ground
+	name: "GDM silo"
+	attackValue: 29
+	mass: 200.0
+	halfLife: 2.0
+	isExpendable: true
+
+	attack: { name:"nuclear warhead" count:1 damage:32 type:missile strength:1 range:10.0 area:0.2 }
+	defense: { armor:16 }
+
+	production: {
+		workUnits: 25.0
+		inputs: (
+			{ type:core.trillum amount:0.2 }
+			)
+		minTechLevel: 3
+		}
+	}
+
+ResourceType core.HELCannon
+	{
+	category: fixedUnit
+	name: "HEL cannon"
+	attackValue: 20
+	mass: 200.0
+	halfLife: 2.0
+
+	attack: { name:"HEL cannon" count:1 damage:10 type:direct range:10.0 area:0.0 }
+	defense: { armor:20 }
+
+	production: {
+		workUnits: 40.0
+		inputs: (
+			{ type:core.trillum amount:0.5 }
+			{ type:core.hexacarbide amount:2.0 }
+			)
+		minTechLevel: 4
+		}
+	}
+
+ResourceType core.hypersonicMissile
+	{
+	category: fixedUnit
+	name: "hypersonic missile site"
+	attackValue: 53
+	mass: 200.0
+	halfLife: 3.0
+
+	attack: { name:"H2 interceptor" count:1 damage:20 type:missile strength:2 range:20.0 area:0.2 }
+	defense: { armor:50 }
+
+	production: {
+		workUnits: 70.0
+		inputs: (
+			{ type:core.trillum amount:2.0 }
+			{ type:core.hexacarbide amount:10.0 }
+			)
+		minTechLevel: 6
+		}
+	}
+
+ResourceType core.jumpmissilePartisan
+	{
+	category: LAMUnit
+	name: "Partisan-class jumpmissile"
+	attackValue: 800
+	mass: 1.0
+	halfLife: 4.0
+
+	LAMRange: 100.0
+	isExpendable: true
+	noLocalAttack: true
+
+	attack: { name:"Partisan missile" count:16 damage:100 type:missile strength:8 range:100.0 area:0.0 }
+	defense: { armor:50 }
+
+	production: {
+		workUnits: 900.0
+		inputs: (
+			{ type:core.trillum amount:2.0 }
+			{ type:core.hexacarbide amount:2.0 }
+			{ type:core.lightJumpdrive amount:1.0 }
+			)
+
+		minTechLevel: 7
+		}
+	}
+
+ResourceType core.plasmaTower
+	{
+	category: fixedUnit
+	name: "plasma tower"
+	attackValue: 325
+	mass: 200.0
+	halfLife: 4.0
+
+	attack: { name:"plasma lancer T13" count:1 damage:50 type:direct range:10.0 area:0.2 }
+	defense: { armor:450 }
+
+	production: {
+		workUnits: 440.0
+		inputs: (
+			{ type:core.trillum amount:10.0 }
+			{ type:core.hexacarbide amount:20.0 }
+			{ type:core.chronimium amount:2.0 }
+			)
+		minTechLevel: 8
+		}
+	}
+	
+//	Industry & Improvements ----------------------------------------------------
+
+Trait core.armoredConstellation {
+	name: "armored constellation"
+	category: improvement
+	role: orbitalDefenseIndustry
+
+	production: (core.armoredSatellite)
+
+	defaultAlloc: { alloc:fixed allocValue:5.0 }
+	minTechLevel: 7
+	buildUpgrade: (core.autocannonConstellation)
+	buildTime: 30
+	createsResourcesOnGameCreate: true
+
+	workingConditions: 5
+
+	description: "This improvement upgrades the satellites of an autocannon constellation with armored and heavily armed satellites. Each armored satellite is equipped with powerful H5 missiles."
+	}
+	
+Trait core.autocannonConstellation {
+	name: "autocannon constellation"
+	category: improvement
+	role: orbitalDefenseIndustry
+
+	production: (core.autocannonSatellite)
+
+	defaultAlloc: { alloc:fixed allocValue:5.0 }
+	minTechLevel: 5
+	buildTime: 8
+	createsResourcesOnGameCreate: true
+
+	workingConditions: 5
+
+	description: "An autocannon constellation is a network of laser-equipped satellites. It is designed to repel a landing force of lightly armed transports."
+	}
+	
+Trait core.battlestationProgram {
+	name: "battlestation program"
+	category: improvement
+	role: orbitalDefenseIndustry
+
+	production: (core.battlestationTitan)
+
+	defaultAlloc: { alloc:fixed allocValue:5.0 }
+	minTechLevel: 9
+	buildUpgrade: (core.armoredConstellation)
+	buildTime: 480
+	createsResourcesOnGameCreate: true
+
+	workingConditions: 5
+
+	description: "This program is an upgrade of the armored constellation improvement. Once operational, the programs builds Titan-class battlestations, the pinnacle of orbital defense. Each heavily armored station packs enough power to oppose a fully armed starcruiser."
+	}
+	
+Trait core.citadelComplex {
+	name: "citadel complex"
+	category: industry
+	role: citadelIndustry
+
+	production: (
+		core.infantry
+		core.jumpmissilePartisan
+		)
+
+	defaultAlloc: { alloc:max }
+	designationOnly: true
+	workingConditions: 7
+	}
+
+Trait core.GDMComplex {
+	name: "GDM complex"
+	category: improvement
+	role: groundDefenseIndustry
+
+	production: (core.GDM)
+
+	defaultAlloc: { alloc:fixed allocValue:5.0 }
+	minTechLevel: 3
+	buildTime: 4
+	createsResourcesOnGameCreate: true
+
+	workingConditions: 5
+
+	description: "Nuclear-tipped ground defense missiles (GDMs) are cheap but deadly defenses for underdeveloped worlds. Each GDM site contains a single missile, which is expended on use."
+	}
+	
+Trait core.HELCannonNetwork {
+	name: "HEL cannon network"
+	category: improvement
+	role: groundDefenseIndustry
+
+	production: (core.HELCannon)
+
+	defaultAlloc: { alloc:fixed allocValue:5.0 }
+	minTechLevel: 4
+	buildTime: 4
+	createsResourcesOnGameCreate: true
+
+	workingConditions: 5
+
+	description: "This improvement builds a network of high-energy laser (HEL) towers around the planet, designed for defending against invasion."
+	}
+	
+Trait core.HMComplex {
+	name: "hypersonic missile complex"
+	category: improvement
+	role: groundDefenseIndustry
+
+	production: (core.hypersonicMissile)
+
+	defaultAlloc: { alloc:fixed allocValue:5.0 }
+	minTechLevel: 6
+	buildUpgrade: (core.GDMComplex)
+	buildTime: 15
+	createsResourcesOnGameCreate: true
+
+	workingConditions: 5
+
+	description: "This improvement builds a complex of hypersonic missile sites capable of attacking enemy ships in orbit. Each site can fire an unlimited number of missiles during a conflict."
+	}
+	
+Trait core.plasmaTowerNetwork {
+	name: "plasma tower network"
+	category: improvement
+	role: groundDefenseIndustry
+
+	production: (core.plasmaTower)
+
+	defaultAlloc: { alloc:fixed allocValue:5.0 }
+	minTechLevel: 8
+	buildUpgrade: (core.HELCannonNetwork)
+	buildTime: 120
+	createsResourcesOnGameCreate: true
+
+	workingConditions: 5
+
+	description: "HEL cannons may be upgraded to plasma towers with this improvement. Plasma towers fire a high-intensity beam of charged plasma, able to pierce through the armor of most ships."
+	}
+	

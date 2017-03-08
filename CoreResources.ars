@@ -1,0 +1,431 @@
+//	CoreResources.ars
+//
+//	Anacreon Core Library
+//	Copyright (c) 2014 by Kronosaur Productions, LLC. All Rights Reserved.
+
+//	Designations ---------------------------------------------------------------
+
+Trait core.aetheriumDesignation {
+	category: designation
+	name: "aetherium processor"
+	minTechLevel: 5
+	requirements: (core.aetheriumSource)
+	
+	industry: (
+		{ type:core.aetheriumProcessor alloc:max }
+		
+		{ type:core.chronimiumProcessor alloc:demand }
+		{ type:core.hexacarbideFoundry alloc:demand }
+		{ type:core.trillumExtractor alloc:demand }
+
+		{ type:core.imperialAdministration alloc:demand }
+		{ type:core.consumerGoodsAutofac alloc:demand }
+		)
+
+	description: "Aetherium is a high-energy resource extracted from nebular regions. This designation extracts aetherium suitable for export."
+
+	imageMedium: { type:constant
+		resource: core.designationIcons
+		pos: (128 1280)
+		size: (128 128)
+		}
+
+	imageSmall: { type:constant
+		resource: core.designationIconsSmall
+		pos: (48 480)
+		size: (48 48)
+		}
+	}
+
+Trait core.chronimiumDesignation {
+	category: designation
+	name: "chronimium processor"
+	minTechLevel: 7
+	requirements: (core.chronimiumSource)
+	exclusions: ({ type:core.chronimiumNone })
+	
+	industry: (
+		{ type:core.chronimiumProcessor alloc:max }
+
+		{ type:core.hexacarbideFoundry alloc:demand }
+		{ type:core.trillumExtractor alloc:demand }
+		
+		{ type:core.imperialAdministration alloc:demand }
+		{ type:core.consumerGoodsAutofac alloc:demand }
+		)
+
+	description: "Chronimium is a rare elemental gas used in high technology manufacturing."
+
+	imageMedium: { type:constant
+		resource: core.designationIcons
+		pos: (256 128)
+		size: (128 128)
+		}
+
+	imageSmall: { type:constant
+		resource: core.designationIconsSmall
+		pos: (96 48)
+		size: (48 48)
+		}
+	}
+
+Trait core.chtholonDesignation {
+	category: designation
+	name: "chtholon extractor"
+	minTechLevel: 7
+	requirements: (core.chtholonSource)
+	
+	industry: (
+		{ type:core.chtholonExtractor alloc:max }
+
+		{ type:core.aetheriumProcessor alloc:demand }
+		{ type:core.chronimiumProcessor alloc:demand }
+		{ type:core.hexacarbideFoundry alloc:demand }
+		{ type:core.trillumExtractor alloc:demand }
+
+		{ type:core.imperialAdministration alloc:demand }
+		{ type:core.consumerGoodsAutofac alloc:demand }
+		)
+
+	description: "Chtholon is an exotic mineral resource extracted from nebular regions."
+
+	imageMedium: { type:constant
+		resource: core.designationIcons
+		pos: (256 1280)
+		size: (128 128)
+		}
+
+	imageSmall: { type:constant
+		resource: core.designationIconsSmall
+		pos: (96 480)
+		size: (48 48)
+		}
+	}
+
+Trait core.consumerGoodsDesignation {
+	category: designation
+	name: "consumer goods autofac"
+	minTechLevel: 1
+	
+	industry: (
+		{ type:core.consumerGoodsAutofac alloc:max }
+
+		{ type:core.chronimiumProcessor alloc:demand }
+		{ type:core.hexacarbideFoundry alloc:demand }
+		{ type:core.trillumExtractor alloc:demand }
+		
+		{ type:core.imperialAdministration alloc:demand }
+		)
+
+	description: "This designation produces all of the basic needs of a human population: organic food, durable goods, and luxuries."
+
+	imageMedium: { type:constant
+		resource: core.designationIcons
+		pos: (0 384)
+		size: (128 128)
+		}
+
+	imageSmall: { type:constant
+		resource: core.designationIconsSmall
+		pos: (0 144)
+		size: (48 48)
+		}
+	}
+
+Trait core.hexacarbideDesignation {
+	category: designation
+	name: "hexacarbide foundry"
+	minTechLevel: 4
+	requirements: (core.hexacarbideSource)
+	exclusions: (core.hexacarbideNone)
+	
+	industry: (
+		{ type:core.hexacarbideFoundry alloc:max }
+
+		{ type:core.chronimiumProcessor alloc:demand }
+		{ type:core.trillumExtractor alloc:demand }
+
+		{ type:core.imperialAdministration alloc:demand }
+		{ type:core.consumerGoodsAutofac alloc:demand }
+		)
+
+	description: "Hexacarbide is a light but strong metal alloy used in the construction of ships."
+
+	imageMedium: { type:constant
+		resource: core.designationIcons
+		pos: (128 128)
+		size: (128 128)
+		}
+
+	imageSmall: { type:constant
+		resource: core.designationIconsSmall
+		pos: (48 48)
+		size: (48 48)
+		}
+	}
+	
+Trait core.trillumDesignation {
+	category: designation
+	name: "trillum extractor"
+	minTechLevel: 3
+	requirements: (core.trillumSource)
+	exclusions: (core.trillumNone)
+	
+	industry: (
+		{ type:core.trillumExtractor alloc:max }
+		
+		{ type:core.chronimiumProcessor alloc:demand }
+		{ type:core.hexacarbideFoundry alloc:demand }
+
+		{ type:core.imperialAdministration alloc:demand }
+		{ type:core.consumerGoodsAutofac alloc:demand }
+		)
+
+	description: "Trillum is a high-density fuel used in industry and space travel. This designation extracts trillum suitable for export."
+
+	imageMedium: { type:constant
+		resource: core.designationIcons
+		pos: (0 128)
+		size: (128 128)
+		}
+
+	imageSmall: { type:constant
+		resource: core.designationIconsSmall
+		pos: (0 48)
+		size: (48 48)
+		}
+	}
+
+//	Commodities and Materials --------------------------------------------------
+
+ResourceType core.aetherium {
+	category: commodity
+	name: "aetherium"
+	role: rawMaterial
+	isCargo: true
+	mass: 1.0
+	
+	halfLife: 10.0
+
+	production: {
+		workUnits: 5.0
+		minTechLevel: 5
+		requirements: (core.aetheriumSource)
+		}
+	}
+	
+ResourceType core.chronimium {
+	category: commodity
+	name: "chronimium"						//	Should include pluralization rules, etc.
+	role: rawMaterial
+	isCargo: true 							//	If TRUE then resource may be carried on transports
+	mass: 1.0 								//	In kilotons
+	
+	halfLife: 1.0							//	Half-life in cycles (std years)
+
+	production: {
+		workUnits: 23.0						//	WorkUnits to create 1 item per watch
+		inputs: ({ type:core.trillum amount:2.0 })	//	Inputs; amounts are in units (e.g., 2 tillum to create 1 chronimium).
+		minTechLevel: 7						//	Min tech level of world to produce
+		requirements: (core.chronimiumSource)
+		}
+	}
+	
+ResourceType core.chtholon {
+	category: commodity
+	name: "chtholon"
+	role: rawMaterial
+	isCargo: true
+	mass: 1.0
+	
+	halfLife: 20.0
+
+	production: {
+		workUnits: 12.0
+		inputs: ({ type:core.aetherium amount:2.0 })
+		minTechLevel: 7
+		requirements: (core.chtholonSource)
+		}
+	}
+	
+ResourceType core.durableGoods {
+	category: commodity
+	name: "durable goods"
+	role: consumerGoods
+	isCargo: true
+	mass: 1.0
+	
+	halfLife: 3.0
+
+	production: {
+		workUnits: 0.1
+		inputs: ({ type:core.trillum amount:0.04 })
+		minTechLevel: 4
+		}
+	}
+	
+ResourceType core.hexacarbide {
+	category: commodity
+	name: "hexacarbide"
+	role: rawMaterial
+	isCargo: true
+	mass: 1.0
+
+	production: {
+		workUnits: 9.0
+		inputs: ({ type:core.trillum amount:1.0 })
+		minTechLevel: 4
+		requirements: (core.hexacarbideSource)
+		}
+	}
+
+ResourceType core.luxuries {
+	category: commodity
+	name: "luxuries"
+	role: consumerGoods
+	isCargo: true
+	mass: 1.0
+	
+	halfLife: 0.5
+
+	production: {
+		workUnits: 1.5
+		inputs: ({ type:core.trillum amount:0.1 })
+		minTechLevel: 7
+		}
+	}
+
+ResourceType core.organicFood {
+	category: commodity
+	name: "organic food"
+	role: consumerGoods
+	isCargo: true
+	mass: 1.0
+	
+	halfLife: 0.1
+
+	production: {
+		workUnits: 0.04
+		inputs: ()
+		minTechLevel: 1
+		}
+	}
+
+ResourceType core.trillum {
+	category: commodity
+	name: "trillum"
+	role: energy
+	isCargo: true
+	mass: 1.0
+	
+	halfLife: 20.0
+
+	production: {
+		workUnits: 1.0
+		minTechLevel: 3
+		requirements: (core.trillumSource)
+		}
+	}
+
+//	Industry & Improvements ----------------------------------------------------
+
+Trait core.aetheriumProcessor	{
+	name: "aetherium processor"
+	category: industry
+	role: rawMaterialIndustry
+	
+	production: (core.aetherium)
+
+	workingConditions: 4
+	}
+
+Trait core.agriculturalComplex	{
+	name: "agricultural complex"
+	category: industry
+	role: consumerGoodsIndustry
+
+	production: (core.organicFood)
+
+	defaultAlloc: { alloc:max }
+	designationOnly: true
+	workingConditions: 5
+	}
+
+Trait core.chronimiumProcessor	{
+	name: "chronimium processor"
+	category: industry
+	role: rawMaterialIndustry
+	
+	production: (core.chronimium)
+
+	workingConditions: 3
+	}
+
+Trait core.chtholonExtractor	{
+	name: "chtholon extractor"
+	category: industry
+	role: rawMaterialIndustry
+	
+	production: (core.chtholon)
+
+	workingConditions: 3
+	}
+
+Trait core.consumerGoodsAutofac {
+	name: "consumer goods autofac"
+	category: industry
+	role: consumerGoodsIndustry
+
+	production: (
+		core.organicFood
+		core.durableGoods
+		core.luxuries
+		)
+
+	workingConditions: 7
+	autoProductAlloc: true
+	}
+
+Trait core.durableGoodsIndustry {
+	name: "durable goods industry"
+	category: industry
+	role: consumerGoodsIndustry
+
+	production: (core.durableGoods)
+
+	defaultAlloc: { alloc:max }
+	designationOnly: true
+	workingConditions: 7
+	}
+
+Trait core.hexacarbideFoundry {
+	name: "hexacarbide foundry"
+	category: industry
+	role: rawMaterialIndustry
+
+	production: (core.hexacarbide)
+
+	workingConditions: 2
+	}
+
+Trait core.luxuryAutofac {
+	name: "luxury goods autofac"
+	category: industry
+	role: consumerGoodsIndustry
+
+	production: (core.luxuries)
+
+	defaultAlloc: { alloc:max }
+	designationOnly: true
+	workingConditions: 9
+	}
+	
+Trait core.trillumExtractor {
+	name: "trillum extractor"
+	category: industry
+	role: energyIndustry
+
+	production: (core.trillum)
+
+	workingConditions: 3
+	}

@@ -1,0 +1,1558 @@
+//	Core.ars
+//
+//	Anacreon Core Library
+//	Copyright (c) 2012 by Kronosaur Productions, LLC. All Rights Reserved.
+
+Library core.library
+	{
+	name: "Anacreon Alpha Edition Library"
+	}
+
+//	Currency -------------------------------------------------------------------
+
+CurrencyType core.aes {
+	name: "aes"
+	value: 0.05								//	Price per work unit
+	taxRate: 0.0							//	No tax for now (5% = 0.05)
+	}
+	
+//	Industry & Improvements ----------------------------------------------------
+
+Trait core.domedCity {
+	name: "domed city"
+	category: improvement
+	role: lifeSupport
+
+	production: (
+		core.lifeSupportSupplies
+		core.airFilters
+		)
+
+	populationAdj: { type:byTech
+		value: (
+			(fusion				7500)
+			(biotech			7450)
+			(antimatter			6800)
+			(quantum			5400)
+			(postIndustrial		4400)
+			)
+
+		op:min
+		}
+
+	minTechLevel: 6
+	buildUpgrade: (core.airProcessor core.domedCityRuins core.pressurizedHabitat)
+	buildTime: 1440
+	destroysTo: (core.domedCityRuins)
+
+	workingConditions: 5
+
+	description: "A domed city allows a world with an inhospitable atmosphere to support a larger population. This structure upgrades an air processor or pressurized habitat."
+	}
+
+Trait core.domedCityRuins {
+	name: "domed city ruins"
+	category: improvement
+	role: lifeSupport
+
+	production: (
+		core.lifeSupportSupplies
+		core.airFilters
+		)
+
+	workingConditions: 4
+
+	description: "A ruined domed city cannot support a large population, but still supports human life."
+	}
+
+Trait core.floatingCity {
+	name: "floating city"
+	category: improvement
+	role: lifeSupport
+
+	populationAdj: { type:byTech
+		value: (
+			(fusion				9900)
+			(biotech			9000)
+			(antimatter			7800)
+			(quantum			5950)
+			(postIndustrial		4875)
+			)
+
+		op:min
+		}
+
+	minTechLevel: 6
+	buildRequirements: (core.globalOcean)
+	buildTime: 1440
+	workingConditions: 7
+
+	description: "A floating city increases the area available to human populations on ocean worlds. This improvement will ultimately increase the population of the world."
+	}
+
+Trait core.hypermetropolis {
+	name: "hypermetropolis"
+	category: improvement
+	role: lifeSupport
+
+	populationAdj: { type:byTech
+		value: (
+			(fusion				9900)
+			(biotech			9000)
+			(antimatter			7800)
+			(quantum			5950)
+			(postIndustrial		4875)
+			)
+
+		op:min
+		}
+
+	minTechLevel: 6
+	buildRequirements: (core.earthLikeBiosphere)
+	buildTime: 1440
+
+	workingConditions: 6
+
+	description: "A hypermetropolis increases the population density of a world, allowing greater number of people to live and work for the empire. Only hospitable, Earth-like worlds may build a hypermetropolis."
+	}
+
+Trait core.imperialAdministration {
+	name: "administration"
+	category: improvement
+	role: administration
+
+	//	Any world that is part of an empire rises to at least level 5
+	techLevelAdj: { value:5.0	op:min }
+
+	designationOnly: true
+	workingConditions: 10
+	}
+
+Trait core.neuralProcessor
+	{
+	name: "neural processor"
+	category: improvement
+	
+	designationOnly: true	//	OBSOLETE
+	workingConditions: 8
+
+	description: "A neural processor is required by an autofac to build some of the more advanced items."
+	}
+
+Trait core.oceanArcology {
+	name: "ocean arcology"
+	category: improvement
+	role: lifeSupport
+
+	populationAdj: { type:byTech
+		value: (
+			(biotech			10500)
+			(antimatter			9600)
+			(quantum			7650)
+			(postIndustrial		6500)
+			)
+
+		op:min
+		}
+
+	minTechLevel: 7
+	buildUpgrade: (core.floatingCity core.oceanArcologyRuins)
+	buildTime: 2880
+	destroysTo: (core.oceanArcologyRuins)
+
+	workingConditions: 8
+
+	description: "An ocean arcology is an upgrade to a floating city. It allows even greater numbers of people to live on an ocean world."
+	}
+
+Trait core.oceanArcologyRuins {
+	name: "ocean arcology ruins"
+	category: improvement
+	role: lifeSupport
+
+	workingConditions: 5
+
+	description: "A ruined ocean arcology."
+	}
+
+Trait core.planetaryArcology {
+	name: "planetary arcology"
+	category: improvement
+	role: lifeSupport
+
+	populationAdj: { type:byTech
+		value: (
+			(antimatter			11400)
+			(quantum			9350)
+			(postIndustrial		8125)
+			)
+
+		op:min
+		}
+
+	minTechLevel: 8
+	buildUpgrade: (core.oceanArcology core.planetaryArcologyRuins core.undergroundArcology core.urbanArcology)
+	buildTime: 5760
+	destroysTo: (core.planetaryArcologyRuins)
+
+	workingConditions: 8
+
+	description: "A planetary arcology is a world-spanning city allowing billions of people to efficiently populate a world."
+	}
+
+Trait core.planetaryArcologyRuins {
+	name: "planetary arcology ruins"
+	category: improvement
+	role: lifeSupport
+
+	workingConditions: 6
+
+	description: "A ruined planetary arcology."
+	}
+
+Trait core.pressurizedHabitat {
+	name: "pressurized habitat"
+	category: improvement
+	role: lifeSupport
+
+	production: (core.lifeSupportSupplies)
+
+	populationAdj: { type:byTech
+		value: (
+			(spacefaring		2350)
+			(fusion				3300)
+			(biotech			4300)
+			(antimatter			4800)
+			(quantum			4650)
+			(postIndustrial		3250)
+			)
+
+		op:min
+		}
+
+	minTechLevel: 5
+	buildUpgrade: (core.lifeSupportSystem core.pressurizedHabitatRuins)
+	buildTime: 720
+	destroysTo: (core.pressurizedHabitatRuins)
+
+	workingConditions: 6
+
+	description: "A pressurized habit is an upgrade to a life support system. A pressurize habitat allows a larger population to survive on a barren world."
+	}
+
+Trait core.pressurizedHabitatRuins {
+	name: "pressurized habitat ruins"
+	category: improvement
+	role: lifeSupport
+
+	production: (core.lifeSupportSupplies)
+
+	workingConditions: 4
+
+	description: "A ruined habitat cannot support a large population, but still supports human life."
+	}
+
+Trait core.sealedArcology {
+	name: "sealed arcology"
+	category: improvement
+	role: lifeSupport
+
+	production: (
+		core.lifeSupportSupplies
+		core.airFilters
+		)
+
+	populationAdj: { type:byTech
+		value: (
+			(biotech			8700)
+			(antimatter			8200)
+			(quantum			6650)
+			(postIndustrial		5550)
+			)
+
+		op:min
+		}
+
+	minTechLevel: 7
+	buildUpgrade: (core.domedCity core.sealedArcologyRuins)
+	buildTime: 2880
+	destroysTo: (core.sealedArcologyRuins)
+
+	workingConditions: 6
+
+	description: "A sealed arcology is a much larger version of a domed city. It supports a much larger population."
+	}
+
+Trait core.sealedArcologyRuins {
+	name: "sealed arcology ruins"
+	category: improvement
+	role: lifeSupport
+
+	production: (
+		core.lifeSupportSupplies
+		core.airFilters
+		)
+
+	workingConditions: 4
+
+	description: "A ruined arcology cannot support a large population, but still supports human life."
+	}
+
+Trait core.sectorCapitalAdministration {
+	name: "administration"
+	category: improvement
+	role: administration
+
+	minTechLevel: 5
+	buildTime: 1440
+
+	designationOnly: true
+	workingConditions: 10
+	}
+
+Trait core.shieldedArcology {
+	name: "shielded arcology"
+	category: improvement
+	role: lifeSupport
+
+	production: (
+		core.radiationShielding
+		core.radiationMeds
+		)
+
+	populationAdj: { type:byTech
+		value: (
+			(biotech			8700)
+			(antimatter			8200)
+			(quantum			6650)
+			(postIndustrial		5550)
+			)
+
+		op:min
+		}
+
+	minTechLevel: 7
+	buildUpgrade: (core.shieldedArcologyRuins core.shieldedCity)
+	buildTime: 2880
+	destroysTo: (core.shieldedArcologyRuins)
+
+	workingConditions: 7
+
+	description: "A shielded arcology is a much larger version of a shielded city. It supports a much larger population."
+	}
+
+Trait core.shieldedArcologyRuins {
+	name: "shielded arcology ruins"
+	category: improvement
+	role: lifeSupport
+
+	production: (
+		core.radiationShielding
+		core.radiationMeds
+		)
+
+	workingConditions: 5
+
+	description: "A ruined shielded arcology."
+	}
+
+Trait core.shieldedCity {
+	name: "shielded city"
+	category: improvement
+	role: lifeSupport
+
+	production: (
+		core.radiationShielding
+		core.radiationMeds
+		)
+
+	populationAdj: { type:byTech
+		value: (
+			(spacefaring		6750)
+			(fusion				7500)
+			(biotech			7450)
+			(antimatter			6800)
+			(quantum			5400)
+			(postIndustrial		4400)
+			)
+
+		op:min
+		}
+
+	minTechLevel: 5
+	buildUpgrade: (core.shieldedCityRuins core.shieldedHabitat)
+	buildTime: 720
+	destroysTo: (core.shieldedCityRuins)
+
+	workingConditions: 7
+
+	description: "A shielded city upgrades a shielded habitat. It protects a larger population in dangerous environments."
+	}
+
+Trait core.shieldedCityRuins {
+	name: "shielded city ruins"
+	category: improvement
+	role: lifeSupport
+
+	production: (
+		core.radiationShielding
+		core.radiationMeds
+		)
+
+	workingConditions: 5
+
+	description: "A shielded city ruin."
+	}
+
+Trait core.shieldedHabitat {
+	name: "habitat city"
+	category: improvement
+	role: lifeSupport
+
+	production: (
+		core.radiationShielding
+		core.radiationMeds
+		)
+
+	populationAdj: { type:byTech
+		value: (
+			(digital			2700)
+			(spacefaring		4200)
+			(fusion				5450)
+			(biotech			6250)
+			(antimatter			6200)
+			(quantum			5000)
+			(postIndustrial		3900)
+			)
+
+		op:min
+		}
+
+	minTechLevel: 4
+	buildUpgrade: (core.flareShelter core.radiationClinic core.shieldedHabitatRuins)
+	buildTime: 360
+	destroysTo: (core.shieldedHabitatRuins)
+
+	workingConditions: 7
+
+	description: "A shielded habitat is an upgrade to either a radiation clinic or flare shelter. It support a larger population in a comfortable and safe enclosure."
+	}
+
+Trait core.shieldedHabitatRuins {
+	name: "habitat city ruins"
+	category: improvement
+	role: lifeSupport
+
+	production: (
+		core.radiationShielding
+		core.radiationMeds
+		)
+
+	workingConditions: 5
+
+	description: "Shielded habitat ruins."
+	}
+
+Trait core.spaceport {
+	name: "spaceport"
+	category: improvement
+	role: spaceport
+
+	maxTradeDist: { value:100.0 op:defaultValue }
+	buildExclusions: (core.tradingHubAttribute)
+	minTechLevel: 5
+	buildTime: 4
+
+	workingConditions: 6
+
+	description: "A spaceport supports a trade route between worlds. At least one of the two worlds in a trade route must have a spaceport."
+	}
+	
+Trait core.starport {
+	name: "starport"
+	category: improvement
+	role: spaceport
+
+	maxTradeDist: { value:100.0 op:defaultValue }
+
+	minTechLevel: 5
+
+	designationOnly: true
+	workingConditions: 7
+
+	description: "A starport is an upgraded spaceport that supports inter-empire trade."
+	}
+	
+Trait core.subtropolis {
+	name: "subtropolis"
+	category: improvement
+	role: lifeSupport
+
+	populationAdj: { type:byTech
+		value: (
+			(fusion				9900)
+			(biotech			9000)
+			(antimatter			7800)
+			(quantum			5950)
+			(postIndustrial		4875)
+			)
+
+		op:min
+		}
+
+	minTechLevel: 6
+	buildRequirements: (core.undergroundPopulation)
+	buildTime: 1440
+
+	workingConditions: 6
+
+	description: "A subtropolis is a giant underground city. It allows a larger population to survive in underground worlds."
+	}
+
+Trait core.undergroundArcology {
+	name: "underground arcology"
+	category: improvement
+	role: lifeSupport
+
+	populationAdj: { type:byTech
+		value: (
+			(biotech			10500)
+			(antimatter			9600)
+			(quantum			7650)
+			(postIndustrial		6500)
+			)
+
+		op:min
+		}
+
+	minTechLevel: 7
+	buildUpgrade: (core.subtropolis core.undergroundArcologyRuins)
+	buildTime: 2880
+	destroysTo: (core.undergroundArcologyRuins)
+
+	workingConditions: 7
+
+	description: "An underground arcology is a much larger version of a subtropolis. It allows a larger population to live underground."
+	}
+
+Trait core.undergroundArcologyRuins {
+	name: "underground arcology ruins"
+	category: improvement
+	role: lifeSupport
+
+	workingConditions: 5
+
+	description: "Underground arcology ruins."
+	}
+
+Trait core.university {
+	name: "foundation"
+	category: industry
+	role: university
+
+	designationOnly: true
+	workingConditions: 10
+	}
+
+Trait core.urbanArcology {
+	name: "urban arcology"
+	category: improvement
+	role: lifeSupport
+
+	populationAdj: { type:byTech
+		value: (
+			(biotech			10500)
+			(antimatter			9600)
+			(quantum			7650)
+			(postIndustrial		6500)
+			)
+
+		op:min
+		}
+
+	minTechLevel: 7
+	buildUpgrade: (core.hypermetropolis core.urbanArcologyRuins)
+	buildTime: 2880
+	destroysTo: (core.urbanArcologyRuins)
+
+	workingConditions: 7
+
+	description: "An urban arcology upgrades a hypermetropolis. It allows a larger population to live on a world."
+	}
+
+Trait core.urbanArcologyRuins {
+	name: "urban arcology ruins"
+	category: improvement
+	role: lifeSupport
+
+	workingConditions: 5
+
+	description: "An urban arcology ruin."
+	}
+
+//	Tech Advancement Programs --------------------------------------------------
+
+Trait core.fusionProgram {
+	name: "fusion program"
+	category: improvement
+	role: techAdvance
+
+	techLevelAdvance: 6
+
+	defaultAlloc: { alloc:fixed allocValue:5.0 }
+	noPlayerAlloc: true
+	buildExclusions: (core.universityDesignation core.capitalDesignationAttribute)
+	minTechLevel: 5
+	buildTime: 8
+
+	workingConditions: 9
+
+	description: "This program advances the world to fusion tech level."
+	}
+
+Trait core.biotechProgram {
+	name: "biotech program"
+	category: improvement
+	role: techAdvance
+
+	techLevelAdvance: 7
+
+	defaultAlloc: { alloc:fixed allocValue:10.0 }
+	noPlayerAlloc: true
+	buildExclusions: (core.universityDesignation core.capitalDesignationAttribute)
+	minTechLevel: 6
+	buildTime: 15
+
+	workingConditions: 9
+
+	description: "This program advances the world to biotech level."
+	}
+
+Trait core.antimatterProgram {
+	name: "antimatter program"
+	category: improvement
+	role: techAdvance
+
+	techLevelAdvance: 8
+
+	defaultAlloc: { alloc:fixed allocValue:5.0 }
+	noPlayerAlloc: true
+	buildRequirements: (core.capitalDesignationAttribute)
+	minTechLevel: 7
+	buildTime: 30
+
+	workingConditions: 9
+
+	description: "This program advances the capital to antimatter tech level."
+	}
+
+Trait core.quantumProgram {
+	name: "quantum program"
+	category: improvement
+	role: techAdvance
+
+	techLevelAdvance: 9
+
+	defaultAlloc: { alloc:fixed allocValue:10.0 }
+	noPlayerAlloc: true
+	buildRequirements: (core.capitalDesignationAttribute)
+	minTechLevel: 8
+	buildTime: 60
+
+	workingConditions: 9
+
+	description: "This program advances the capital to quantum tech level."
+	}
+
+Trait core.postIndustrialProgram {
+	name: "post-industrial program"
+	category: improvement
+	role: techAdvance
+
+	techLevelAdvance: 10
+
+	defaultAlloc: { alloc:fixed allocValue:15.0 }
+	noPlayerAlloc: true
+	buildRequirements: (core.capitalDesignationAttribute)
+	minTechLevel: 9
+	buildTime: 1440
+
+	workingConditions: 9
+
+	description: "This program advances the capital to post-industrial tech level."
+	}
+
+//	Designations ---------------------------------------------------------------
+
+Trait core.autonomousDesignation {
+	category: designation
+	name: "autonomous"
+	autonomous: true
+	npeOnly: true
+	
+	industry: (
+		{ type:core.chronimiumProcessor alloc:demand }
+		{ type:core.hexacarbideFoundry alloc:demand }
+		{ type:core.trillumExtractor alloc:demand }
+
+		{ type:core.militiaBase alloc:fixed allocValue:5.0 }
+		{ type:core.consumerGoodsAutofac alloc:demand }
+		)
+
+	imageMedium: { type:constant
+		resource: core.designationIcons
+		pos: (0 0)
+		size: (128 128)
+		}
+
+	imageSmall: { type:constant
+		resource: core.designationIconsSmall
+		pos: (0 0)
+		size: (48 48)
+		}
+	}
+
+Trait core.capitalDesignation {
+	category: designation
+	name: "capital"
+	role: imperialCapital
+	inheritFrom: (core.capitalDesignationAttribute)
+	
+	industry: (
+		{ type:core.fleetHQ alloc:max }
+		{ type:core.jumpshipAutofac alloc:demand }
+
+		{ type:core.chronimiumProcessor alloc:demand }
+		{ type:core.hexacarbideFoundry alloc:demand }
+		{ type:core.trillumExtractor alloc:demand }
+
+		{ type:core.imperialAdministration alloc:demand }
+		{ type:core.spaceport alloc:demand }
+		{ type:core.consumerGoodsAutofac alloc:demand }
+		)
+
+	imageMedium: { type:constant
+		resource: core.designationIcons
+		pos: (0 768)
+		size: (128 128)
+		}
+
+	imageSmall: { type:constant
+		resource: core.designationIconsSmall
+		pos: (0 288)
+		size: (48 48)
+		}
+
+	techLevelAdj: { value:5.0	op:min }
+	}
+	
+Trait core.capitalJumpshipDesignation {
+	category: designation
+	name: "capital"
+	role: imperialCapital
+	inheritFrom: (core.capitalDesignationAttribute)
+	
+	industry: (
+		{ type:core.fleetHQ alloc:max }
+		{ type:core.jumpshipAutofac alloc:demand }
+
+		{ type:core.chronimiumProcessor alloc:demand }
+		{ type:core.hexacarbideFoundry alloc:demand }
+		{ type:core.trillumExtractor alloc:demand }
+
+		{ type:core.imperialAdministration alloc:demand }
+		{ type:core.spaceport alloc:demand }
+		{ type:core.consumerGoodsAutofac alloc:demand }
+		)
+
+	imageMedium: { type:constant
+		resource: core.designationIcons
+		pos: (0 768)
+		size: (128 128)
+		}
+
+	imageSmall: { type:constant
+		resource: core.designationIconsSmall
+		pos: (0 288)
+		size: (48 48)
+		}
+
+	techLevelAdj: { value:7.0	op:min }
+	}
+	
+Trait core.capitalLawAndOrderDesignation {
+	category: designation
+	name: "capital"
+	role: imperialCapital
+	inheritFrom: (core.capitalDesignationAttribute)
+	
+	industry: (
+		{ type:core.imperialSecurityService alloc:max }
+
+		{ type:core.chronimiumProcessor alloc:demand }
+		{ type:core.hexacarbideFoundry alloc:demand }
+		{ type:core.trillumExtractor alloc:demand }
+
+		{ type:core.imperialAdministration alloc:demand }
+		{ type:core.spaceport alloc:demand }
+		{ type:core.consumerGoodsAutofac alloc:demand }
+		)
+
+	imageMedium: { type:constant
+		resource: core.designationIcons
+		pos: (256 768)
+		size: (128 128)
+		}
+
+	imageSmall: { type:constant
+		resource: core.designationIconsSmall
+		pos: (96 288)
+		size: (48 48)
+		}
+
+	techLevelAdj: { value:7.0	op:min }
+	}
+	
+Trait core.capitalStarshipDesignation {
+	category: designation
+	name: "capital"
+	role: imperialCapital
+	inheritFrom: (core.capitalDesignationAttribute)
+	exclusions: (core.inNebula)
+	
+	industry: (
+		{ type:core.fleetStarshipHQ alloc:max }
+		{ type:core.starshipAutofac alloc:demand }
+
+		{ type:core.chronimiumProcessor alloc:demand }
+		{ type:core.hexacarbideFoundry alloc:demand }
+		{ type:core.trillumExtractor alloc:demand }
+
+		{ type:core.imperialAdministration alloc:demand }
+		{ type:core.spaceport alloc:demand }
+		{ type:core.consumerGoodsAutofac alloc:demand }
+		)
+
+	imageMedium: { type:constant
+		resource: core.designationIcons
+		pos: (128 768)
+		size: (128 128)
+		}
+
+	imageSmall: { type:constant
+		resource: core.designationIconsSmall
+		pos: (48 288)
+		size: (48 48)
+		}
+
+	techLevelAdj: { value:7.0	op:min }
+	}
+	
+Trait core.capitalTradeDesignation {
+	category: designation
+	name: "capital"
+	role: imperialCapital
+	inheritFrom: (core.capitalDesignationAttribute core.tradingHubAttribute)
+	
+	industry: (
+		{ type:core.starport alloc:max }
+
+		{ type:core.chronimiumProcessor alloc:demand }
+		{ type:core.hexacarbideFoundry alloc:demand }
+		{ type:core.trillumExtractor alloc:demand }
+
+		{ type:core.imperialAdministration alloc:demand }
+		{ type:core.consumerGoodsAutofac alloc:demand }
+		)
+
+	imageMedium: { type:constant
+		resource: core.designationIcons
+		pos: (0 1024)
+		size: (128 128)
+		}
+
+	imageSmall: { type:constant
+		resource: core.designationIconsSmall
+		pos: (0 384)
+		size: (48 48)
+		}
+
+	techLevelAdj: { value:7.0	op:min }
+	}
+	
+Trait core.sectorCapitalDesignation {
+	category: designation
+	name: "sector capital"
+	role: sectorCapital
+
+	minTechLevel: 5
+	requirements: (core.fireAndMovement)
+	
+	industry: (
+		{ type:core.fleetHQ alloc:max }
+		{ type:core.jumpshipAutofac alloc:demand }
+
+		{ type:core.chronimiumProcessor alloc:demand }
+		{ type:core.hexacarbideFoundry alloc:demand }
+		{ type:core.trillumExtractor alloc:demand }
+
+		{ type:core.sectorCapitalAdministration alloc:demand }
+		{ type:core.consumerGoodsAutofac alloc:demand }
+		)
+
+	techLevelAdj: { value:5.0	op:min }
+
+	description: "A sector capital helps with the administration of the empire. Every imperial world must be within 250 light-years of the capital or a sector capital in order to participate in the imperial economy."
+
+	imageMedium: { type:constant
+		resource: core.designationIcons
+		pos: (0 896)
+		size: (128 128)
+		}
+
+	imageSmall: { type:constant
+		resource: core.designationIconsSmall
+		pos: (0 336)
+		size: (48 48)
+		}
+	}
+	
+Trait core.sectorCapitalLawAndOrderDesignation {
+	category: designation
+	name: "sector capital"
+	role: sectorCapital
+
+	minTechLevel: 5
+	requirements: (core.lawAndOrder)
+	
+	industry: (
+		{ type:core.imperialSecurityService alloc:max }
+
+		{ type:core.chronimiumProcessor alloc:demand }
+		{ type:core.hexacarbideFoundry alloc:demand }
+		{ type:core.trillumExtractor alloc:demand }
+
+		{ type:core.sectorCapitalAdministration alloc:demand }
+		{ type:core.consumerGoodsAutofac alloc:demand }
+		)
+
+	techLevelAdj: { value:5.0	op:min }
+
+	description: "A sector capital helps with the administration of the empire. Every imperial world must be within 250 light-years of the capital or a sector capital in order to participate in the imperial economy."
+
+	imageMedium: { type:constant
+		resource: core.designationIcons
+		pos: (256 896)
+		size: (128 128)
+		}
+
+	imageSmall: { type:constant
+		resource: core.designationIconsSmall
+		pos: (96 336)
+		size: (48 48)
+		}
+	}
+	
+Trait core.sectorCapitalStarshipDesignation {
+	category: designation
+	name: "sector capital"
+	role: sectorCapital
+
+	minTechLevel: 5
+	requirements: (core.strengthAndHonor)
+	exclusions: (core.inNebula)
+	
+	industry: (
+		{ type:core.fleetStarshipHQ alloc:max }
+		{ type:core.starshipAutofac alloc:demand }
+
+		{ type:core.chronimiumProcessor alloc:demand }
+		{ type:core.hexacarbideFoundry alloc:demand }
+		{ type:core.trillumExtractor alloc:demand }
+
+		{ type:core.sectorCapitalAdministration alloc:demand }
+		{ type:core.consumerGoodsAutofac alloc:demand }
+		)
+
+	techLevelAdj: { value:5.0	op:min }
+
+	description: "A sector capital helps with the administration of the empire. Every imperial world must be within 250 light-years of the capital or a sector capital in order to participate in the imperial economy."
+
+	imageMedium: { type:constant
+		resource: core.designationIcons
+		pos: (128 896)
+		size: (128 128)
+		}
+
+	imageSmall: { type:constant
+		resource: core.designationIconsSmall
+		pos: (48 336)
+		size: (48 48)
+		}
+	}
+	
+Trait core.sectorCapitalTradeDesignation {
+	category: designation
+	name: "sector capital"
+	role: sectorCapital
+	inheritFrom: (core.tradingHubAttribute)
+
+	minTechLevel: 5
+	requirements: (core.tradeAndEnterprise)
+	
+	industry: (
+		{ type:core.starport alloc:max }
+
+		{ type:core.chronimiumProcessor alloc:demand }
+		{ type:core.hexacarbideFoundry alloc:demand }
+		{ type:core.trillumExtractor alloc:demand }
+
+		{ type:core.sectorCapitalAdministration alloc:demand }
+		{ type:core.consumerGoodsAutofac alloc:demand }
+		)
+
+	techLevelAdj: { value:5.0	op:min }
+
+	description: "A sector capital helps with the administration of the empire. Every imperial world must be within 250 light-years of the capital or a sector capital in order to participate in the imperial economy."
+
+	imageMedium: { type:constant
+		resource: core.designationIcons
+		pos: (0 1152)
+		size: (128 128)
+		}
+
+	imageSmall: { type:constant
+		resource: core.designationIconsSmall
+		pos: (0 432)
+		size: (48 48)
+		}
+	}
+	
+Trait core.tradingHubDesignation {
+	category: designation
+	name: "trading hub"
+	role: tradingHub
+	minTechLevel: 5
+	inheritFrom: (core.tradingHubAttribute)
+	
+	industry: (
+		{ type:core.starport alloc:max }
+
+		{ type:core.chronimiumProcessor alloc:demand }
+		{ type:core.hexacarbideFoundry alloc:demand }
+		{ type:core.trillumExtractor alloc:demand }
+
+		{ type:core.imperialAdministration alloc:demand }
+		{ type:core.consumerGoodsAutofac alloc:demand }
+		)
+
+	description: "A trading hub allows you to trade with other empires and to move any resource between worlds."
+
+	imageMedium: { type:constant
+		resource: core.designationIcons
+		pos: (0 1280)
+		size: (128 128)
+		}
+
+	imageSmall: { type:constant
+		resource: core.designationIconsSmall
+		pos: (0 480)
+		size: (48 48)
+		}
+	}
+	
+Trait core.universityDesignation {
+	category: designation
+	name: "foundation"
+	role: foundation
+	minTechLevel: 5
+	
+	industry: (
+		{ type:core.university alloc:max }
+
+		{ type:core.chronimiumProcessor alloc:demand }
+		{ type:core.hexacarbideFoundry alloc:demand }
+		{ type:core.trillumExtractor alloc:demand }
+
+		{ type:core.imperialAdministration alloc:demand }
+		{ type:core.consumerGoodsAutofac alloc:demand }
+		)
+
+	description: "A foundation world gathers and disseminates knowledge and is capable of increasing the tech level of surrounding worlds. Add a trade route to take advantage of the foundation's instruction."
+
+	imageMedium: { type:constant
+		resource: core.designationIcons
+		pos: (128 384)
+		size: (128 128)
+		}
+
+	imageSmall: { type:constant
+		resource: core.designationIconsSmall
+		pos: (48 144)
+		size: (48 48)
+		}
+	}
+	
+//	Doctrines ------------------------------------------------------------------
+
+Trait core.fireAndMovement
+	{
+	category: doctrine
+	name: "Fire & Movement"
+
+	description: "Speed and initiative are the keys to strategic victory. A hulking starcruiser that arrives too late is useless in war. Jumpships will rule space.\n\nChoose this doctrine to build jumpships at your capitals."
+
+	capitalType: core.capitalJumpshipDesignation
+	sectorCapitalType: core.sectorCapitalDesignation
+	}
+
+/*
+Trait core.industryAndGrowth
+	{
+	category: doctrine
+	name: "Industry & Growth"
+
+	description: "Productivity is the key to strength. Waste and inefficiency are the enemy. This doctrine seeks to increase the productivity of every world to its fullest.\n\nChoose this doctrine if you wish to maximize the productivity of each world."
+
+	capitalType: core.capitalDesignation
+	sectorCapitalType: core.sectorCapitalDesignation
+	}
+*/
+
+Trait core.lawAndOrder
+	{
+	category: doctrine
+	name: "Law & Order"
+
+	description: "Dissention and division in the empire are deadlier than the mightiest foe. This doctrine seeks to suppress revolutionary and secessionist forces in order to forge a strong union.\n\nChoose this doctrine if you wish to create a large empire."
+
+	capitalType: core.capitalLawAndOrderDesignation
+	sectorCapitalType: core.sectorCapitalLawAndOrderDesignation
+
+	secessionAdj: { value:0.1 op:factor }
+	}
+
+/*
+Trait core.scienceAndTechnology
+	{
+	category: doctrine
+	name: "Science & Technology"
+
+	description: "Knowledge and its application are the key to the future. This doctrine seeks to unearth and exploit the highest technologies.\n\nChoose this doctrine if you wish to have a high-tech empire."
+
+	capitalType: core.capitalDesignation
+	sectorCapitalType: core.sectorCapitalDesignation
+	}
+*/
+
+Trait core.strengthAndHonor
+	{
+	category: doctrine
+	name: "Strength & Honor"
+
+	description: "Unyielding strength deserves to conquer. The galaxy will be ruled by mighty starships, not flimsy jumpships.\n\nChoose this doctrine to build starships at your capitals."
+
+	capitalType: core.capitalStarshipDesignation
+	sectorCapitalType: core.sectorCapitalStarshipDesignation
+	}
+
+Trait core.tradeAndEnterprise
+	{
+	category: doctrine
+	name: "Trade & Enterprise"
+	inheritFrom: (core.sellsResourcesAttribute)
+
+	description: "Free trade makes an empire greater than the sum of its worlds. This doctrine seeks to promote and defend interstellar trade both within and across empires.\n\nChoose this doctrine if you wish to buy and sell resources and ships."
+
+	capitalType: core.capitalTradeDesignation
+	sectorCapitalType: core.sectorCapitalTradeDesignation
+	}
+
+//	Features -------------------------------------------------------------------
+
+//	Human Population -----------------------------------------------------------
+//
+//	EFFECT		Consumes food, durable goods, and luxuries based on population
+//				tech level. Consequences if resources run out.
+//		
+//	USAGE		Include as a static feature in cultures that have human
+//				populations.
+
+Trait core.humanPopulation
+	{
+	category: feature
+	name: "human population"
+	
+	consumption: (
+		{	type: core.organicFood			//	Item to consume
+			minTechLevel: 1					//	Only consume if world is this tech or higher
+			
+			amount: {
+				type:byTechAndPopulation
+				value: (
+					(preIndustrial		0.180)
+					(industrial			0.243)
+					(atomic				0.328)
+					(digital			0.443)
+					(spacefaring		0.598)
+					(fusion				0.807)
+					(biotech			1.090)
+					(antimatter			1.471)
+					(quantum			1.986)
+					(postIndustrial		2.681)
+					)
+				}
+
+			consequences: (
+				{	demandMet: 0.5			//	If we meet less than 50% of demand
+					deathRate: 0.1			//	10% killed if 100% demand failure
+					revIndex: 100			//	100 point increase if 100% demand failure
+					techRegress: 0.5		//	50% chance of regressing a full level at 100% demand failure
+					efficiencyAdj: 0.9		//	Efficiency decreases
+					}
+
+				{	demandMet: 1.0
+					revIndex: 25
+					techRegress: 0.1
+					efficiencyAdj: 0.98
+					}
+				)
+			}
+			
+		{	type: core.durableGoods
+			minTechLevel: 4
+			
+			amount: {
+				type:byTechAndPopulation
+				value: (
+					(digital			0.150)
+					(spacefaring		0.240)
+					(fusion				0.384)
+					(biotech			0.614)
+					(antimatter			0.983)
+					(quantum			1.573)
+					(postIndustrial		2.517)
+					)
+				}
+				
+			consequences: (
+				{	demandMet: 1.0
+					revIndex: 25
+					techRegress: 0.05
+					efficiencyAdj: 0.98
+					}
+				)
+			}
+			
+		{	type: core.luxuries
+			minTechLevel: 7
+			
+			amount: {
+				type:byTechAndPopulation
+				value: (
+					(biotech			0.013)
+					(antimatter			0.038)
+					(quantum			0.113)
+					(postIndustrial		0.338)
+					)
+				}
+
+			consequences: (
+				{	demandMet: 1.0
+					revIndex: 15
+					techRegress: 0.01
+					efficiencyAdj: 0.98
+					}
+				)
+			}
+		)
+
+	hidden: true
+	}
+
+//	Tech Level Features --------------------------------------------------------
+//
+//	EFFECT		These traits set the natural tech level for a world.
+//
+//	USAGE		Include at most one of these traits per world.
+
+Trait core.preIndustrialFate
+	{
+	category: feature
+	name: "pre-industrial fate"
+
+	techLevelAdj: { value:1.0		op:defaultValue }
+
+	hidden: true
+	}
+
+Trait core.industrialFate
+	{
+	category: feature
+	name: "industrial fate"
+
+	techLevelAdj: { value:2.0		op:defaultValue }
+
+	hidden: true
+	}
+
+Trait core.atomicFate
+	{
+	category: feature
+	name: "atomic fate"
+
+	techLevelAdj: { value:3.0		op:defaultValue }
+
+	hidden: true
+	}
+
+Trait core.digitalFate
+	{
+	category: feature
+	name: "digital fate"
+
+	techLevelAdj: { value:4.0		op:defaultValue }
+
+	hidden: true
+	}
+
+Trait core.spacefaringFate
+	{
+	category: feature
+	name: "spacefaring fate"
+
+	techLevelAdj: { value:5.0		op:defaultValue }
+
+	hidden: true
+	}
+
+Trait core.fusionFate
+	{
+	category: feature
+	name: "fusion fate"
+
+	techLevelAdj: { value:6.0		op:defaultValue }
+
+	hidden: true
+	}
+
+Trait core.biotechFate
+	{
+	category: feature
+	name: "biotech fate"
+
+	techLevelAdj: { value:7.0		op:defaultValue }
+
+	hidden: true
+	}
+
+Trait core.antimatterFate
+	{
+	category: feature
+	name: "antimatter fate"
+
+	techLevelAdj: { value:8.0		op:defaultValue }
+
+	hidden: true
+	}
+
+Trait core.quantumFate
+	{
+	category: feature
+	name: "quantum fate"
+
+	techLevelAdj: { value:9.0		op:defaultValue }
+
+	hidden: true
+	}
+
+Trait core.postIndustrialFate
+	{
+	category: feature
+	name: "post-industrial fate"
+
+	techLevelAdj: { value:10.0		op:defaultValue }
+
+	hidden: true
+	}
+
+//	Cultures -------------------------------------------------------------------
+
+Trait core.highImperialCulture
+	{
+	category: culture
+	name: "high imperial"
+	
+	inheritFrom: (core.humanPopulation)
+	}
+
+//	Designation Attributes -----------------------------------------------------
+
+Trait core.capitalDesignationAttribute
+	{
+	category: feature
+	name: "imperial capital"
+	}
+
+Trait core.jumpBeaconAttribute
+	{
+	category: feature
+	name: "jump beacon"
+	}
+
+//	Sovereign Types ------------------------------------------------------------
+
+SovereignType core.independent
+	{
+	name: "independent"
+	npeOnly: true
+	hasCapital: nil
+
+	worldName: { type: random
+		value: (
+			{ type: aelionGenerator }
+			{ type: bayerGenerator }
+			{ type: byTrait
+				value: (
+					(core.barrenWorld		{ type:randomChar value:"BR %1%0%0%0" })
+					(core.desertWorld		{ type:randomChar value:"DS %1%0%0%0" })
+					(core.earthLikeWorld	{ type:randomChar value:"EE %1%0%0%0" })
+					(core.fieryWorld		{ type:randomChar value:"FR %1%0%0%0" })
+					(core.greenhouseWorld	{ type:randomChar value:"GR %1%0%0%0" })
+					(core.oceanWorld		{ type:randomChar value:"OO %1%0%0%0" })
+					(core.primordialWorld	{ type:randomChar value:"PR %1%0%0%0" })
+					(core.transuranicWorld	{ type:randomChar value:"TR %1%0%0%0" })
+					(core.volcanicWorld		{ type:randomChar value:"VC %1%0%0%0" })
+
+					{ type:randomChar value:"UX %1%0%0%0" }
+					)
+				}
+			{ type: oldEarthGenerator }
+			)
+		}
+
+	worldImprovements: { type: byTech
+		value: (
+			(postIndustrial	{ type:byTrait
+				value:(
+					((core.hexacarbideSource core.chronimiumSource)
+												(core.armoredConstellation core.plasmaTowerNetwork))
+
+					(core.hexacarbideSource		(core.HMComplex core.autocannonConstellation core.HELCannonNetwork))
+					(()							(core.GDMComplex))
+					)
+				})
+			(quantum		{ type:byTrait
+				value:(
+					((core.hexacarbideSource core.chronimiumSource)
+						{ type:byDestiny
+							value:(
+								(60				core.plasmaTowerNetwork)
+								(15				(core.plasmaTowerNetwork core.armoredConstellation))
+								(15				(core.plasmaTowerNetwork core.HMComplex))
+								(10				(core.plasmaTowerNetwork core.armoredConstellation core.HMComplex))
+								)
+							}
+						)
+					(core.hexacarbideSource		(core.HMComplex core.autocannonConstellation core.HELCannonNetwork))
+					(()							(core.GDMComplex))
+					)
+				})
+			(antimatter		{ type:byTrait
+				value:(
+					((core.hexacarbideSource core.chronimiumSource)
+						{ type:byDestiny
+							value:(
+								(60				core.armoredConstellation)
+								(15				(core.armoredConstellation core.plasmaTowerNetwork))
+								(15				(core.armoredConstellation core.HMComplex))
+								(10				(core.armoredConstellation core.HMComplex core.plasmaTowerNetwork))
+								)
+							}
+						)
+					(core.hexacarbideSource		(core.HMComplex core.autocannonConstellation (40 core.HELCannonNetwork)))
+					(()							(core.GDMComplex))
+					)
+				})
+			(biotech		{ type:byTrait
+				value:(
+					((core.hexacarbideSource core.chronimiumSource)
+						{ type:byDestiny
+							value:(
+								(60				core.HMComplex)
+								(15				(core.HMComplex core.armoredConstellation))
+								(15				(core.HMComplex core.HELCannonNetwork))
+								(10				(core.HMComplex core.HELCannonNetwork core.armoredConstellation))
+								)
+							}
+						)
+					(core.hexacarbideSource		(core.HMComplex (60 core.HELCannonNetwork)))
+					(()							(core.GDMComplex))
+					)
+				})
+			(fusion			{ type:byTrait
+				value:(
+					((core.hexacarbideSource)
+						{ type:byDestiny
+							value:(
+								(60				core.autocannonConstellation)
+								(15				(core.autocannonConstellation core.HMComplex))
+								(15				(core.autocannonConstellation core.HELCannonNetwork))
+								(10				(core.autocannonConstellation core.HELCannonNetwork core.HMComplex))
+								)
+							}
+						)
+					(()							(core.GDMComplex))
+					)
+				})
+			(spacefaring	{ type:byTrait
+				value:(
+					((core.hexacarbideSource)
+						{ type:byDestiny
+							value:(
+								(60				core.HELCannonNetwork)
+								(15				(core.HELCannonNetwork core.GDMComplex))
+								(15				(core.HELCannonNetwork core.autocannonConstellation))
+								(10				(core.HELCannonNetwork core.autocannonConstellation core.GDMComplex))
+								) 
+							}
+						)
+					(()							(core.GDMComplex))
+					)
+				})
+			(digital		{ type:byDestiny 
+				value:(
+					(60							core.GDMComplex)
+					(40							(core.GDMComplex core.HELCannonNetwork))
+					)
+				})
+			(atomic			{ type:byDestiny 
+				value:(
+					(80							core.GDMComplex)
+					(20							nil)
+					)
+				})
+			)
+		}
+	}
+
+//	Resources ------------------------------------------------------------------
+
+Image core.designationIcons
+	{
+	filename: "DesignationIcons.png"
+	}
+
+Image core.designationIconsSmall
+	{
+	filename: "DesignationIconsSmall.png"
+	}
+
+Include "CoreDefenses.ars"
+Include "CoreEnvironment.ars"
+Include "CoreGroundUnits.ars"
+Include "CoreJumpships.ars"
+Include "CoreRamships.ars"
+Include "CoreResources.ars"
+Include "CoreStarships.ars"
+Include "NPETrader.ars"

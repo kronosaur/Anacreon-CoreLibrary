@@ -1,0 +1,258 @@
+//	CoreGroundUnits.ars
+//
+//	Anacreon Core Library
+//	Copyright (c) 2014 by Kronosaur Productions, LLC. All Rights Reserved.
+
+//	Designations ---------------------------------------------------------------
+
+Trait core.infantryAcademyDesignation {
+	category: designation
+	name: "infantry academy"
+	role: academy
+	minTechLevel: 3
+	
+	industry: (
+		{ type:core.infantryAcademy alloc:max }
+		
+		{ type:core.chronimiumProcessor alloc:demand }
+		{ type:core.hexacarbideFoundry alloc:demand }
+		{ type:core.trillumExtractor alloc:demand }
+
+		{ type:core.imperialAdministration alloc:demand }
+		{ type:core.consumerGoodsAutofac alloc:demand }
+		)
+
+	description: "An infantry academy trains and equips combat brigades suitable for defending friendly worlds or invading enemy ones."
+
+	imageMedium: { type:constant
+		resource: core.designationIcons
+		pos: (256 512)
+		size: (128 128)
+		}
+
+	imageSmall: { type:constant
+		resource: core.designationIconsSmall
+		pos: (96 192)
+		size: (48 48)
+		}
+	}
+	
+Trait core.infantryAutofacDesignation {
+	category: designation
+	name: "infantry equipment autofac"
+	minTechLevel: 5
+	
+	industry: (
+		{ type:core.infantryAutofac alloc:max }
+
+		{ type:core.chronimiumProcessor alloc:demand }
+		{ type:core.hexacarbideFoundry alloc:demand }
+		{ type:core.trillumExtractor alloc:demand }
+
+		{ type:core.imperialAdministration alloc:demand }
+		{ type:core.consumerGoodsAutofac alloc:demand }
+		)
+
+	description: "This autofac manufactures equipment used for advanced combat brigades."
+
+	imageMedium: { type:constant
+		resource: core.designationIcons
+		pos: (256 640)
+		size: (128 128)
+		}
+
+	imageSmall: { type:constant
+		resource: core.designationIconsSmall
+		pos: (96 240)
+		size: (48 48)
+		}
+	}
+
+//	Units ----------------------------------------------------------------------
+
+ResourceType core.infantry
+	{
+	category: groundUnit					//	Ground units are massed ground forces
+	name: "infantry brigade"
+	attackValue: 1
+	isCargo: true
+	mass: 20.0
+	halfLife: 4.0
+	elementCount: 5000
+
+	attack: { name:"infantry rifle" damage:1 type:direct range:0.0 area:0.1 }
+	defense: { armor:1 minArea:10.0 counters:{ missile:1 } }
+
+	production: {
+		workUnits: 250.0
+		inputs: ()
+		minTechLevel: 1
+		}
+	}
+
+ResourceType core.imperialSecurity
+	{
+	category: groundUnit
+	name: "imperial guards brigade"
+	attackValue: 2
+	isCargo: true
+	mass: 20.0
+	halfLife: 4.0
+	elementCount: 5000
+
+	attack: { name:"CK1 automatic weapon" damage:2 type:direct range:0.0 area:0.1 }
+	defense: { armor:1 minArea:10.0 }
+
+	noRebellionDefection: true
+	rebellionAdj: 0.5						//	Per 1000 brigades
+	secessionAdj: 0.9						//	Per 1000 brigades
+
+	production: {
+		workUnits: 500.0
+		inputs: ()
+		minTechLevel: 5
+		}
+	}
+
+ResourceType core.armoredInfantry
+	{
+	category: groundUnit
+	name: "armored infantry brigade"
+	attackValue: 5
+	isCargo: true
+	mass: 30.0
+	halfLife: 4.0
+	elementCount: 5000
+
+	attack: { name:"PAK10 rifle" damage:4 type:direct range:0.0 area:0.1 }
+	defense: { armor:4 minArea:10.0 }
+
+	production: {
+		workUnits: 500.0
+		inputs: (
+			{ type:core.lightArmoredVehicle amount:1.0 }
+			)
+		minTechLevel: 5
+		}
+	}
+
+ResourceType core.exotroops
+	{
+	category: groundUnit
+	name: "exotroop brigade"
+	attackValue: 48
+	isCargo: true
+	mass: 25.0
+	halfLife: 5.0
+	elementCount: 5000
+
+	attack: { name:"exoarmor" damage:40 type:direct range:0.0 area:0.1 }
+	defense: { armor:40 minArea:10.0 }
+
+	production: {
+		workUnits: 2500.0
+		inputs: (
+			{ type:core.exoarmor amount:1.0 }
+			)
+		minTechLevel: 7
+		}
+	}
+
+//	Commodities and Materials --------------------------------------------------
+
+ResourceType core.exoarmor {
+	category: commodity
+	name: "exoarmor"
+	role: infantryEquipment
+	isCargo: true
+	mass: 2.5								//	Enough for a 5,000 person brigade
+	
+	halfLife: 10.0
+
+	production: {
+		workUnits: 6500.0
+		inputs: (
+			{ type:core.trillum amount:5.0 }
+			{ type:core.hexacarbide amount:10.0}
+			{ type:core.chronimium amount:10.0}
+			)
+		minTechLevel: 7
+		}
+	}
+	
+ResourceType core.lightArmoredVehicle {
+	category: commodity
+	name: "light armored vehicle"
+	role: infantryEquipment
+	isCargo: true
+	mass: 10
+	
+	halfLife: 10.0
+
+	production: {
+		workUnits: 400.0
+		inputs: (
+			{ type:core.trillum amount:1.0 }
+			{ type:core.hexacarbide amount:10 }
+			)
+		minTechLevel: 5
+		}
+	}
+	
+//	Industry & Improvements ----------------------------------------------------
+
+Trait core.infantryAcademy {
+	name: "infantry academy"
+	category: industry
+	role: academyIndustry
+
+	production: (
+		core.infantry
+		core.armoredInfantry
+		core.exotroops
+		)
+
+	defaultAlloc: { alloc:max }
+	designationOnly: true
+	workingConditions: 6
+	}
+	
+Trait core.infantryAutofac {
+	name: "infantry autofac"
+	category: industry
+	role: componentIndustry
+	
+	production: (
+		core.lightArmoredVehicle
+		core.exoarmor
+		)
+
+	defaultAlloc: { alloc:max }
+	designationOnly: true
+	autoProductAlloc: true
+	workingConditions: 7
+	}
+	
+Trait core.imperialSecurityService {
+	name: "imperial security"
+	category: industry
+	role: academyIndustry
+
+	production: (core.imperialSecurity)
+
+	designationOnly: true
+	workingConditions: 7
+	}
+
+Trait core.militiaBase {
+	name: "militia base"
+	category: industry
+	role: academyIndustry
+
+	production: (core.infantry)
+
+	defaultAlloc: { alloc:fixed allocValue:5.0 }
+	designationOnly: true
+	workingConditions: 6
+	}
+	

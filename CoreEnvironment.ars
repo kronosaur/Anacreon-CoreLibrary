@@ -1,0 +1,1936 @@
+//	CoreEnvironment.ars
+//
+//	Anacreon Core Library
+//	Copyright (c) 2014 by Kronosaur Productions, LLC. All Rights Reserved.
+
+//	World Class Tables ---------------------------------------------------------
+
+Table core.defaultWorldClassTable
+	{
+	type: byTrait
+	value: (
+		(core.inBrightNebula
+			{ type: table
+				value: (
+					(30		core.aetherealWorld)
+					(25		core.empyrealWorld)
+					(45		core.nebularWorld)
+					)
+				}
+			)
+
+		(core.inDarkNebula
+			{ type: table
+				value: (
+					(20		core.chthonicWorld)
+					(10		core.hadeanWorld)
+					(10		core.nebularWorld)
+
+					(12		core.barrenWorld)
+					(5		core.desertWorld)
+					(4		core.earthLikeWorld)
+					(7		core.fieryWorld)
+					(5		core.greenhouseWorld)
+					(12		core.oceanWorld)
+					(2		core.primordialWorld)
+					(1		core.transuranicWorld)
+					(7		core.undergroundWorld)
+					(5		core.volcanicWorld)
+					)
+				}
+			)
+
+		(()
+			{ type: table
+				value: (
+					(20		core.barrenWorld)
+					(8		core.desertWorld)
+					(6		core.earthLikeWorld)
+					(11		core.fieryWorld)
+					(9		core.greenhouseWorld)
+					(20		core.oceanWorld)
+					(4		core.primordialWorld)
+					(2		core.transuranicWorld)
+					(12		core.undergroundWorld)
+					(8		core.volcanicWorld)
+					)
+				}
+			)
+		)
+	}
+
+//	World Classes --------------------------------------------------------------
+
+Trait core.aetherealWorld
+	{
+	category: worldClass
+	name: "aethereal world"
+	density: 0.9
+	radius: 1.0
+	
+	impartTraits: (
+		core.atmospherePoisonous
+
+		{	type:table
+			value: (
+				(60		core.aetheriumAbundant)
+				(30		core.aetheriumCommon)
+				(10		core.aetheriumUncommon)
+				)
+			}
+
+		{	type:table
+			value: (
+				(60		core.chronimiumCommon)
+				(30		core.chronimiumUncommon)
+				(10		core.chronimiumRare)
+				)
+			}
+
+		{	type:table
+			value: (
+				(60		core.trillumCommon)
+				(30		core.trillumUncommon)
+				(10		core.trillumRare)
+				)
+			}
+
+		core.hexacarbideRare
+
+		core.airProcessor
+		)
+
+	populationAdj: { type:byTech
+		value: (
+			(industrial			 500)
+			(atomic				2050)
+			(digital			4050)
+			(spacefaring		6150)
+			(fusion				6500)
+			(biotech			6200)
+			(antimatter			5450)
+			(quantum			4150)
+			(postIndustrial		3250)
+			)
+
+		op:defaultValue
+		}
+
+	techLevelAdj: { value:2.0	op:min }
+
+	imageLarge: { type:constant
+		resource: core.aetherealWorldHemisphere
+		size: (800 800)
+		}
+
+	imageSmall: { type:constant
+		resource: core.worldClassIcons
+		pos: (0 96)
+		size: (48 48)
+		}
+	}
+
+Trait core.barrenWorld
+	{
+	category: worldClass
+	name: "barren world"
+	density: 1.0							//	Density (Earth = 1)
+	radius: 0.75							//	Radius (Earth = 1)
+	
+	impartTraits: (
+		core.atmosphereNone
+
+		{	type:table
+			value: (
+				(60		core.hexacarbideAbundant)
+				(30		core.hexacarbideCommon)
+				(10		core.hexacarbideUncommon)
+				)
+			}
+
+		{	type:table
+			value: (
+				(60		core.trillumRare)
+				(30		core.trillumUncommon)
+				(10		core.trillumCommon)
+				)
+			}
+
+		core.lifeSupportSystem
+		)
+
+	populationAdj: { type:byTech
+		value: (
+			(atomic				 500)
+			(digital			1000)
+			(spacefaring		1800)
+			(fusion				2350)
+			(biotech			2850)
+			(antimatter			3200)
+			(quantum			3100)
+			(postIndustrial		2500)
+			)
+
+		op:defaultValue
+		}
+
+	techLevelAdj: { value:3.0	op:min }
+
+	imageLarge: { type:constant
+		resource: core.barrenWorldHemisphere
+		size: (800 800)
+		}
+
+	imageSmall: { type:constant
+		resource: core.worldClassIcons
+		pos: (0 0)
+		size: (48 48)
+		}
+	}
+
+Trait core.chthonicWorld
+	{
+	category: worldClass
+	name: "chthonic world"
+	density: 1.25
+	radius: 0.9
+	
+	impartTraits: (
+		core.atmosphereNone
+
+		{	type:table
+			value: (
+				(60		core.aetheriumRare)
+				(30		core.aetheriumUncommon)
+				(10		core.hexacarbideCommon)
+				)
+			}
+
+		{	type:table
+			value: (
+				(60		core.chronimiumCommon)
+				(30		core.chronimiumUncommon)
+				(10		core.chronimiumRare)
+				)
+			}
+
+		{	type:table
+			value: (
+				(60		core.chtholonAbundant)
+				(30		core.chtholonCommon)
+				(10		core.chtholonUncommon)
+				)
+			}
+
+		{	type:table
+			value: (
+				(60		core.hexacarbideCommon)
+				(30		core.hexacarbideUncommon)
+				(10		core.hexacarbideRare)
+				)
+			}
+
+		{	type:table
+			value: (
+				(60		core.trillumRare)
+				(30		core.trillumUncommon)
+				(10		core.trillumCommon)
+				)
+			}
+
+		core.lifeSupportSystem
+		)
+
+	populationAdj: { type:byTech
+		value: (
+			(atomic				 500)
+			(digital			1000)
+			(spacefaring		1800)
+			(fusion				2350)
+			(biotech			2850)
+			(antimatter			3200)
+			(quantum			3100)
+			(postIndustrial		2500)
+			)
+
+		op:defaultValue
+		}
+
+	techLevelAdj: { value:3.0	op:min }
+
+	imageLarge: { type:constant
+		resource: core.chthonicWorldHemisphere
+		size: (800 800)
+		}
+
+	imageSmall: { type:constant
+		resource: core.worldClassIcons
+		pos: (48 96)
+		size: (48 48)
+		}
+	}
+
+Trait core.desertWorld
+	{
+	category: worldClass
+	name: "desert world"
+	density: 1.0
+	radius: 0.9
+	
+	impartTraits: (
+		core.desertBiosphere
+
+		{	type:table
+			value: (
+				(60		core.hexacarbideCommon)
+				(30		core.hexacarbideUncommon)
+				(10		core.hexacarbideAbundant)
+				)
+			}
+
+		{	type:table
+			value: (
+				(60		core.trillumAbundant)
+				(30		core.trillumCommon)
+				(10		core.trillumUncommon)
+				)
+			}
+		)
+
+	populationAdj: { type:byTech
+		value: (
+			(preIndustrial		 400)
+			(industrial			1700)
+			(atomic				4300)
+			(digital			7050)
+			(spacefaring		9000)
+			(fusion				8300)
+			(biotech			7050)
+			(antimatter			5750)
+			(quantum			4150)
+			(postIndustrial		3250)
+			)
+
+		op:defaultValue
+		}
+
+	imageLarge: { type:constant
+		resource: core.desertWorldHemisphere
+		size: (800 800)
+		}
+
+	imageSmall: { type:constant
+		resource: core.worldClassIcons
+		pos: (48 0)
+		size: (48 48)
+		}
+	}
+
+Trait core.earthLikeWorld
+	{
+	category: worldClass
+	name: "Earth-like world"
+	density: 1.0
+	radius: 1.0
+
+	impartTraits: (
+		core.earthLikeBiosphere
+
+		{	type:table
+			value: (
+				(60		core.hexacarbideCommon)
+				(30		core.hexacarbideUncommon)
+				(10		core.hexacarbideAbundant)
+				)
+			}
+
+		{	type:table
+			value: (
+				(60		core.trillumRare)
+				(30		core.trillumUncommon)
+				(10		core.trillumCommon)
+				)
+			}
+		)
+
+	imageLarge: { type:constant
+		resource: core.earthLikeWorldHemisphere
+		size: (800 800)
+		}
+
+	imageSmall: { type:constant
+		resource: core.worldClassIcons
+		pos: (96 0)
+		size: (48 48)
+		}
+	}
+
+Trait core.empyrealWorld
+	{
+	category: worldClass
+	name: "empyreal world"
+	density: 1.0
+	radius: 1.0
+	
+	impartTraits: (
+		core.desertBiosphere
+
+		{	type:table
+			value: (
+				(60		core.aetheriumCommon)
+				(30		core.aetheriumUncommon)
+				(10		core.aetheriumAbundant)
+				)
+			}
+
+		{	type:table
+			value: (
+				(60		core.chtholonAbundant)
+				(30		core.chtholonCommon)
+				(10		core.chtholonUncommon)
+				)
+			}
+
+		{	type:table
+			value: (
+				(60		core.hexacarbideCommon)
+				(30		core.hexacarbideUncommon)
+				(10		core.hexacarbideAbundant)
+				)
+			}
+
+		{	type:table
+			value: (
+				(60		core.trillumRare)
+				(30		core.trillumUncommon)
+				(10		core.trillumCommon)
+				)
+			}
+		)
+
+	populationAdj: { type:byTech
+		value: (
+			(preIndustrial		 400)
+			(industrial			1700)
+			(atomic				4300)
+			(digital			7050)
+			(spacefaring		9000)
+			(fusion				8300)
+			(biotech			7050)
+			(antimatter			5750)
+			(quantum			4150)
+			(postIndustrial		3250)
+			)
+
+		op:defaultValue
+		}
+
+	imageLarge: { type:constant
+		resource: core.empyrealWorldHemisphere
+		size: (800 800)
+		}
+
+	imageSmall: { type:constant
+		resource: core.worldClassIcons
+		pos: (96 96)
+		size: (48 48)
+		}
+	}
+
+Trait core.fieryWorld
+	{
+	category: worldClass
+	name: "fiery world"
+	density: 1.5
+	radius: 0.75
+
+	impartTraits: (
+		{	type:table
+			value: (
+				(60		core.hexacarbideRare)
+				(30		core.hexacarbideUncommon)
+				(10		core.hexacarbideCommon)
+				)
+			}
+
+		{	type:table
+			value: (
+				(60		core.trillumCommon)
+				(30		core.trillumUncommon)
+				(10		core.trillumAbundant)
+				)
+			}
+
+		{	type:table
+			value: (
+				(60		core.chronimiumRare)
+				(30		core.chronimiumUncommon)
+				(10		core.chronimiumCommon)
+				)
+			}
+
+		core.flareShelter
+		)
+
+	populationAdj: { type:byTech
+		value: (
+			(atomic				 850)
+			(digital			2000)
+			(spacefaring		3650)
+			(fusion				4550)
+			(biotech			5000)
+			(antimatter			4950)
+			(quantum			4000)
+			(postIndustrial		3250)
+			)
+
+		op:defaultValue
+		}
+
+	consumption: (
+		{	type: core.radiationShielding	//	Item to consume
+			minTechLevel: 3					//	Only consume if world is this tech or higher
+			
+			amount: {
+				type:byTechAndPopulation
+				value: (
+					(atomic				0.06)
+					(digital			0.08)
+					(spacefaring		0.10)
+					(fusion				0.12)
+					(biotech			0.15)
+					(antimatter			0.19)
+					(quantum			0.24)
+					(postIndustrial		0.30)
+					)
+				}
+
+			consequences: (
+				{	demandMet: 1.0
+					deathRate: 0.01			//	1% killed if 100% of demand fails
+					revIndex: 100
+					techRegress: 0.25
+					efficiencyAdj: 0.95
+					}
+				)
+			}
+		)
+
+	techLevelAdj: { value:3.0	op:min }
+
+	imageLarge: { type:constant
+		resource: core.fieryWorldHemisphere
+		size: (800 800)
+		}
+
+	imageSmall: { type:constant
+		resource: core.worldClassIcons
+		pos: (144 0)
+		size: (48 48)
+		}
+	}
+
+Trait core.greenhouseWorld
+	{
+	category: worldClass
+	name: "greenhouse world"
+	density: 1.0
+	radius: 1.0
+	
+	impartTraits: (
+		core.atmospherePoisonous
+
+		{	type:table
+			value: (
+				(60		core.chronimiumCommon)
+				(30		core.chronimiumUncommon)
+				(10		core.chronimiumAbundant)
+				)
+			}
+
+		{	type:table
+			value: (
+				(60		core.hexacarbideRare)
+				(30		core.hexacarbideUncommon)
+				(10		core.hexacarbideCommon)
+				)
+			}
+
+		core.trillumRare
+
+		core.airProcessor
+		)
+
+	populationAdj: { type:byTech
+		value: (
+			(industrial			 500)
+			(atomic				2050)
+			(digital			4050)
+			(spacefaring		6150)
+			(fusion				6500)
+			(biotech			6200)
+			(antimatter			5450)
+			(quantum			4150)
+			(postIndustrial		3250)
+			)
+
+		op:defaultValue
+		}
+
+	techLevelAdj: { value:2.0	op:min }
+
+	imageLarge: { type:constant
+		resource: core.greenhouseWorldHemisphere
+		size: (800 800)
+		}
+
+	imageSmall: { type:constant
+		resource: core.worldClassIcons
+		pos: (192 0)
+		size: (48 48)
+		}
+	}
+
+Trait core.hadeanWorld
+	{
+	category: worldClass
+	name: "hadean world"
+	density: 1.0
+	radius: 1.25
+
+	impartTraits: (
+		core.environmentRadioactive
+
+		{	type:table
+			value: (
+				(60		core.aetheriumCommon)
+				(30		core.aetheriumUncommon)
+				(10		core.aetheriumAbundant)
+				)
+			}
+
+		{	type:table
+			value: (
+				(60		core.chtholonCommon)
+				(30		core.chtholonUncommon)
+				(10		core.chtholonAbundant)
+				)
+			}
+
+		{	type:table
+			value: (
+				(60		core.trillumCommon)
+				(30		core.trillumUncommon)
+				(10		core.trillumAbundant)
+				)
+			}
+
+		core.radiationClinic
+		)
+
+	populationAdj: { type:byTech
+		value: (
+			(atomic				 850)
+			(digital			2000)
+			(spacefaring		3650)
+			(fusion				4550)
+			(biotech			5000)
+			(antimatter			4950)
+			(quantum			4000)
+			(postIndustrial		3250)
+			)
+
+		op:defaultValue
+		}
+
+	techLevelAdj: { value:3.0	op:min }
+
+	imageLarge: { type:constant
+		resource:core.hadeanWorldHemisphere
+		size: (800 800)
+		}
+
+	imageSmall: { type:constant
+		resource: core.worldClassIcons
+		pos: (144 96)
+		size: (48 48)
+		}
+	}
+
+Trait core.nebularWorld
+	{
+	category: worldClass
+	name: "nebular world"
+	density: 1.25
+	radius: 0.9
+	
+	impartTraits: (
+		core.atmospherePoisonous
+
+		{	type:table
+			value: (
+				(60		core.aetheriumRare)
+				(30		core.aetheriumUncommon)
+				(10		core.aetheriumCommon)
+				)
+			}
+
+		{	type:table
+			value: (
+				(60		core.chtholonCommon)
+				(30		core.chtholonUncommon)
+				(10		core.chtholonAbundant)
+				)
+			}
+
+		{	type:table
+			value: (
+				(60		core.trillumCommon)
+				(30		core.trillumUncommon)
+				(10		core.trillumAbundant)
+				)
+			}
+
+		core.airProcessor
+		)
+
+	populationAdj: { type:byTech
+		value: (
+			(industrial			 500)
+			(atomic				2050)
+			(digital			4050)
+			(spacefaring		6150)
+			(fusion				6500)
+			(biotech			6200)
+			(antimatter			5450)
+			(quantum			4150)
+			(postIndustrial		3250)
+			)
+
+		op:defaultValue
+		}
+
+	techLevelAdj: { value:2.0	op:min }
+
+	imageLarge: { type:constant
+		resource: core.nebularWorldHemisphere
+		size: (800 800)
+		}
+
+	imageSmall: { type:constant
+		resource: core.worldClassIcons
+		pos: (192 96)
+		size: (48 48)
+		}
+	}
+
+Trait core.oceanWorld
+	{
+	category: worldClass
+	name: "ocean world"
+	density: 0.75
+	radius: 1.25
+
+	impartTraits: (
+		core.globalOcean
+		
+		{	type:table
+			value: (
+				(60		core.chronimiumRare)
+				(30		core.chronimiumUncommon)
+				(10		core.chronimiumCommon)
+				)
+			}
+
+		{	type:table
+			value: (
+				(60		core.hexacarbideRare)
+				(30		core.hexacarbideUncommon)
+				(10		core.hexacarbideCommon)
+				)
+			}
+
+		core.trillumRare
+		)
+
+	populationAdj: { type:byTech
+		value: (
+			(preIndustrial		 400)
+			(industrial			1700)
+			(atomic				4300)
+			(digital			7050)
+			(spacefaring		9000)
+			(fusion				8300)
+			(biotech			7050)
+			(antimatter			5750)
+			(quantum			4150)
+			(postIndustrial		3250)
+			)
+
+		op:defaultValue
+		}
+
+	imageLarge: { type:constant
+		resource: core.oceanWorldHemisphere
+		size: (800 800)
+		}
+
+	imageSmall: { type:constant
+		resource: core.worldClassIcons
+		pos: (0 48)
+		size: (48 48)
+		}
+	}
+
+Trait core.primordialWorld
+	{
+	category: worldClass
+	name: "primordial world"
+	density: 0.5
+	radius: 1.0
+
+	impartTraits: (
+		core.atmospherePoisonous
+
+		{	type:table
+			value: (
+				(60		core.chronimiumCommon)
+				(30		core.chronimiumUncommon)
+				(10		core.chronimiumAbundant)
+				)
+			}
+
+		{	type:table
+			value: (
+				(60		core.trillumRare)
+				(30		core.trillumUncommon)
+				(10		core.trillumCommon)
+				)
+			}
+
+		core.airProcessor
+		)
+
+	populationAdj: { type:byTech
+		value: (
+			(industrial			 500)
+			(atomic				2050)
+			(digital			4050)
+			(spacefaring		6150)
+			(fusion				6500)
+			(biotech			6200)
+			(antimatter			5450)
+			(quantum			4150)
+			(postIndustrial		3250)
+			)
+
+		op:defaultValue
+		}
+
+	techLevelAdj: { value:2.0	op:min }
+
+	imageLarge: { type:constant
+		resource:core.primordialWorldHemisphere
+		size: (800 800)
+		}
+
+	imageSmall: { type:constant
+		resource: core.worldClassIcons
+		pos: (48 48)
+		size: (48 48)
+		}
+	}
+
+Trait core.transuranicWorld
+	{
+	category: worldClass
+	name: "transuranic world"
+	density: 2.0
+	radius: 1.0
+
+	impartTraits: (
+		{	type:table
+			value: (
+				(60		core.chronimiumCommon)
+				(30		core.chronimiumUncommon)
+				(10		core.chronimiumAbundant)
+				)
+			}
+
+		{	type:table
+			value: (
+				(60		core.hexacarbideCommon)
+				(30		core.hexacarbideUncommon)
+				(10		core.hexacarbideAbundant)
+				)
+			}
+
+		{	type:table
+			value: (
+				(60		core.trillumCommon)
+				(30		core.trillumUncommon)
+				(10		core.trillumAbundant)
+				)
+			}
+
+		core.radiationClinic
+		)
+
+	populationAdj: { type:byTech
+		value: (
+			(atomic				 850)
+			(digital			2000)
+			(spacefaring		3650)
+			(fusion				4550)
+			(biotech			5000)
+			(antimatter			4950)
+			(quantum			4000)
+			(postIndustrial		3250)
+			)
+
+		op:defaultValue
+		}
+
+	consumption: (
+		{	type: core.radiationMeds		//	Item to consume
+			minTechLevel: 3					//	Only consume if world is this tech or higher
+			
+			amount: {
+				type:byTechAndPopulation
+				value: (
+					(atomic				0.06)
+					(digital			0.08)
+					(spacefaring		0.10)
+					(fusion				0.12)
+					(biotech			0.15)
+					(antimatter			0.19)
+					(quantum			0.24)
+					(postIndustrial		0.30)
+					)
+				}
+
+			consequences: (
+				{	demandMet: 1.0
+					deathRate: 0.01			//	1% killed if 100% of demand fails
+					revIndex: 100
+					techRegress: 0.25
+					efficiencyAdj: 0.95
+					}
+				)
+			}
+		)
+
+	techLevelAdj: { value:3.0	op:min }
+
+	imageLarge: { type:constant
+		resource:core.transuranicWorldHemisphere
+		size: (800 800)
+		}
+
+	imageSmall: { type:constant
+		resource: core.worldClassIcons
+		pos: (96 48)
+		size: (48 48)
+		}
+	}
+
+Trait core.undergroundWorld
+	{
+	category: worldClass
+	name: "underground world"
+	density: 1.5
+	radius: 1.25
+
+	impartTraits: (
+		core.undergroundPopulation
+
+		{	type:table
+			value: (
+				(60		core.hexacarbideCommon)
+				(30		core.hexacarbideUncommon)
+				(10		core.hexacarbideAbundant)
+				)
+			}
+
+		{	type:table
+			value: (
+				(60		core.trillumRare)
+				(30		core.trillumUncommon)
+				(10		core.trillumCommon)
+				)
+			}
+		)
+
+	populationAdj: { type:byTech
+		value: (
+			(industrial			1700)
+			(atomic				4300)
+			(digital			7050)
+			(spacefaring		9000)
+			(fusion				8300)
+			(biotech			7050)
+			(antimatter			5750)
+			(quantum			4150)
+			(postIndustrial		3250)
+			)
+
+		op:defaultValue
+		}
+
+	techLevelAdj: { value:2.0	op:min }
+
+	imageLarge: { type:constant
+		resource:core.undergroundWorldHemisphere
+		size: (800 800)
+		}
+
+	imageSmall: { type:constant
+		resource: core.worldClassIcons
+		pos: (144 48)
+		size: (48 48)
+		}
+	}
+
+Trait core.volcanicWorld
+	{
+	category: worldClass
+	name: "volcanic world"
+	density: 0.75
+	radius: 1.0
+
+	impartTraits: (
+		core.atmospherePoisonous
+
+		{	type:table
+			value: (
+				(60		core.chronimiumCommon)
+				(30		core.chronimiumUncommon)
+				(10		core.chronimiumAbundant)
+				)
+			}
+
+		{	type:table
+			value: (
+				(60		core.hexacarbideRare)
+				(30		core.hexacarbideUncommon)
+				(10		core.hexacarbideCommon)
+				)
+			}
+
+		{	type:table
+			value: (
+				(60		core.trillumCommon)
+				(30		core.trillumUncommon)
+				(10		core.trillumAbundant)
+				)
+			}
+
+		core.airProcessor
+		)
+
+	populationAdj: { type:byTech
+		value: (
+			(industrial			 500)
+			(atomic				2050)
+			(digital			4050)
+			(spacefaring		6150)
+			(fusion				6500)
+			(biotech			6200)
+			(antimatter			5450)
+			(quantum			4150)
+			(postIndustrial		3250)
+			)
+
+		op:defaultValue
+		}
+
+	techLevelAdj: { value:2.0	op:min }
+
+	imageLarge: { type:constant
+		resource:core.volcanicWorldHemisphere
+		size: (800 800)
+		}
+
+	imageSmall: { type:constant
+		resource: core.worldClassIcons
+		pos: (192 48)
+		size: (48 48)
+		}
+	}
+
+//	Space Environments ---------------------------------------------------------
+
+RegionType core.defaultSpace {
+	name: "normal space"
+	ftlBarrier: { ramjet:true }
+
+	backgroundImage: { type:constant
+		resource:core.deepSpaceBackground
+		pos: (0 0)
+		size: (2048 2048)
+		}
+
+	backgroundImageLowDetail: { type:constant
+		resource:core.deepSpaceBackgroundLowDetail
+		pos: (0 0)
+		size: (2048 2048)
+		}
+
+	backgroundImageTactical: { type:constant
+		resource:core.deepSpaceBackgroundTactical
+		pos: (0 0)
+		size: (2048 2048)
+		}
+	}
+
+RegionType core.brightNebula {
+	name: "bright nebula"
+	visibilityAdj: 0.5
+	ftlBarrier: { warp:true }
+
+	impartTraits: (core.inBrightNebula)
+
+	backgroundColor: { red:102 green:77 blue:128 alpha:0.5 }	//	H:270 S:40 B:50
+
+	backgroundImageTactical: { type:constant
+		resource:core.brightNebulaTactical
+		pos: (0 0)
+		size: (2048 2048)
+		}
+	}
+
+RegionType core.darkNebula {
+	name: "dark nebula"
+	visibilityAdj: 0.25
+	weaponDamageAdj: { direct:0.5 }
+	weaponRangeAdj: { missile:0.75 }
+	ftlBarrier: { warp:true }
+
+	impartTraits: (core.inDarkNebula)
+
+	backgroundColor: { red:13 green:6 blue:6 alpha:0.75 }	//	H:0 S:50 B:5
+
+	backgroundImageTactical: { type:constant
+		resource:core.darkNebulaTactical
+		pos: (0 0)
+		size: (2048 2048)
+		}
+	}
+
+RegionType core.transpaceRift {
+	name: "rift nebula"
+	visibilityAdj: 0.25
+	weaponDamageAdj: { direct:0.5 }
+	weaponRangeAdj: { missile:0.75 }
+	ftlBarrier: { explorer:true jump:true ramjet:true warp:true tradeRoute:true }
+
+	backgroundColor: { red:255 green:242 blue:242 alpha:0.75 }	//	H:0 S:5 B:100
+	}
+
+//	Commodities and Materials --------------------------------------------------
+
+ResourceType core.airFilters {
+	category: commodity
+	name: "air filters"
+	role: consumerGoods
+	isCargo: true
+	mass: 1.0
+	
+	halfLife: 1.0
+
+	production: {
+		workUnits: 0.05
+		inputs: ()
+		minTechLevel: 2
+		}
+	}
+	
+ResourceType core.lifeSupportSupplies {
+	category: commodity
+	name: "life support supplies"
+	role: consumerGoods
+	isCargo: true
+	mass: 1.0
+	
+	halfLife: 0.2
+
+	production: {
+		workUnits: 0.07
+		inputs: ({ type:core.trillum amount:0.01 })
+		minTechLevel: 3
+		}
+	}
+	
+ResourceType core.radiationMeds {
+	category: commodity
+	name: "radiation meds"
+	role: consumerGoods
+	isCargo: true
+	mass: 1.0
+	
+	halfLife: 0.3
+
+	production: {
+		workUnits: 0.08
+		inputs: ({ type:core.trillum amount:0.01 })
+		minTechLevel: 3
+		}
+	}
+	
+ResourceType core.radiationShielding {
+	category: commodity
+	name: "radiation shielding"
+	role: consumerGoods
+	isCargo: true
+	mass: 1.0
+	
+	halfLife: 5.0
+
+	production: {
+		workUnits: 0.06
+		inputs: ({ type:core.trillum amount:0.01 })
+		minTechLevel: 3
+		}
+	}
+	
+//	Industry & Improvements ----------------------------------------------------
+
+Trait core.airProcessor {
+	name: "air processor"
+	category: improvement
+	role: lifeSupport
+
+	production: (core.airFilters)
+
+	workingConditions: 3
+	}
+
+Trait core.flareShelter {
+	name: "flare shelter"
+	category: improvement
+	role: lifeSupport
+
+	production: (core.radiationShielding)
+
+	workingConditions: 4
+
+	description: "Flare shelters protect the population from the dangerous radiation of fiery worlds."
+	}
+
+Trait core.lifeSupportSystem {
+	name: "life support system"
+	category: improvement
+	role: lifeSupport
+
+	production: (core.lifeSupportSupplies)
+
+	workingConditions: 4
+
+	description: "Barren worlds need a life support system to provide the basic necessities of life."
+	}
+
+Trait core.radiationClinic {
+	name: "radiation clinic"
+	category: improvement
+	role: lifeSupport
+
+	production: (core.radiationMeds)
+
+	workingConditions: 4
+
+	description: "These clinic produce and distribute radiation meds to the population, allowing them to survive on worlds with high levels of radiation."
+	}
+
+//	Features -------------------------------------------------------------------
+
+//	Aetherium Deposits ---------------------------------------------------------
+//
+//	EFFECT		These traits set production adjustments for aetherium extraction.
+//
+//	USAGE		World classes should include one of these traits, either as 
+//				inherited traits or as randomly imparted traits. Do not include
+//				more than one of these per world.
+
+Trait core.aetheriumSource
+	{
+	category: feature
+	name: "aetherium deposits"
+	hidden: true
+	}
+
+Trait core.aetheriumRare
+	{
+	category: feature
+	name: "trace aetherium deposits"
+	inheritFrom: (core.aetheriumSource)
+	
+	productionAdj: (
+		{	type: core.aetherium
+			workUnitsAdj: { value:0.2		op:defaultValue }
+			}
+		)
+	}
+
+Trait core.aetheriumUncommon
+	{
+	category: feature
+	name: "minor aetherium deposits"
+	inheritFrom: (core.aetheriumSource)
+	
+	productionAdj: (
+		{	type: core.aetherium
+			workUnitsAdj: { value:0.5		op:defaultValue }
+			}
+		)
+	}
+
+Trait core.aetheriumCommon
+	{
+	category: feature
+	name: "major aetherium deposits"
+	inheritFrom: (core.aetheriumSource)
+	
+	productionAdj: (
+		{	type: core.aetherium
+			workUnitsAdj: { value:1.0		op:defaultValue }
+			}
+		)
+	}
+
+Trait core.aetheriumAbundant
+	{
+	category: feature
+	name: "abundant aetherium deposits"
+	inheritFrom: (core.aetheriumSource)
+	
+	productionAdj: (
+		{	type: core.aetherium
+			workUnitsAdj: { value:2.0		op:defaultValue }
+			}
+		)
+	}
+
+//	Atmosphere Features --------------------------------------------------------
+//
+//	EFFECT		These traits define the atmosphere of a world and affect the
+//				production of food and maximum population.
+//		
+//	USAGE		Include one of these traits as an inherited type on each world
+//				classe.
+
+Trait core.atmosphereNone
+	{
+	category: feature
+	name: "no atmosphere"
+
+	consumption: (
+		{	type: core.lifeSupportSupplies	//	Item to consume
+			minTechLevel: 3					//	Only consume if world is this tech or higher
+			
+			amount: {
+				type:byTechAndPopulation
+				value: (
+					(atomic				0.100)
+					(digital			0.125)
+					(spacefaring		0.156)
+					(fusion				0.195)
+					(biotech			0.244)
+					(antimatter			0.305)
+					(quantum			0.381)
+					(postIndustrial		0.477)
+					)
+				}
+
+			consequences: (
+				{	demandMet: 1.0
+					deathRate: 0.1			//	10% killed if 100% of demand fails
+					revIndex: 100			//	Increase in revolution index
+					techRegress: 0.5
+					efficiencyAdj: 0.9		//	Efficiency decreases
+					}
+				)
+			}
+		)
+
+	hidden: true
+	}
+
+Trait core.atmospherePoisonous
+	{
+	category: feature
+	name: "poisonous atmosphere"
+
+	consumption: (
+		{	type: core.airFilters			//	Item to consume
+			minTechLevel: 2					//	Only consume if world is this tech or higher
+			
+			amount: {
+				type:byTechAndPopulation
+				value: (
+					(industrial			0.05)
+					(atomic				0.06)
+					(digital			0.08)
+					(spacefaring		0.10)
+					(fusion				0.12)
+					(biotech			0.15)
+					(antimatter			0.19)
+					(quantum			0.24)
+					(postIndustrial		0.30)
+					)
+				}
+
+			consequences: (
+				{	demandMet: 1.0
+					deathRate: 0.01			//	1% killed if 100% of demand fails
+					revIndex: 100
+					techRegress: 0.25
+					efficiencyAdj: 0.95		//	Efficiency decreases
+					}
+				)
+			}
+		)
+
+	hidden: true
+	}
+
+//	Chronimium Deposits --------------------------------------------------------
+//
+//	EFFECT		These traits set production adjustments for chronimium 
+//				processing.
+//
+//	USAGE		World classes should include one of these traits, either as 
+//				inherited traits or as randomly imparted traits. Do not include
+//				more than one of these per world.
+
+Trait core.chronimiumSource
+	{
+	category: feature
+	name: "chronimium deposits"
+	hidden: true
+	}
+
+Trait core.chronimiumNone
+	{
+	category: feature
+	name: "no chronimium deposits"
+	hidden: true
+	
+	productionAdj: (
+		{	type: core.chronimium
+			workUnitsAdj: { value:0.0		op:defaultValue }
+			}
+		)
+
+	hidden: true
+	}
+
+Trait core.chronimiumRare
+	{
+	category: feature
+	name: "trace chronimium deposits"
+	inheritFrom: (core.chronimiumSource)
+	
+	productionAdj: (
+		{	type: core.chronimium
+			workUnitsAdj: { value:0.2		op:defaultValue }
+			}
+		)
+	}
+
+Trait core.chronimiumUncommon
+	{
+	category: feature
+	name: "minor chronimium deposits"
+	inheritFrom: (core.chronimiumSource)
+	
+	productionAdj: (
+		{	type: core.chronimium
+			workUnitsAdj: { value:0.5		op:defaultValue }
+			}
+		)
+	}
+
+Trait core.chronimiumCommon
+	{
+	category: feature
+	name: "major chronimium deposits"
+	inheritFrom: (core.chronimiumSource)
+	
+	productionAdj: (
+		{	type: core.chronimium
+			workUnitsAdj: { value:1.0		op:defaultValue }
+			}
+		)
+	}
+
+Trait core.chronimiumAbundant
+	{
+	category: feature
+	name: "abundant chronimium deposits"
+	inheritFrom: (core.chronimiumSource)
+	
+	productionAdj: (
+		{	type: core.chronimium
+			workUnitsAdj: { value:2.0		op:defaultValue }
+			}
+		)
+	}
+
+//	Chtholon Deposits ----------------------------------------------------------
+//
+//	EFFECT		These traits set production adjustments for chtholon extraction.
+//
+//	USAGE		World classes should include one of these traits, either as 
+//				inherited traits or as randomly imparted traits. Do not include
+//				more than one of these per world.
+
+Trait core.chtholonSource
+	{
+	category: feature
+	name: "chtholon deposits"
+	hidden: true
+	}
+
+Trait core.chtholonRare
+	{
+	category: feature
+	name: "trace chtholon deposits"
+	inheritFrom: (core.chtholonSource)
+	
+	productionAdj: (
+		{	type: core.chtholon
+			workUnitsAdj: { value:0.2		op:defaultValue }
+			}
+		)
+	}
+
+Trait core.chtholonUncommon
+	{
+	category: feature
+	name: "minor chtholon deposits"
+	inheritFrom: (core.chtholonSource)
+	
+	productionAdj: (
+		{	type: core.chtholon
+			workUnitsAdj: { value:0.5		op:defaultValue }
+			}
+		)
+	}
+
+Trait core.chtholonCommon
+	{
+	category: feature
+	name: "major chtholon deposits"
+	inheritFrom: (core.chtholonSource)
+	
+	productionAdj: (
+		{	type: core.chtholon
+			workUnitsAdj: { value:1.0		op:defaultValue }
+			}
+		)
+	}
+
+Trait core.chtholonAbundant
+	{
+	category: feature
+	name: "abundant chtholon deposits"
+	inheritFrom: (core.chtholonSource)
+	
+	productionAdj: (
+		{	type: core.chtholon
+			workUnitsAdj: { value:2.0		op:defaultValue }
+			}
+		)
+	}
+
+//	Hexacarbide Deposits -------------------------------------------------------
+//
+//	EFFECT		These traits set production adjustments for hexacarbide mining.
+//
+//	USAGE		World classes should include one of these traits, either as 
+//				inherited traits or as randomly imparted traits. Do not include
+//				more than one of these per world.
+	
+Trait core.hexacarbideSource
+	{
+	category: feature
+	name: "hexacarbide deposits"
+	hidden: true
+	}
+
+Trait core.hexacarbideNone
+	{
+	category: feature
+	name: "no hexacarbide deposits"
+	hidden: true
+	
+	productionAdj: (
+		{	type: core.hexacarbide
+			workUnitsAdj: { value:0.0		op:defaultValue }
+			}
+		)
+
+	hidden: true
+	}
+
+Trait core.hexacarbideRare
+	{
+	category: feature
+	name: "trace hexacarbide deposits"
+	inheritFrom: (core.hexacarbideSource)
+	
+	productionAdj: (
+		{	type: core.hexacarbide
+			workUnitsAdj: { value:0.2		op:defaultValue }
+			}
+		)
+	}
+
+Trait core.hexacarbideUncommon
+	{
+	category: feature
+	name: "minor hexacarbide deposits"
+	inheritFrom: (core.hexacarbideSource)
+	
+	productionAdj: (
+		{	type: core.hexacarbide
+			workUnitsAdj: { value:0.5		op:defaultValue }
+			}
+		)
+	}
+
+Trait core.hexacarbideCommon
+	{
+	category: feature
+	name: "major hexacarbide deposits"
+	inheritFrom: (core.hexacarbideSource)
+	
+	productionAdj: (
+		{	type: core.hexacarbide
+			workUnitsAdj: { value:1.0		op:defaultValue }
+			}
+		)
+	}
+
+Trait core.hexacarbideAbundant
+	{
+	category: feature
+	name: "abundant hexacarbide deposits"
+	inheritFrom: (core.hexacarbideSource)
+	
+	productionAdj: (
+		{	type: core.hexacarbide
+			workUnitsAdj: { value:2.0		op:defaultValue }
+			}
+		)
+	}
+
+//	Miscellaneous Features -----------------------------------------------------
+//
+//	EFFECT		These traits define the environment of a world.
+
+Trait core.desertBiosphere
+	{
+	category: feature
+	name: "desert biosphere"
+
+	productionAdj: (
+		{	type: core.organicFood
+			workUnitsAdj: { value:1.25		op:defaultValue }
+			}
+		)
+
+	hidden: true
+	}
+
+Trait core.earthLikeBiosphere
+	{
+	category: feature
+	name: "Earth-like biosphere"
+
+	productionAdj: (
+		{	type: core.organicFood
+			workUnitsAdj: { value:2.0		op:defaultValue }
+			}
+		)
+
+	hidden: true
+	}
+
+Trait core.environmentRadioactive
+	{
+	category: feature
+	name: "radioactive environment"
+
+	consumption: (
+		{	type: core.radiationMeds		//	Item to consume
+			minTechLevel: 3					//	Only consume if world is this tech or higher
+			
+			amount: {
+				type:byTechAndPopulation
+				value: (
+					(atomic				0.06)
+					(digital			0.08)
+					(spacefaring		0.10)
+					(fusion				0.12)
+					(biotech			0.15)
+					(antimatter			0.19)
+					(quantum			0.24)
+					(postIndustrial		0.30)
+					)
+				}
+
+			consequences: (
+				{	demandMet: 1.0
+					deathRate: 0.01			//	1% killed if 100% of demand fails
+					revIndex: 100
+					techRegress: 0.25
+					efficiencyAdj: 0.95
+					}
+				)
+			}
+		)
+
+	hidden: true
+	}
+
+Trait core.globalOcean
+	{
+	category: feature
+	name: "global ocean"
+
+	productionAdj: (
+		{	type: core.organicFood
+			workUnitsAdj: { value:1.75		op:defaultValue }
+			}
+		)
+
+	hidden: true
+	}
+
+Trait core.undergroundPopulation
+	{
+	category: feature
+	name: "underground population"
+
+	hidden: true
+	}
+
+//	Space Region Features ------------------------------------------------------
+//
+//	EFFECT		These traits are imparted by the space region the world is in.
+
+Trait core.inNebula
+	{
+	category: feature
+	name: "nebula world"
+
+	hidden: true;
+	}
+
+Trait core.inBrightNebula
+	{
+	category: feature
+	name: "bright nebula world"
+	inheritFrom: (core.inNebula)
+
+	hidden: true
+	}
+
+Trait core.inDarkNebula
+	{
+	category: feature
+	name: "dark nebula world"
+	inheritFrom: (core.inNebula)
+
+	hidden: true
+	}
+
+//	Trillum Deposits -----------------------------------------------------------
+//
+//	EFFECT		These traits set production adjustments for trillum mining.
+//
+//	USAGE		World classes should include one of these traits, either as 
+//				inherited traits or as randomly imparted traits. Do not include
+//				more than one of these per world.
+	
+Trait core.trillumSource
+	{
+	category: feature
+	name: "trillum deposits"
+	hidden: true
+	}
+
+Trait core.trillumNone
+	{
+	category: feature
+	name: "no trillum deposits"
+	hidden: true
+	
+	productionAdj: (
+		{	type: core.trillum
+			workUnitsAdj: { value:0.0		op:defaultValue }
+			}
+		)
+
+	hidden: true
+	}
+
+Trait core.trillumRare
+	{
+	category: feature
+	name: "trace trillum deposits"
+	inheritFrom: (core.trillumSource)
+	
+	productionAdj: (
+		{	type: core.trillum
+			workUnitsAdj: { value:0.2		op:defaultValue }
+			}
+		)
+	}
+
+Trait core.trillumUncommon
+	{
+	category: feature
+	name: "minor trillum deposits"
+	inheritFrom: (core.trillumSource)
+	
+	productionAdj: (
+		{	type: core.trillum
+			workUnitsAdj: { value:0.5		op:defaultValue }
+			}
+		)
+	}
+
+Trait core.trillumCommon
+	{
+	category: feature
+	name: "major trillum deposits"
+	inheritFrom: (core.trillumSource)
+	
+	productionAdj: (
+		{	type: core.trillum
+			workUnitsAdj: { value:1.0		op:defaultValue }
+			}
+		)
+	}
+
+Trait core.trillumAbundant
+	{
+	category: feature
+	name: "abundant trillum deposits"
+	inheritFrom: (core.trillumSource)
+	
+	productionAdj: (
+		{	type: core.trillum
+			workUnitsAdj: { value:2.0		op:defaultValue }
+			}
+		)
+	}
+
+//	Resources ------------------------------------------------------------------
+
+Image core.aetherealWorldHemisphere
+	{
+	filename: "AetherealWorldHemisphere.jpg"
+	}
+
+Image core.barrenWorldHemisphere
+	{
+	filename: "BarrenWorldHemisphere.jpg"
+	}
+
+Image core.chthonicWorldHemisphere
+	{
+	filename: "ChthonicWorldHemisphere.jpg"
+	}
+
+Image core.desertWorldHemisphere
+	{
+	filename: "DesertWorldHemisphere.jpg"
+	}
+
+Image core.earthLikeWorldHemisphere
+	{
+	filename: "EarthWorldHemisphere.jpg"
+	}
+
+Image core.empyrealWorldHemisphere
+	{
+	filename: "EmpyrealWorldHemisphere.jpg"
+	}
+
+Image core.fieryWorldHemisphere
+	{
+	filename: "FieryWorldHemisphere.jpg"
+	}
+
+Image core.greenhouseWorldHemisphere
+	{
+	filename: "GreenhouseWorldHemisphere.jpg"
+	}
+
+Image core.hadeanWorldHemisphere
+	{
+	filename: "HadeanWorldHemisphere.jpg"
+	}
+
+Image core.nebularWorldHemisphere
+	{
+	filename: "NebularWorldHemisphere.jpg"
+	}
+
+Image core.oceanWorldHemisphere
+	{
+	filename: "OceanWorldHemisphere.jpg"
+	}
+
+Image core.primordialWorldHemisphere
+	{
+	filename: "PrimordialWorldHemisphere.jpg"
+	}
+
+Image core.transuranicWorldHemisphere
+	{
+	filename: "TransuranicWorldHemisphere.jpg"
+	}
+
+Image core.undergroundWorldHemisphere
+	{
+	filename: "UndergroundWorldHemisphere.jpg"
+	}
+
+Image core.volcanicWorldHemisphere
+	{
+	filename: "VolcanicWorldHemisphere.jpg"
+	}
+
+Image core.worldClassIcons
+	{
+	filename: "WorldClassIcons.jpg"
+	}
+
+Image core.brightNebulaTactical
+	{
+	filename: "BrightNebulaTactical.jpg"
+	}
+
+Image core.darkNebulaTactical
+	{
+	filename: "DarkNebulaTactical.jpg"
+	}
+
+Image core.deepSpaceBackground
+	{
+	filename: "DeepSpaceBackground.jpg"
+	}
+
+Image core.deepSpaceBackgroundLowDetail
+	{
+	filename: "DeepSpaceBackgroundNoStars.jpg"
+	}
+
+Image core.deepSpaceBackgroundTactical
+	{
+	filename: "DeepSpaceBackgroundTactical.jpg"
+	}

@@ -1,0 +1,221 @@
+//	NPETrader.ars
+//
+//	Anacreon Core Library
+//	Copyright (c) 2014 by Kronosaur Productions, LLC. All Rights Reserved.
+
+SovereignType core.traderEmpire
+	{
+	name: "trader empire"
+	
+	sovereignName: "Mesophon Traders Union"
+	impartTraits: (core.tradeAndEnterprise core.bureauOfTrade)
+
+	capital: {
+		criteria: (
+			{ type:techLevel oneOf:(fusion biotech antimatter) }
+			{ type:traits noneOf:(core.barrenWorld) }
+			)
+
+		resources: (
+			{	type: core.infantry
+				value: { type:gaussian	median:2000		low:90		high:200	}
+				}
+						
+			{	type: core.jumptransportReliant
+				value: { type:gaussian	median:2000		low:75		high:150	}
+				}
+						
+			{	type: core.jumpshipStinger
+				value: { type:gaussian	median:1000		low:75		high:150	}
+				}
+						
+			{	type: core.jumpcruiserAdamant
+				value: { type:gaussian	median:200		low:75		high:150	}
+				}
+			)
+		}
+
+	currency: core.aes
+
+	npeOnly: true
+	ai: { }
+
+	//	We need a larger administrative range to designate all the trading hubs
+
+	maxAdminDist: 1500
+
+	//	onCreate ---------------------------------------------------------------
+	//
+	//	This is called when the empire is first created. A Trading Empire 
+	//	starts with several sectors, each with a network of trading hubs. The 
+	//	goal is to be able to trade with as much of the galaxy as possible.
+
+	onCreate: (lambda (sovereign createDesc)
+		(block (
+
+			//	Initialize some values based on the creation parameters
+
+			(worldsToCreate (if (@ createDesc 'worlds) (@ createDesc 'worlds) 125))
+			(sectorCount (max 1 (/ worldsToCreate 25)))
+			(sectorCapitals nil)
+			)
+
+			//	Pick out independent worlds to be sector capitals (we already have
+			//	the capital, so we need n-1 sector capitals.
+
+			(set! sectorCapitals (unvFindObjectGroup
+				(- sectorCount 1)
+				(@ sovereign 'capital)
+				(list
+					{ type:'worlds }
+					{ type:'sovereign equalTo:'core.independent }
+					{ type:'techLevel oneOf:'(spacefaring fusion biotech antimatter quantum postIndustrial) }
+					{ type:'distance greaterThan:250 }
+					)
+				{ minDist:800 }
+				))
+
+			//	Conquer each of the sector capitals and designate them
+
+			(enum sectorCapitals theObj
+				(block nil
+					(objConquer theObj sovereign)
+					(objDesignate theObj 'core.sectorCapitalTradeDesignation { setCompleted:true })
+					)
+				)
+
+			//	Now add the original capital to the list so we can create a set of
+			//	trading hubs around each one.
+
+			(set! sectorCapitals (append sectorCapitals (list (@ sovereign 'capital))))
+
+			//	For each sector capital, conquer worlds around them
+
+			(enum sectorCapitals theCapital
+				(block (zoneCount zoneInterval zoneHalfWidth zoneArray zoneAngle theZone)
+
+					//	We split the area around the capital into 3-5 radial zones.
+					//	Each zone will support an arm of trading hubs
+
+					(set! zoneCount (random 3 5))
+					(set! zoneInterval (/ 360 zoneCount))
+					(set! zoneHalfWidth 25)
+
+					//	Define each zone
+
+					(set! zoneAngle (random 0 359))
+					(set! theZone 0)
+					(while (< theZone zoneCount)
+						(block (worldsInZone i maxDist lastHub lastCandidate hubsInZone)
+							
+							//	Make a list of all the wolds in this zone. This is a list of
+							//	structs with the following fields:
+							//
+							//	obj: The world
+							//	dist: Distance to capital (in light-years)
+
+							(set! worldsInZone (map
+								(unvFindObjects
+									theCapital
+									(list
+										{ type:'worlds }
+										{ type:'sovereign equalTo:'core.independent }
+										{ type:'techLevel oneOf:'(spacefaring fusion biotech antimatter quantum postIndustrial) }
+										{ type:'distance lessThan:1000 }
+										{ type:'bearing greaterThan:(- zoneAngle zoneHalfWidth) lessThan:(+ zoneAngle zoneHalfWidth) }
+										)
+									)
+								nil
+								theObj
+								{
+									obj: theObj
+									dist: (objCalcDistance theCapital theObj)
+									}
+								))
+
+							//	Sort by increasing distance from the capital
+
+							(sort! worldsInZone { getKeyValue: (lambda (theEntry) (@ theEntry 'dist)) })
+
+							//	Loop over all worlds in order until we've created all the hubs
+
+							(set! i 0)
+							(set! maxDist 200)
+							(set! lastHub theCapital)
+							(set! lastCandidate nil)
+							(set! hubsInZone nil)
+							(while (< i (count worldsInZone))
+								(block (
+									(theEntry (@ worldsInZone i))
+									(theObj (@ theEntry 'obj))
+									(theDist (@ theEntry 'dist))
+									)
+
+									(switch
+
+										//	If this world is within our max distance, then it might be a
+										//	candidate.
+
+										(< theDist maxDist)
+											(block nil
+												//	If we're in range of the last hub, then this is definitely
+												//	a candidate
+
+												(if (< (objCalcDistance lastHub theObj) 200)
+													(block nil
+														(set! lastCandidate theEntry)
+														)
+													)
+
+												//	Either way we continue with the next worlds
+
+												(set! i (+ i 1))
+												)
+
+										//	Otherwise, the last candidate should be a hub.
+
+										lastCandidate
+											(block (
+												(newHub (@ lastCandidate 'obj))
+												)
+
+												//	Add the wold to our empire and designate it as a trading hub
+
+												(objConquer newHub sovereign)
+												(objDesignate newHub 'core.tradingHubDesignation)
+
+												//	Add a bi-directional trade-route between the hubs.
+
+												(objAddTradeRoute lastHub newHub)
+												(objAddTradeRoute newHub lastHub)
+
+												//	Reset to look for the next hub (no need to increment i, since
+												//	that could be the next candidate).
+
+												(set! hubsInZone (append hubsInZone newHub))
+												(set! lastHub newHub)
+												(set! lastCandidate nil)
+												(set! maxDist (+ (objCalcDistance theCapital newHub) 200))
+												)
+
+										//	If we don't have a last candidate then we don't have more worlds, so
+										//	just advance until we're done.
+
+										(block nil
+											(set! i (+ i 1))
+											)
+										)
+									)
+								)
+
+							//	Next
+
+							(set! theZone (+ theZone 1))
+							(set! zoneAngle (+ zoneAngle zoneInterval))
+							)
+						)
+					)
+				)
+			)
+		)
+	}

@@ -1,0 +1,476 @@
+//	CoreJumpships.ars
+//
+//	Anacreon Core Library
+//	Copyright (c) 2014 by Kronosaur Productions, LLC. All Rights Reserved.
+
+//	Designations ---------------------------------------------------------------
+
+Trait core.jumpshipAutofacDesignation {
+	category: designation
+	name: "jumpship components autofac"
+	minTechLevel: 5
+	
+	industry: (
+		{ type:core.jumpshipAutofac alloc:max }
+
+		{ type:core.chronimiumProcessor alloc:demand }
+		{ type:core.hexacarbideFoundry alloc:demand }
+		{ type:core.trillumExtractor alloc:demand }
+
+		{ type:core.imperialAdministration alloc:demand }
+		{ type:core.consumerGoodsAutofac alloc:demand }
+		)
+
+	description: "This autofac manufactures components used for building jumpships."
+
+	imageMedium: { type:constant
+		resource: core.designationIcons
+		pos: (128 640)
+		size: (128 128)
+		}
+
+	imageSmall: { type:constant
+		resource: core.designationIconsSmall
+		pos: (48 240)
+		size: (48 48)
+		}
+	}
+	
+Trait core.jumpshipYardsDesignation {
+	category: designation
+	name: "jumpship yards"
+	role: shipyard
+	minTechLevel: 5
+	
+	industry: (
+		{ type:core.jumpshipYards alloc:max }
+
+		{ type:core.chronimiumProcessor alloc:demand }
+		{ type:core.hexacarbideFoundry alloc:demand }
+		{ type:core.trillumExtractor alloc:demand }
+
+		{ type:core.imperialAdministration alloc:demand }
+		{ type:core.consumerGoodsAutofac alloc:demand }
+		)
+
+	description: "Jumpship yards build jumpships, which are fast but weaker than starships."
+
+	imageMedium: { type:constant
+		resource: core.designationIcons
+		pos: (128 512)
+		size: (128 128)
+		}
+
+	imageSmall: { type:constant
+		resource: core.designationIconsSmall
+		pos: (48 192)
+		size: (48 48)
+		}
+	}
+
+//	Units ----------------------------------------------------------------------
+
+ResourceType core.jumpshipStinger {
+	category: maneuveringUnit
+	name: "Stinger-class jumpship"
+	role: jumpship
+	attackValue: 9
+	FTL: 50.0
+	mass: 8.0
+	maxDeltaV: 0.5
+	scanner: 0.25
+	visibility: 0.08
+	halfLife: 4.0
+
+	attack: { name:"K110 mass driver" count:1 damage:4 type:direct range:5.0 area:0.0 }
+	defense: { armor:8 counters:{ missile:2 } }
+	unitsPerCell: 8
+
+	production: {
+		workUnits: 180.0
+		inputs: (
+			{ type:core.trillum amount:2.0 }
+			{ type:core.hexacarbide amount:2.0 }
+			{ type:core.lightJumpdrive amount:1.0 }
+			)
+		minTechLevel: 5
+		maxTechLevel: 8
+		}
+	}
+
+ResourceType core.explorerVanguard {
+	category: maneuveringUnit
+	name: "Vanguard-class explorer"
+	role: explorer
+	attackValue: 3
+	FTL: { type:explorer speed:100.0 }
+	mass: 2.0
+	maxDeltaV: 2.0							//	In km/sec
+	scanner: 1.0
+	visibility: 0.02
+	halfLife: 5.0
+
+	attack: { name:"laser cannon" count:1 damage:1 type:direct range:2.5 area:0.0 }
+	defense: { armor:4 }
+	unitsPerCell: 16
+
+	production:	{
+		workUnits: 110.0
+		inputs: (
+			{ type:core.trillum amount:1.0 }
+			{ type:core.hexacarbide amount:0.5 }
+			)
+		minTechLevel: 6
+		maxTechLevel: 7
+		}
+	}
+	
+ResourceType core.jumptransportReliant {
+	category: maneuveringUnit
+	name: "Reliant-class jumptransport"
+	role: jumptransport
+	attackValue: 6
+	FTL: 50.0
+	canLand: true
+	cargoSpace: 20.0						//	In kilotons
+	mass: 15.0
+	maxDeltaV: 0.25
+	scanner: 0.0
+	visibility: 0.15
+	halfLife: 4.0
+
+	attack: { name:"laser cannon" count:1 damage:1 type:direct range:2.5 area:0.0 }
+	defense: { armor:10 }
+	unitsPerCell: 8
+
+	production: {
+		workUnits: 200.0
+		inputs: (
+			{ type:core.trillum amount:2.0 }
+			{ type:core.hexacarbide amount:2.0 }
+			{ type:core.lightJumpdrive amount:1.0 }
+			)
+		minTechLevel: 6
+		maxTechLevel: 8
+		}
+	}
+
+ResourceType core.jumpcruiserAdamant {
+	category: maneuveringUnit
+	name: "Adamant-class jumpcruiser"
+	role: jumpcruiser
+	attackValue: 23
+	FTL: 50.0
+	mass: 12.0
+	maxDeltaV: 0.35
+	scanner: 0.1
+	visibility: 0.12
+	halfLife: 4.0
+
+	attack: { name:"Sekron-10 missile" count:1 damage:40 strength:1 type:missile range:10.0 area:0.0 }
+	defense: { armor:20 }
+	unitsPerCell: 8
+
+	production: {
+		workUnits: 210.0
+		inputs: (
+			{ type:core.trillum amount:4.0 }
+			{ type:core.hexacarbide amount:5.0 }
+			{ type:core.heavyJumpdrive amount:1.0 }
+			{ type:core.lightMissileLauncher amount:1.0 }
+			)
+		minTechLevel: 7
+		maxTechLevel: 9
+		}
+	}
+
+ResourceType core.explorerHelion {
+	category: maneuveringUnit
+	name: "Helion-class explorer"
+	role: explorer
+	attackValue: 7
+	FTL: { type:explorer speed:150.0 }
+	mass: 2.0
+	maxDeltaV: 2.0
+	scanner: 1.5
+	visibility: 0.02
+	halfLife: 4.0
+
+	attack: { name:"turbolaser cannon" count:1 damage:4 type:direct range:5 area:0.0 }
+	defense: { armor:8 }
+	unitsPerCell: 16
+
+	production: {
+		workUnits: 150.0
+		inputs: (
+			{ type:core.trillum amount:5.0 }
+			{ type:core.hexacarbide amount:0.5 }
+			{ type:core.chronimium amount:1.0 }
+			)
+		minTechLevel: 8
+		minTechLevelToDisplay: 8
+		}
+	}
+	
+ResourceType core.jumpshipEldritch {
+	category: maneuveringUnit
+	name: "Eldritch-class jumpship"
+	role: jumpship
+	attackValue: 55
+	FTL: 75.0
+	mass: 18.0
+	maxDeltaV: 0.65
+	scanner: 0.25
+	visibility: 0.18
+	halfLife: 4.0
+
+	attack: { name:"Flenser cannon" count:1 damage:35 type:direct range:10.0 area:0.0 }
+	defense: { armor:25 counters:{ missile:3 } }
+	unitsPerCell: 8
+
+	production: {
+		workUnits: 200.0
+		inputs: (
+			{ type:core.trillum amount:5.0 }
+			{ type:core.hexacarbide amount:5.0 }
+			{ type:core.chronimium amount:8.0 }
+			{ type:core.advancedJumpdrive amount:1.0 }
+			)
+		minTechLevel: 9
+		minTechLevelToDisplay: 9
+		}
+	}
+
+ResourceType core.jumptransportWarphant {
+	category: maneuveringUnit
+	name: "Warphant-class jumptransport"
+	role: jumptransport
+	attackValue: 23
+	FTL: 75.0
+	canLand: true
+	cargoSpace: 20.0
+	mass: 30.0
+	maxDeltaV: 0.35
+	scanner: 0.0
+	visibility: 0.30
+	halfLife: 4.0
+
+	attack: { name:"turbolaser cannon" count:1 damage:5 type:direct range:5 area:0.0 }
+	defense: { armor:40 }
+	unitsPerCell: 8
+
+	production: {
+		workUnits: 200.0
+		inputs: (
+			{ type:core.trillum amount:5.0 }
+			{ type:core.hexacarbide amount:10.0 }
+			{ type:core.chronimium amount:5.0 }
+			{ type:core.advancedJumpdrive amount:1.0 }
+			)
+		minTechLevel: 9
+		minTechLevelToDisplay: 9
+		}
+	}
+
+ResourceType core.jumpcruiserUndine {
+	category: maneuveringUnit
+	name: "Undine-class jumpcruiser"
+	role: jumpcruiser
+	attackValue: 114
+	FTL: 75.0
+	mass: 25.0
+	maxDeltaV: 0.5
+	scanner: 0.1
+	visibility: 0.25
+	halfLife: 4.0
+
+	attack: { name:"Aeglos graviton missile" count:1 damage:120 strength:2 type:missile range:10.0 area:0.1 }
+	defense: { armor:60 }
+	unitsPerCell: 8
+
+	production: {
+		workUnits: 250.0
+		inputs: (
+			{ type:core.trillum amount:5.0 }
+			{ type:core.hexacarbide amount:6.0 }
+			{ type:core.chronimium amount:10.0 }
+			{ type:core.advancedJumpdrive amount:1.0 }
+			{ type:core.gravitonLauncher amount:1.0 }
+			)
+		minTechLevel: 10
+		minTechLevelToDisplay: 10
+		}
+	}
+
+//	Commodities and Materials --------------------------------------------------
+
+ResourceType core.lightJumpdrive {
+	category: commodity
+	name: "light jumpdrive"
+	role: shipComponent
+	isCargo: true
+	mass: 0.25
+	
+	halfLife: 10.0
+
+	production: {
+		workUnits: 72.0
+		inputs: ({ type:core.trillum amount:8.0 })
+		minTechLevel: 5
+		}
+	}
+
+ResourceType core.heavyJumpdrive {
+	category: commodity
+	name: "heavy jumpdrive"
+	role: shipComponent
+	isCargo: true
+	mass: 1.0
+	
+	halfLife: 10.0
+
+	production: {
+		workUnits: 220.0
+		inputs: ({ type:core.trillum amount:12.0 } { type:core.hexacarbide amount:2.0})
+		minTechLevel: 6
+		}
+	}
+	
+ResourceType core.lightMissileLauncher {
+	category: commodity
+	name: "light missile launcher"
+	role: shipComponent
+	isCargo: true
+	mass: 0.5
+	
+	halfLife: 10.0
+
+	production: {
+		workUnits: 120.0
+		inputs: ({ type:core.trillum amount:8.0 } { type:core.hexacarbide amount:2.0})
+		minTechLevel: 7
+		}
+	}
+	
+ResourceType core.advancedJumpdrive {
+	category: commodity
+	name: "advanced jumpdrive"
+	role: shipComponent
+	isCargo: true
+	mass: 1.0
+	
+	halfLife: 10.0
+
+	production: {
+		workUnits: 200.0
+		inputs: ({ type:core.trillum amount:10.0 } { type:core.hexacarbide amount:2.0} { type:core.chronimium amount:5 })
+		minTechLevel: 9
+		minTechLevelToDisplay: 8
+		}
+	}
+	
+ResourceType core.gravitonLauncher {
+	category: commodity
+	name: "graviton launcher"
+	role: shipComponent
+	isCargo: true
+	mass: 2
+	
+	halfLife: 10.0
+
+	production: {
+		workUnits: 100.0
+		inputs: ({ type:core.trillum amount:5.0 } { type:core.hexacarbide amount:3.0} { type:core.chronimium amount:5 })
+		minTechLevel: 9
+		minTechLevelToDisplay: 8
+		}
+	}
+	
+//	Industry -------------------------------------------------------------------
+	
+Trait core.fleetBase {
+	name: "fleet base"
+	category: industry
+	role: shipyardIndustry
+	inheritFrom: (core.jumpBeaconAttribute)
+
+	production: (
+		core.infantry 
+		core.explorerVanguard
+		core.jumptransportReliant
+		core.jumpshipStinger
+		core.jumpcruiserAdamant
+		core.explorerHelion
+		core.jumptransportWarphant
+		core.jumpshipEldritch
+		core.jumpcruiserUndine
+		)
+
+	defaultAlloc: { alloc:max }
+	designationOnly: true
+	workingConditions: 7
+	}
+	
+Trait core.fleetHQ {
+	name: "fleet HQ"
+	category: industry
+	role: shipyardIndustry
+	inheritFrom: (core.jumpBeaconAttribute)
+
+	production: (
+		core.infantry 
+		core.explorerVanguard
+		core.jumptransportReliant
+		core.jumpshipStinger
+		core.jumpcruiserAdamant
+		core.explorerHelion
+		core.jumptransportWarphant
+		core.jumpshipEldritch
+		core.jumpcruiserUndine
+		)
+
+	defaultAlloc: { alloc:max }
+	designationOnly: true
+	workingConditions: 7
+	}
+	
+Trait core.jumpshipAutofac {
+	name: "jumpship autofac"
+	category: industry
+	role: componentIndustry
+	
+	production: (
+		core.lightJumpdrive
+		core.heavyJumpdrive
+		core.lightMissileLauncher
+		core.advancedJumpdrive
+		core.gravitonLauncher
+		)
+
+	defaultAlloc: { alloc:max }
+	designationOnly: true
+	autoProductAlloc: true
+	workingConditions: 7
+	}
+	
+Trait core.jumpshipYards {
+	name: "jumpship yards"
+	category: industry
+	role: shipyardIndustry
+	inheritFrom: (core.jumpBeaconAttribute)
+
+	production: (
+		core.explorerVanguard
+		core.jumptransportReliant
+		core.jumpshipStinger
+		core.jumpcruiserAdamant
+		core.explorerHelion
+		core.jumptransportWarphant
+		core.jumpshipEldritch
+		core.jumpcruiserUndine
+		)
+
+	defaultAlloc: { alloc:max }
+	designationOnly: true
+	workingConditions: 7
+	}
