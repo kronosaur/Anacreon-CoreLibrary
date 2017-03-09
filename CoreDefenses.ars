@@ -180,7 +180,7 @@ ResourceType core.jumpmissilePartisan
 	isExpendable: true
 	noLocalAttack: true
 
-	attack: { name:"Partisan missile" count:16 damage:100 type:missile strength:8 range:100.0 area:0.0 }
+	attack: { name:"Partisan missile" count:16 damage:180 type:missile strength:8 range:100.0 area:0.0 }
 	defense: { armor:50 }
 
 	production: {
