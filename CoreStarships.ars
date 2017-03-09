@@ -84,8 +84,8 @@ ResourceType core.gunshipSirius {
 	visibility: 0.15
 	halfLife: 10.0
 
-	attack: { name:"K3X mass driver" count:1 damage:60 type:direct range:5.0 area:0.0 }
-	defense: { armor:50 }
+	attack: { name:"K3X mass driver" count:1 damage:32 type:direct range:10.0 area:0.0 }
+	defense: { armor:80 }
 	unitsPerCell: 16
 
 	production: {
@@ -111,8 +111,8 @@ ResourceType core.starfrigateDefiance {
 	visibility: 1.1
 	halfLife: 20.0
 
-	attack: { name:"positron lancer" count:1 damage:300 type:direct range:20.0 area:0.1 }
-	defense: { armor:500 counters:{ missile:4 } }
+	attack: { name:"positron lancer" count:1 damage:64 type:direct range:20.0 area:0.1 }
+	defense: { armor:160 counters:{ missile:1 } }
 	unitsPerCell: 2
 
 	production: {
@@ -140,8 +140,8 @@ ResourceType core.starcruiserVictory {
 	visibility: 3.5
 	halfLife: 20.0
 
-	attack: { name:"Sekron-90 missile" count:1 damage:300 type:missile strength:4 range:20.0 area:0.3 }
-	defense: { armor:1600 }
+	attack: { name:"Sekron-90 missile" count:1 damage:320 type:missile strength:4 range:25.0 area:0.3 }
+	defense: { armor:3200 }
 	unitsPerCell: 1
 
 	production: {
@@ -170,8 +170,8 @@ ResourceType core.gunshipMinotaur {
 	visibility: 0.12
 	halfLife: 12.0
 
-	attack: { name:"slam cannon" count:1 damage:100 type:direct range:10.0 area:0.0 }
-	defense: { armor:90 }
+	attack: { name:"slam cannon" count:1 damage:64 type:direct range:15.0 area:0.0 }
+	defense: { armor:160 }
 	unitsPerCell: 16
 
 	production: {
@@ -198,8 +198,8 @@ ResourceType core.starfrigateGorgos {
 	visibility: 2.0
 	halfLife: 25.0
 
-	attack: { name:"Basilisk cannon" count:1 damage:400 type:direct range:30.0 area:0.2 }
-	defense: { armor:1200 counters:{ missile:4 } }
+	attack: { name:"Basilisk cannon" count:1 damage:128 type:direct range:25.0 area:0.2 }
+	defense: { armor:300 counters:{ missile:1 } }
 	unitsPerCell: 2
 
 	production: {
@@ -228,8 +228,8 @@ ResourceType core.starcruiserMegathere {
 	visibility: 5.0
 	halfLife: 25.0
 
-	attack: { name:"Grond missile" count:1 damage:500 type:missile strength:4 range:20.0 area:0.4 }
-	defense: { armor:3500 counters:{ missile:2 } }
+	attack: { name:"Grond missile" count:1 damage:640 type:missile strength:4 range:30.0 area:0.4 }
+	defense: { armor:6400 counters:{ missile:2 } }
 	unitsPerCell: 1
 
 	production: {
