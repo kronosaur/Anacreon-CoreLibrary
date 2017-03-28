@@ -103,7 +103,7 @@ ResourceType core.starfrigateDefiance {
 	category: maneuveringUnit
 	name: "Defiance-class starfrigate"
 	role: starfrigate
-	attackValue: 1017
+	attackValue: 1017		//	May need to be recalculated
 	FTL: 0.2
 	mass: 110.0
 	maxDeltaV: 0.25
@@ -162,7 +162,7 @@ ResourceType core.gunshipMinotaur {
 	category: maneuveringUnit
 	name: "Minotaur-class gunship"
 	role: gunship
-	attackValue: 145
+	attackValue: 145		//	May need to be recalculated
 	FTL: 5.0
 	mass: 12.0
 	maxDeltaV: 1.75
