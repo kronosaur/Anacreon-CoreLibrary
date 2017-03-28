@@ -88,8 +88,8 @@ ResourceType core.gunshipHammerhead {
 	visibility: 0.10
 	halfLife: 10.0
 
-	attack: { name:"AX1 missile" count:1 damage:48 type:missile strength:1 range:5.0 area:0.0 }
-	defense: { armor:120 counters:{ missile:1 } }
+	attack: { name:"AX1 recoilless cannon" count:1 damage:48 type:direct range:10.0 area:0.0 }
+	defense: { armor:120 }
 	unitsPerCell: 16
 
 	production: {
@@ -115,7 +115,7 @@ ResourceType core.starfrigateManta {
 	visibility: 2.0
 	halfLife: 20.0
 
-	attack: { name:"Tholin particle cannon" count:1 damage:96 type:direct range:15.0 area:0.0 }
+	attack: { name:"Tholin particle cannon" count:1 damage:144 type:direct range:15.0 area:0.1 }
 	defense: { armor:240 counters:{ missile:1 } }
 	unitsPerCell: 2
 
@@ -173,8 +173,8 @@ ResourceType core.gunshipCerberus {
 	visibility: 0.20
 	halfLife: 10.0
 
-	attack: { name:"Trident cannon" count:1 damage:96 type:direct range:10.0 area:0.1 }
-	defense: { armor:240 counters:{ missile:1 } }
+	attack: { name:"Trident cannon" count:1 damage:96 type:direct range:15.0 area:0.1 }
+	defense: { armor:240 }
 	unitsPerCell: 16
 
 	production: {
