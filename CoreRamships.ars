@@ -80,7 +80,7 @@ ResourceType core.gunshipHammerhead {
 	category: maneuveringUnit
 	name: "Hammerhead-class gunship"
 	role: gunship
-	attackValue: 70
+	attackValue: 70				//	May need to be recalculated
 	FTL: { type:ramjet speed:3.0 }
 	mass: 10.0
 	maxDeltaV: 1.0
@@ -107,7 +107,7 @@ ResourceType core.starfrigateManta {
 	category: maneuveringUnit
 	name: "Manta-class starfrigate"
 	role: starfrigate
-	attackValue: 914
+	attackValue: 914			//	May need to be recalculated
 	FTL: { type:ramjet speed:1.0 }
 	mass: 200.0
 	maxDeltaV: 0.2
@@ -165,7 +165,7 @@ ResourceType core.gunshipCerberus {
 	category: maneuveringUnit
 	name: "Cerberus-class gunship"
 	role: gunship
-	attackValue: 180
+	attackValue: 180			//	May need to be recalculated
 	FTL: { type:ramjet speed:5.0 }
 	mass: 20.0
 	maxDeltaV: 1.0
