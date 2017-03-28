@@ -112,9 +112,8 @@ ResourceType core.GDM
 	attackValue: 29
 	mass: 200.0
 	halfLife: 2.0
-	isExpendable: true
 
-	attack: { name:"nuclear warhead" count:1 damage:32 type:missile strength:1 range:15.0 area:0.2 }
+	attack: { name:"nuclear warhead" count:1 damage:32 type:missile strength:1 range:10.0 area:0.2 }
 	defense: { armor:16 }
 
 	production: {
@@ -151,11 +150,11 @@ ResourceType core.hypersonicMissile
 	{
 	category: fixedUnit
 	name: "hypersonic missile site"
-	attackValue: 53
+	attackValue: 53				//	presumably this would need to be updated too, but IDK the equation
 	mass: 200.0
 	halfLife: 3.0
 
-	attack: { name:"H2 interceptor" count:1 damage:48 type:missile strength:2 range:25.0 area:0.2 }
+	attack: { name:"H2 interceptor" count:1 damage:48 type:missile strength:2 range:20.0 area:0.2 }
 	defense: { armor:128 }
 
 	production: {
