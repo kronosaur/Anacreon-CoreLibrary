@@ -150,7 +150,7 @@ ResourceType core.hypersonicMissile
 	{
 	category: fixedUnit
 	name: "hypersonic missile site"
-	attackValue: 53				//	presumably this would need to be updated too, but IDK the equation
+	attackValue: 53					//	presumably this would need to be updated too, but IDK the equation
 	mass: 200.0
 	halfLife: 3.0
 
