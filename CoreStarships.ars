@@ -111,7 +111,7 @@ ResourceType core.starfrigateDefiance {
 	visibility: 1.1
 	halfLife: 20.0
 
-	attack: { name:"positron lancer" count:1 damage:64 type:direct range:20.0 area:0.1 }
+	attack: { name:"positron lancer" count:1 damage:96 type:direct range:20.0 area:0.1 }
 	defense: { armor:160 counters:{ missile:1 } }
 	unitsPerCell: 2
 
@@ -168,7 +168,7 @@ ResourceType core.gunshipMinotaur {
 	maxDeltaV: 1.75
 	scanner: 0.1
 	visibility: 0.12
-	halfLife: 12.0
+	halfLife: 10.0
 
 	attack: { name:"slam cannon" count:1 damage:64 type:direct range:15.0 area:0.0 }
 	defense: { armor:160 }
