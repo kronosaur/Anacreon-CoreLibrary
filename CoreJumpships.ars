@@ -108,7 +108,7 @@ ResourceType core.explorerVanguard {
 	maxDeltaV: 2.0							//	In km/sec
 	scanner: 1.0
 	visibility: 0.02
-	halfLife: 5.0
+	halfLife: 4.0
 
 	attack: { name:"laser cannon" count:1 damage:2 type:direct range:5.0 area:0.0 }
 	defense: { armor:4 }
