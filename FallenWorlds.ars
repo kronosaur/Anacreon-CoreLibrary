@@ -122,10 +122,6 @@ SovereignType core.playerEmpire
 			{	type: core.jumptransportReliant
 				value: { type:gaussian	median:2000		low:75		high:150	}
 				}
-					
-			{	type: core.jumpshipStinger
-				value: { type:gaussian	median:1000		low:75		high:150	}
-				}
 				
 			{	type: core.jumpshipStinger
 				value: { type:gaussian	median:2500		low:75		high:150	}
