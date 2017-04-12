@@ -80,7 +80,7 @@ ResourceType core.gunshipHammerhead {
 	category: maneuveringUnit
 	name: "Hammerhead-class gunship"
 	role: gunship
-	attackValue: 70
+	attackValue: 70				//	May need to be recalculated
 	FTL: { type:ramjet speed:3.0 }
 	mass: 10.0
 	maxDeltaV: 1.0
@@ -88,8 +88,8 @@ ResourceType core.gunshipHammerhead {
 	visibility: 0.10
 	halfLife: 10.0
 
-	attack: { name:"AX1 missile" count:1 damage:120 type:missile strength:1 range:10.0 area:0.0 }
-	defense: { armor:60 }
+	attack: { name:"AX1 recoilless cannon" count:1 damage:48 type:direct range:10.0 area:0.0 }
+	defense: { armor:120 }
 	unitsPerCell: 16
 
 	production: {
@@ -107,7 +107,7 @@ ResourceType core.starfrigateManta {
 	category: maneuveringUnit
 	name: "Manta-class starfrigate"
 	role: starfrigate
-	attackValue: 914
+	attackValue: 914			//	May need to be recalculated
 	FTL: { type:ramjet speed:1.0 }
 	mass: 200.0
 	maxDeltaV: 0.2
@@ -115,8 +115,8 @@ ResourceType core.starfrigateManta {
 	visibility: 2.0
 	halfLife: 20.0
 
-	attack: { name:"Tholin particle cannon" count:1 damage:400 type:direct range:10.0 area:0.0 }
-	defense: { armor:600 counters:{ missile:4 } }
+	attack: { name:"Tholin particle cannon" count:1 damage:144 type:direct range:15.0 area:0.1 }
+	defense: { armor:240 counters:{ missile:1 } }
 	unitsPerCell: 2
 
 	production: {
@@ -143,8 +143,8 @@ ResourceType core.starcruiserBehemoth {
 	visibility: 20.0
 	halfLife: 20.0
 
-	attack: { name:"AR200 missile" count:1 damage:200 type:missile strength:2 range:10.0 area:0.4 }
-	defense: { armor:2400 }
+	attack: { name:"AR200 missile" count:1 damage:480 type:missile strength:2 range:20.0 area:0.4 }
+	defense: { armor:4800 }
 	unitsPerCell: 1
 
 	production: {
@@ -165,7 +165,7 @@ ResourceType core.gunshipCerberus {
 	category: maneuveringUnit
 	name: "Cerberus-class gunship"
 	role: gunship
-	attackValue: 180
+	attackValue: 180			//	May need to be recalculated
 	FTL: { type:ramjet speed:5.0 }
 	mass: 20.0
 	maxDeltaV: 1.0
@@ -173,8 +173,8 @@ ResourceType core.gunshipCerberus {
 	visibility: 0.20
 	halfLife: 10.0
 
-	attack: { name:"Trident cannon" count:1 damage:75 type:direct range:10.0 area:0.1 }
-	defense: { armor:150 }
+	attack: { name:"Trident cannon" count:1 damage:96 type:direct range:15.0 area:0.1 }
+	defense: { armor:240 }
 	unitsPerCell: 16
 
 	production: {
@@ -201,8 +201,8 @@ ResourceType core.starfrigateCyclops {
 	visibility: 3.0
 	halfLife: 25.0
 
-	attack: { name:"Hellfire cannon" count:1 damage:200 type:direct range:20.0 area:0.3 }
-	defense: { armor:2000 counters:{ missile:4 } }
+	attack: { name:"Hellfire cannon" count:1 damage:192 type:direct range:20.0 area:0.3 }
+	defense: { armor:450 counters:{ missile:1 } }
 	unitsPerCell: 2
 
 	production: {
@@ -231,8 +231,8 @@ ResourceType core.starcruiserTyphon {
 	visibility: 9.0
 	halfLife: 25.0
 
-	attack: { name:"HK90 missile" count:1 damage:600 type:missile strength:4 range:10.0 area:0.5 }
-	defense: { armor:2800 }
+	attack: { name:"HK90 missile" count:1 damage:960 type:missile strength:4 range:25.0 area:0.5 }
+	defense: { armor:9600 counters:{ missile:2 } }
 	unitsPerCell: 1
 
 	production: {

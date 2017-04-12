@@ -47,8 +47,8 @@ ResourceType core.autocannonSatellite
 	mass: 2.0
 	halfLife: 5.0
 
-	attack: { name:"x-ray laser cannon" count:1 damage:16 type:direct range:10.0 area:0.0 }
-	defense: { armor:16 }
+	attack: { name:"x-ray laser cannon" count:1 damage:24 type:direct range:15.0 area:0.0 }
+	defense: { armor:32 }
 
 	production: {
 		workUnits: 70.0
@@ -68,8 +68,8 @@ ResourceType core.armoredSatellite
 	mass: 25.0
 	halfLife: 5.0
 
-	attack: { name:"H5 interceptor" count:1 damage:30 type:missile strength:2 range:10.0 area:0.3 }
-	defense: { armor:130 }
+	attack: { name:"H5 interceptor" count:1 damage:56 type:missile strength:2 range:20.0 area:0.3 }
+	defense: { armor:256 }
 
 	production: {
 		workUnits: 265.0
@@ -90,8 +90,8 @@ ResourceType core.battlestationTitan
 	mass: 100.0
 	halfLife: 5.0
 
-	attack: { name:"Sekron-90 missile" count:1 damage:300 type:missile strength:4 range:20.0 area:0.3 }
-	defense: { armor:500 }
+	attack: { name:"Sekron-90 missile" count:1 damage:320 type:missile strength:4 range:30.0 area:0.3 }
+	defense: { armor:1024 }
 
 	production: {
 		workUnits: 600.0
@@ -112,7 +112,6 @@ ResourceType core.GDM
 	attackValue: 29
 	mass: 200.0
 	halfLife: 2.0
-	isExpendable: true
 
 	attack: { name:"nuclear warhead" count:1 damage:32 type:missile strength:1 range:10.0 area:0.2 }
 	defense: { armor:16 }
@@ -134,8 +133,8 @@ ResourceType core.HELCannon
 	mass: 200.0
 	halfLife: 2.0
 
-	attack: { name:"HEL cannon" count:1 damage:10 type:direct range:10.0 area:0.0 }
-	defense: { armor:20 }
+	attack: { name:"HEL cannon" count:1 damage:32 type:direct range:15.0 area:0.0 }
+	defense: { armor:64 }
 
 	production: {
 		workUnits: 40.0
@@ -151,12 +150,12 @@ ResourceType core.hypersonicMissile
 	{
 	category: fixedUnit
 	name: "hypersonic missile site"
-	attackValue: 53
+	attackValue: 53					//	presumably this would need to be updated too, but IDK the equation
 	mass: 200.0
 	halfLife: 3.0
 
-	attack: { name:"H2 interceptor" count:1 damage:20 type:missile strength:2 range:20.0 area:0.2 }
-	defense: { armor:50 }
+	attack: { name:"H2 interceptor" count:1 damage:48 type:missile strength:2 range:20.0 area:0.2 }
+	defense: { armor:128 }
 
 	production: {
 		workUnits: 70.0
@@ -180,7 +179,7 @@ ResourceType core.jumpmissilePartisan
 	isExpendable: true
 	noLocalAttack: true
 
-	attack: { name:"Partisan missile" count:16 damage:100 type:missile strength:8 range:100.0 area:0.0 }
+	attack: { name:"Partisan missile" count:16 damage:180 type:missile strength:8 range:100.0 area:0.0 }
 	defense: { armor:50 }
 
 	production: {
@@ -203,8 +202,8 @@ ResourceType core.plasmaTower
 	mass: 200.0
 	halfLife: 4.0
 
-	attack: { name:"plasma lancer T13" count:1 damage:50 type:direct range:10.0 area:0.2 }
-	defense: { armor:450 }
+	attack: { name:"plasma lancer T13" count:1 damage:64 type:direct range:20.0 area:0.2 }
+	defense: { armor:512 }
 
 	production: {
 		workUnits: 440.0

@@ -862,6 +862,7 @@ Trait core.capitalTradeDesignation {
 		{ type:core.trillumExtractor alloc:demand }
 
 		{ type:core.imperialAdministration alloc:demand }
+		{ type:core.militiaBase alloc:fixed allocValue:10.0 }
 		{ type:core.consumerGoodsAutofac alloc:demand }
 		)
 
@@ -1008,6 +1009,7 @@ Trait core.sectorCapitalTradeDesignation {
 		{ type:core.trillumExtractor alloc:demand }
 
 		{ type:core.sectorCapitalAdministration alloc:demand }
+		{ type:core.militiaBase alloc:fixed allocValue:10.0 }
 		{ type:core.consumerGoodsAutofac alloc:demand }
 		)
 
@@ -1043,6 +1045,7 @@ Trait core.tradingHubDesignation {
 		{ type:core.trillumExtractor alloc:demand }
 
 		{ type:core.imperialAdministration alloc:demand }
+		{ type:core.militiaBase alloc:fixed allocValue:5.0 }
 		{ type:core.consumerGoodsAutofac alloc:demand }
 		)
 

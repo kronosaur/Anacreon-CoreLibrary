@@ -18,11 +18,11 @@ Scenario fallenWorlds.scenario
 	creation: (
 
 		//	Create worlds suitable for player capitals
-		
+		//	Note: this creates earthlike worlds in bright nebula zones, where they would normally be prohibited
 		{ create:worlds
 			count:100
 			
-			region:sectorRegion 
+			region:sectorRegion 	
 			minDist:200
 			minEdgeDist:100
 			
@@ -122,10 +122,14 @@ SovereignType core.playerEmpire
 			{	type: core.jumptransportReliant
 				value: { type:gaussian	median:2000		low:75		high:150	}
 				}
-					
+				
 			{	type: core.jumpshipStinger
-				value: { type:gaussian	median:1000		low:75		high:150	}
+				value: { type:gaussian	median:2500		low:75		high:150	}
 				}
+			
+			{	type: core.jumpcruiserAdamant
+				value: { type:gaussian	median:750		low:75		high:150	}
+				}				
 			)
 		}
 
