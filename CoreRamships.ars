@@ -80,7 +80,6 @@ ResourceType core.gunshipHammerhead {
 	category: maneuveringUnit
 	name: "Hammerhead-class gunship"
 	role: gunship
-	attackValue: 70				//	May need to be recalculated
 	FTL: { type:ramjet speed:3.0 }
 	mass: 10.0
 	maxDeltaV: 1.0
@@ -107,7 +106,6 @@ ResourceType core.starfrigateManta {
 	category: maneuveringUnit
 	name: "Manta-class starfrigate"
 	role: starfrigate
-	attackValue: 914			//	May need to be recalculated
 	FTL: { type:ramjet speed:1.0 }
 	mass: 200.0
 	maxDeltaV: 0.2
@@ -135,7 +133,6 @@ ResourceType core.starcruiserBehemoth {
 	category: maneuveringUnit
 	name: "Behemoth-class starcruiser"
 	role: starcruiser
-	attackValue: 2000
 	FTL: { type:ramjet speed:1.0 }
 	mass: 2000.0
 	maxDeltaV: 0.1
@@ -165,7 +162,6 @@ ResourceType core.gunshipCerberus {
 	category: maneuveringUnit
 	name: "Cerberus-class gunship"
 	role: gunship
-	attackValue: 180			//	May need to be recalculated
 	FTL: { type:ramjet speed:5.0 }
 	mass: 20.0
 	maxDeltaV: 1.0
@@ -193,7 +189,6 @@ ResourceType core.starfrigateCyclops {
 	category: maneuveringUnit
 	name: "Cyclops-class starfrigate"
 	role: starfrigate
-	attackValue: 2834
 	FTL: { type:ramjet speed:1.0 }
 	mass: 300.0
 	maxDeltaV: 0.2
@@ -223,7 +218,6 @@ ResourceType core.starcruiserTyphon {
 	category: maneuveringUnit
 	name: "Typhon-class starcruiser"
 	role: starcruiser
-	attackValue: 8143
 	FTL: { type:ramjet speed:1.0 }
 	mass: 900.0
 	maxDeltaV: 0.2

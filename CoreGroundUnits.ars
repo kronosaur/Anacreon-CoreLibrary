@@ -74,7 +74,6 @@ ResourceType core.infantry
 	{
 	category: groundUnit					//	Ground units are massed ground forces
 	name: "infantry brigade"
-	attackValue: 1
 	isCargo: true
 	mass: 20.0
 	halfLife: 4.0
@@ -94,7 +93,6 @@ ResourceType core.imperialSecurity
 	{
 	category: groundUnit
 	name: "imperial guards brigade"
-	attackValue: 2
 	isCargo: true
 	mass: 20.0
 	halfLife: 4.0
@@ -118,7 +116,6 @@ ResourceType core.armoredInfantry
 	{
 	category: groundUnit
 	name: "armored infantry brigade"
-	attackValue: 5
 	isCargo: true
 	mass: 30.0
 	halfLife: 4.0
@@ -140,7 +137,6 @@ ResourceType core.exotroops
 	{
 	category: groundUnit
 	name: "exotroop brigade"
-	attackValue: 48
 	isCargo: true
 	mass: 25.0
 	halfLife: 5.0

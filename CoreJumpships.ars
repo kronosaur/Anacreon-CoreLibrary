@@ -74,7 +74,6 @@ ResourceType core.jumpshipStinger {
 	category: maneuveringUnit
 	name: "Stinger-class jumpship"
 	role: jumpship
-	attackValue: 9
 	FTL: 50.0
 	mass: 8.0
 	maxDeltaV: 0.5
@@ -102,7 +101,6 @@ ResourceType core.explorerVanguard {
 	category: maneuveringUnit
 	name: "Vanguard-class explorer"
 	role: explorer
-	attackValue: 3
 	FTL: { type:explorer speed:100.0 }
 	mass: 2.0
 	maxDeltaV: 2.0							//	In km/sec
@@ -129,7 +127,6 @@ ResourceType core.jumptransportReliant {
 	category: maneuveringUnit
 	name: "Reliant-class jumptransport"
 	role: jumptransport
-	attackValue: 6
 	FTL: 50.0
 	canLand: true
 	cargoSpace: 20.0						//	In kilotons
@@ -159,7 +156,6 @@ ResourceType core.jumpcruiserAdamant {
 	category: maneuveringUnit
 	name: "Adamant-class jumpcruiser"
 	role: jumpcruiser
-	attackValue: 23
 	FTL: 50.0
 	mass: 12.0
 	maxDeltaV: 0.35
@@ -188,7 +184,6 @@ ResourceType core.explorerHelion {
 	category: maneuveringUnit
 	name: "Helion-class explorer"
 	role: explorer
-	attackValue: 7
 	FTL: { type:explorer speed:150.0 }
 	mass: 2.0
 	maxDeltaV: 2.0
@@ -216,7 +211,6 @@ ResourceType core.jumpshipEldritch {
 	category: maneuveringUnit
 	name: "Eldritch-class jumpship"
 	role: jumpship
-	attackValue: 55
 	FTL: 75.0
 	mass: 18.0
 	maxDeltaV: 0.65
@@ -245,7 +239,6 @@ ResourceType core.jumptransportWarphant {
 	category: maneuveringUnit
 	name: "Warphant-class jumptransport"
 	role: jumptransport
-	attackValue: 23
 	FTL: 75.0
 	canLand: true
 	cargoSpace: 20.0
@@ -276,7 +269,6 @@ ResourceType core.jumpcruiserUndine {
 	category: maneuveringUnit
 	name: "Undine-class jumpcruiser"
 	role: jumpcruiser
-	attackValue: 114
 	FTL: 75.0
 	mass: 25.0
 	maxDeltaV: 0.5

@@ -43,7 +43,6 @@ ResourceType core.autocannonSatellite
 	{
 	category: orbitalUnit
 	name: "autocannon satellite"
-	attackValue: 24
 	mass: 2.0
 	halfLife: 5.0
 
@@ -64,7 +63,6 @@ ResourceType core.armoredSatellite
 	{
 	category: orbitalUnit
 	name: "armored satellite"
-	attackValue: 125
 	mass: 25.0
 	halfLife: 5.0
 
@@ -86,7 +84,6 @@ ResourceType core.battlestationTitan
 	{
 	category: orbitalUnit
 	name: "Titan-class battlestation"
-	attackValue: 1450
 	mass: 100.0
 	halfLife: 5.0
 
@@ -109,7 +106,6 @@ ResourceType core.GDM
 	{
 	category: fixedUnit						//	Fixed units are installations on the ground
 	name: "GDM silo"
-	attackValue: 29
 	mass: 200.0
 	halfLife: 2.0
 
@@ -129,7 +125,6 @@ ResourceType core.HELCannon
 	{
 	category: fixedUnit
 	name: "HEL cannon"
-	attackValue: 20
 	mass: 200.0
 	halfLife: 2.0
 
@@ -150,7 +145,6 @@ ResourceType core.hypersonicMissile
 	{
 	category: fixedUnit
 	name: "hypersonic missile site"
-	attackValue: 53					//	presumably this would need to be updated too, but IDK the equation
 	mass: 200.0
 	halfLife: 3.0
 
@@ -171,7 +165,6 @@ ResourceType core.jumpmissilePartisan
 	{
 	category: LAMUnit
 	name: "Partisan-class jumpmissile"
-	attackValue: 800
 	mass: 1.0
 	halfLife: 4.0
 
@@ -198,7 +191,6 @@ ResourceType core.plasmaTower
 	{
 	category: fixedUnit
 	name: "plasma tower"
-	attackValue: 325
 	mass: 200.0
 	halfLife: 4.0
 
