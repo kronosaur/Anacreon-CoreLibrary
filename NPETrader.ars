@@ -72,6 +72,8 @@ SovereignType core.traderEmpire
 					{ type:'techLevel oneOf:'(spacefaring fusion biotech antimatter quantum postIndustrial) }
 					{ type:'distance greaterThan:250 }
 					)
+
+				//	All worlds must be at least 800 light-years from each other
 				{ minDist:800 }
 				))
 
