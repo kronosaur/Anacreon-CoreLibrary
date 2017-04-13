@@ -74,7 +74,6 @@ ResourceType core.jumpshipStinger {
 	category: maneuveringUnit
 	name: "Stinger-class jumpship"
 	role: jumpship
-	attackValue: 9
 	FTL: 50.0
 	mass: 8.0
 	maxDeltaV: 0.5
@@ -82,8 +81,8 @@ ResourceType core.jumpshipStinger {
 	visibility: 0.08
 	halfLife: 4.0
 
-	attack: { name:"K110 mass driver" count:1 damage:4 type:direct range:5.0 area:0.0 }
-	defense: { armor:8 counters:{ missile:2 } }
+	attack: { name:"K110 mass driver" count:1 damage:12 type:direct range:5.0 area:0.0 }
+	defense: { armor:12 counters:{ missile:1 } }
 	unitsPerCell: 8
 
 	production: {
@@ -102,15 +101,14 @@ ResourceType core.explorerVanguard {
 	category: maneuveringUnit
 	name: "Vanguard-class explorer"
 	role: explorer
-	attackValue: 3
 	FTL: { type:explorer speed:100.0 }
 	mass: 2.0
 	maxDeltaV: 2.0							//	In km/sec
 	scanner: 1.0
 	visibility: 0.02
-	halfLife: 5.0
+	halfLife: 4.0
 
-	attack: { name:"laser cannon" count:1 damage:1 type:direct range:2.5 area:0.0 }
+	attack: { name:"laser cannon" count:1 damage:2 type:direct range:5.0 area:0.0 }
 	defense: { armor:4 }
 	unitsPerCell: 16
 
@@ -129,7 +127,6 @@ ResourceType core.jumptransportReliant {
 	category: maneuveringUnit
 	name: "Reliant-class jumptransport"
 	role: jumptransport
-	attackValue: 6
 	FTL: 50.0
 	canLand: true
 	cargoSpace: 20.0						//	In kilotons
@@ -139,8 +136,8 @@ ResourceType core.jumptransportReliant {
 	visibility: 0.15
 	halfLife: 4.0
 
-	attack: { name:"laser cannon" count:1 damage:1 type:direct range:2.5 area:0.0 }
-	defense: { armor:10 }
+	attack: { name:"laser cannon" count:1 damage:2 type:direct range:5.0 area:0.0 }
+	defense: { armor:12 }
 	unitsPerCell: 8
 
 	production: {
@@ -159,7 +156,6 @@ ResourceType core.jumpcruiserAdamant {
 	category: maneuveringUnit
 	name: "Adamant-class jumpcruiser"
 	role: jumpcruiser
-	attackValue: 23
 	FTL: 50.0
 	mass: 12.0
 	maxDeltaV: 0.35
@@ -167,8 +163,8 @@ ResourceType core.jumpcruiserAdamant {
 	visibility: 0.12
 	halfLife: 4.0
 
-	attack: { name:"Sekron-10 missile" count:1 damage:40 strength:1 type:missile range:10.0 area:0.0 }
-	defense: { armor:20 }
+	attack: { name:"Sekron-10 missile" count:1 damage:80 strength:1 type:missile range:15.0 area:0.0 }
+	defense: { armor:160 }
 	unitsPerCell: 8
 
 	production: {
@@ -188,7 +184,6 @@ ResourceType core.explorerHelion {
 	category: maneuveringUnit
 	name: "Helion-class explorer"
 	role: explorer
-	attackValue: 7
 	FTL: { type:explorer speed:150.0 }
 	mass: 2.0
 	maxDeltaV: 2.0
@@ -216,7 +211,6 @@ ResourceType core.jumpshipEldritch {
 	category: maneuveringUnit
 	name: "Eldritch-class jumpship"
 	role: jumpship
-	attackValue: 55
 	FTL: 75.0
 	mass: 18.0
 	maxDeltaV: 0.65
@@ -224,8 +218,8 @@ ResourceType core.jumpshipEldritch {
 	visibility: 0.18
 	halfLife: 4.0
 
-	attack: { name:"Flenser cannon" count:1 damage:35 type:direct range:10.0 area:0.0 }
-	defense: { armor:25 counters:{ missile:3 } }
+	attack: { name:"Flenser cannon" count:1 damage:24 type:direct range:10.0 area:0.0 }
+	defense: { armor:24 counters:{ missile:2 } }
 	unitsPerCell: 8
 
 	production: {
@@ -245,7 +239,6 @@ ResourceType core.jumptransportWarphant {
 	category: maneuveringUnit
 	name: "Warphant-class jumptransport"
 	role: jumptransport
-	attackValue: 23
 	FTL: 75.0
 	canLand: true
 	cargoSpace: 20.0
@@ -255,8 +248,8 @@ ResourceType core.jumptransportWarphant {
 	visibility: 0.30
 	halfLife: 4.0
 
-	attack: { name:"turbolaser cannon" count:1 damage:5 type:direct range:5 area:0.0 }
-	defense: { armor:40 }
+	attack: { name:"turbolaser cannon" count:1 damage:4 type:direct range:5 area:0.0 }
+	defense: { armor:24 }
 	unitsPerCell: 8
 
 	production: {
@@ -276,7 +269,6 @@ ResourceType core.jumpcruiserUndine {
 	category: maneuveringUnit
 	name: "Undine-class jumpcruiser"
 	role: jumpcruiser
-	attackValue: 114
 	FTL: 75.0
 	mass: 25.0
 	maxDeltaV: 0.5
@@ -284,8 +276,8 @@ ResourceType core.jumpcruiserUndine {
 	visibility: 0.25
 	halfLife: 4.0
 
-	attack: { name:"Aeglos graviton missile" count:1 damage:120 strength:2 type:missile range:10.0 area:0.1 }
-	defense: { armor:60 }
+	attack: { name:"Aeglos graviton missile" count:1 damage:160 strength:2 type:missile range:20.0 area:0.1 }
+	defense: { armor:320 }
 	unitsPerCell: 8
 
 	production: {
