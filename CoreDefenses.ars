@@ -225,7 +225,7 @@ Trait core.armoredConstellation {
 
 	workingConditions: 5
 
-	description: "This improvement upgrades the satellites of an autocannon constellation with armored and heavily armed satellites. Each armored satellite is equipped with powerful H5 missiles."
+	description: "This improvement gradually replaces the satellites of an autocannon constellation with armored and heavily armed satellites. Each armored satellite is equipped with powerful H5 missiles."
 	}
 	
 Trait core.autocannonConstellation {
@@ -242,7 +242,7 @@ Trait core.autocannonConstellation {
 
 	workingConditions: 5
 
-	description: "An autocannon constellation is a network of laser-equipped satellites. It is designed to repel a landing force of lightly armed transports."
+	description: "An autocannon constellation is a network of laser-equipped satellites. Individual satellites are more costly than ground-based defenses but have a longer operational lifespan; constellations are a long-term investment."
 	}
 	
 Trait core.battlestationProgram {
@@ -292,7 +292,7 @@ Trait core.GDMComplex {
 
 	workingConditions: 5
 
-	description: "Nuclear-tipped ground defense missiles (GDMs) are cheap but deadly defenses for underdeveloped worlds. Each GDM site contains a single missile, which is expended on use."
+	description: "Nuclear-tipped ground defense missiles (GDMs) are cheap but deadly defenses for underdeveloped worlds. GDMs are effective against low-tech attackers but can be neutralized by ships with point defense, such as Stinger-class jumpships."
 	}
 	
 Trait core.HELCannonNetwork {
@@ -327,7 +327,7 @@ Trait core.HMComplex {
 
 	workingConditions: 5
 
-	description: "This improvement builds a complex of hypersonic missile sites capable of attacking enemy ships in orbit. Each site can fire an unlimited number of missiles during a conflict."
+	description: "This improvement builds a complex of hypersonic missile sites capable of attacking enemy ships in high orbit."
 	}
 	
 Trait core.plasmaTowerNetwork {
