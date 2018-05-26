@@ -306,6 +306,9 @@ Trait core.sectorCapitalAdministration {
 	minTechLevel: 5
 	buildTime: 1440
 
+	//	Any world that is part of an empire rises to at least level 5
+	techLevelAdj: { value:5.0	op:min }
+
 	designationOnly: true
 	workingConditions: 10
 	}
