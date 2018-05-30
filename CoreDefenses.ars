@@ -221,7 +221,9 @@ Trait core.armoredConstellation {
 	minTechLevel: 7
 	buildUpgrade: (core.autocannonConstellation)
 	buildTime: 30
+	destroysTo: (core.autocannonConstellation)
 	createsResourcesOnGameCreate: true
+	
 
 	workingConditions: 5
 
@@ -256,6 +258,7 @@ Trait core.battlestationProgram {
 	minTechLevel: 9
 	buildUpgrade: (core.armoredConstellation)
 	buildTime: 480
+	destroysTo: (core.armoredConstellation)
 	createsResourcesOnGameCreate: true
 
 	workingConditions: 5
@@ -323,6 +326,7 @@ Trait core.HMComplex {
 	minTechLevel: 6
 	buildUpgrade: (core.GDMComplex)
 	buildTime: 15
+	destroysTo: (core.GDMComplex)
 	createsResourcesOnGameCreate: true
 
 	workingConditions: 5
@@ -341,6 +345,8 @@ Trait core.plasmaTowerNetwork {
 	minTechLevel: 8
 	buildUpgrade: (core.HELCannonNetwork)
 	buildTime: 120
+	destroysTo: (core.HELCannonNetwork)
+
 	createsResourcesOnGameCreate: true
 
 	workingConditions: 5
