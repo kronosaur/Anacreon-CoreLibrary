@@ -221,11 +221,13 @@ Trait core.armoredConstellation {
 	minTechLevel: 7
 	buildUpgrade: (core.autocannonConstellation)
 	buildTime: 30
+	destroysTo: (core.autocannonConstellation)
 	createsResourcesOnGameCreate: true
+	
 
 	workingConditions: 5
 
-	description: "This improvement upgrades the satellites of an autocannon constellation with armored and heavily armed satellites. Each armored satellite is equipped with powerful H5 missiles."
+	description: "This improvement gradually replaces the satellites of an autocannon constellation with armored and heavily armed satellites. Each armored satellite is equipped with powerful H5 missiles."
 	}
 	
 Trait core.autocannonConstellation {
@@ -242,7 +244,7 @@ Trait core.autocannonConstellation {
 
 	workingConditions: 5
 
-	description: "An autocannon constellation is a network of laser-equipped satellites. It is designed to repel a landing force of lightly armed transports."
+	description: "An autocannon constellation is a network of laser-equipped satellites. Individual satellites are more costly than ground-based defenses but have a longer operational lifespan; constellations are a long-term investment."
 	}
 	
 Trait core.battlestationProgram {
@@ -256,6 +258,7 @@ Trait core.battlestationProgram {
 	minTechLevel: 9
 	buildUpgrade: (core.armoredConstellation)
 	buildTime: 480
+	destroysTo: (core.armoredConstellation)
 	createsResourcesOnGameCreate: true
 
 	workingConditions: 5
@@ -292,7 +295,7 @@ Trait core.GDMComplex {
 
 	workingConditions: 5
 
-	description: "Nuclear-tipped ground defense missiles (GDMs) are cheap but deadly defenses for underdeveloped worlds. Each GDM site contains a single missile, which is expended on use."
+	description: "Nuclear-tipped ground defense missiles (GDMs) are cheap but deadly defenses for underdeveloped worlds. GDMs are effective against low-tech attackers but can be neutralized by ships with point defense, such as Stinger-class jumpships."
 	}
 	
 Trait core.HELCannonNetwork {
@@ -323,11 +326,12 @@ Trait core.HMComplex {
 	minTechLevel: 6
 	buildUpgrade: (core.GDMComplex)
 	buildTime: 15
+	destroysTo: (core.GDMComplex)
 	createsResourcesOnGameCreate: true
 
 	workingConditions: 5
 
-	description: "This improvement builds a complex of hypersonic missile sites capable of attacking enemy ships in orbit. Each site can fire an unlimited number of missiles during a conflict."
+	description: "This improvement builds a complex of hypersonic missile sites capable of attacking enemy ships in high orbit."
 	}
 	
 Trait core.plasmaTowerNetwork {
@@ -341,6 +345,8 @@ Trait core.plasmaTowerNetwork {
 	minTechLevel: 8
 	buildUpgrade: (core.HELCannonNetwork)
 	buildTime: 120
+	destroysTo: (core.HELCannonNetwork)
+
 	createsResourcesOnGameCreate: true
 
 	workingConditions: 5

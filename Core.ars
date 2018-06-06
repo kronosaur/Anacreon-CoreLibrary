@@ -237,7 +237,7 @@ Trait core.pressurizedHabitat {
 
 	workingConditions: 6
 
-	description: "A pressurized habit is an upgrade to a life support system. A pressurize habitat allows a larger population to survive on a barren world."
+	description: "A pressurized habit is an upgrade to a life support system. A pressurized habitat allows a larger population to survive on a barren world."
 	}
 
 Trait core.pressurizedHabitatRuins {
@@ -305,6 +305,9 @@ Trait core.sectorCapitalAdministration {
 
 	minTechLevel: 5
 	buildTime: 1440
+
+	//	Any world that is part of an empire rises to at least level 5
+	techLevelAdj: { value:5.0	op:min }
 
 	designationOnly: true
 	workingConditions: 10
@@ -607,7 +610,7 @@ Trait core.fusionProgram {
 
 	workingConditions: 9
 
-	description: "This program advances the world to fusion tech level."
+	description: "This program advances the world to fusion tech level but consumes 5% of its labor output."
 	}
 
 Trait core.biotechProgram {
@@ -625,11 +628,11 @@ Trait core.biotechProgram {
 
 	workingConditions: 9
 
-	description: "This program advances the world to biotech level."
+	description: "This program advances the world to biotech level but consumes 10% of its labor output. Programs cannot advance a world beyond biotech level."
 	}
 
 Trait core.antimatterProgram {
-	name: "antimatter program"
+	name: "antimatter megaprogram"
 	category: improvement
 	role: techAdvance
 
@@ -643,11 +646,11 @@ Trait core.antimatterProgram {
 
 	workingConditions: 9
 
-	description: "This program advances the capital to antimatter tech level."
+	description: "This program advances the capital to antimatter tech level but consumes 5% of its labor output."
 	}
 
 Trait core.quantumProgram {
-	name: "quantum program"
+	name: "quantum megaprogram"
 	category: improvement
 	role: techAdvance
 
@@ -661,11 +664,11 @@ Trait core.quantumProgram {
 
 	workingConditions: 9
 
-	description: "This program advances the capital to quantum tech level."
+	description: "This program advances the capital to quantum tech level but consumes 10% of its labor output."
 	}
 
 Trait core.postIndustrialProgram {
-	name: "post-industrial program"
+	name: "post-industrial megaprogram"
 	category: improvement
 	role: techAdvance
 
@@ -679,7 +682,7 @@ Trait core.postIndustrialProgram {
 
 	workingConditions: 9
 
-	description: "This program advances the capital to post-industrial tech level."
+	description: "This program advances the capital to post-industrial tech level but consumes 15% of its labor output."
 	}
 
 //	Designations ---------------------------------------------------------------
