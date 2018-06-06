@@ -87,6 +87,8 @@ Trait core.aetherealWorld
 				)
 			}
 
+		core.hexacarbideRare
+
 		{	type:table
 			value: (
 				(60		core.trillumCommon)
@@ -94,8 +96,6 @@ Trait core.aetherealWorld
 				(10		core.trillumRare)
 				)
 			}
-
-		core.hexacarbideRare
 
 		core.airProcessor
 		)
@@ -200,6 +200,14 @@ Trait core.chthonicWorld
 
 		{	type:table
 			value: (
+				(60		core.chtholonAbundant)
+				(30		core.chtholonCommon)
+				(10		core.chtholonUncommon)
+				)
+			}
+
+		{	type:table
+			value: (
 				(60		core.aetheriumRare)
 				(30		core.aetheriumUncommon)
 				(10		core.hexacarbideCommon)
@@ -211,14 +219,6 @@ Trait core.chthonicWorld
 				(60		core.chronimiumCommon)
 				(30		core.chronimiumUncommon)
 				(10		core.chronimiumRare)
-				)
-			}
-
-		{	type:table
-			value: (
-				(60		core.chtholonAbundant)
-				(30		core.chtholonCommon)
-				(10		core.chtholonUncommon)
 				)
 			}
 
@@ -374,20 +374,20 @@ Trait core.empyrealWorld
 	
 	impartTraits: (
 		core.desertBiosphere
+		
+		{	type:table
+			value: (
+				(60		core.chtholonAbundant)
+				(30		core.chtholonCommon)
+				(10		core.chtholonUncommon)
+				)
+			}
 
 		{	type:table
 			value: (
 				(60		core.aetheriumCommon)
 				(30		core.aetheriumUncommon)
 				(10		core.aetheriumAbundant)
-				)
-			}
-
-		{	type:table
-			value: (
-				(60		core.chtholonAbundant)
-				(30		core.chtholonCommon)
-				(10		core.chtholonUncommon)
 				)
 			}
 
@@ -447,6 +447,14 @@ Trait core.fieryWorld
 	impartTraits: (
 		{	type:table
 			value: (
+				(60		core.chronimiumRare)
+				(30		core.chronimiumUncommon)
+				(10		core.chronimiumCommon)
+				)
+			}
+
+		{	type:table
+			value: (
 				(60		core.hexacarbideRare)
 				(30		core.hexacarbideUncommon)
 				(10		core.hexacarbideCommon)
@@ -458,14 +466,6 @@ Trait core.fieryWorld
 				(60		core.trillumCommon)
 				(30		core.trillumUncommon)
 				(10		core.trillumAbundant)
-				)
-			}
-
-		{	type:table
-			value: (
-				(60		core.chronimiumRare)
-				(30		core.chronimiumUncommon)
-				(10		core.chronimiumCommon)
 				)
 			}
 
@@ -603,17 +603,17 @@ Trait core.hadeanWorld
 
 		{	type:table
 			value: (
-				(60		core.aetheriumCommon)
-				(30		core.aetheriumUncommon)
-				(10		core.aetheriumAbundant)
+				(60		core.chtholonCommon)
+				(30		core.chtholonUncommon)
+				(10		core.chtholonAbundant)
 				)
 			}
 
 		{	type:table
 			value: (
-				(60		core.chtholonCommon)
-				(30		core.chtholonUncommon)
-				(10		core.chtholonAbundant)
+				(60		core.aetheriumCommon)
+				(30		core.aetheriumUncommon)
+				(10		core.aetheriumAbundant)
 				)
 			}
 
@@ -669,17 +669,17 @@ Trait core.nebularWorld
 
 		{	type:table
 			value: (
-				(60		core.aetheriumRare)
-				(30		core.aetheriumUncommon)
-				(10		core.aetheriumCommon)
+				(60		core.chtholonCommon)
+				(30		core.chtholonUncommon)
+				(10		core.chtholonAbundant)
 				)
 			}
 
 		{	type:table
 			value: (
-				(60		core.chtholonCommon)
-				(30		core.chtholonUncommon)
-				(10		core.chtholonAbundant)
+				(60		core.aetheriumRare)
+				(30		core.aetheriumUncommon)
+				(10		core.aetheriumCommon)
 				)
 			}
 
