@@ -481,7 +481,7 @@ Trait core.starport {
 	minTechLevel: 5
 	destroysTo: (core.spaceport)
 	
-	esignationOnly: true
+	designationOnly: true
 	workingConditions: 7
 
 	description: "A starport is an upgraded spaceport that supports inter-empire trade."
