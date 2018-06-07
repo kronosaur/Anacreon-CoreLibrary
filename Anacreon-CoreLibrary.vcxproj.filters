@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Documents">
+      <UniqueIdentifier>{caeb84c4-a67a-4b57-b5f0-02571ca67114}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Core.ars">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="CoreDefenses.ars">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="CoreEnvironment.ars">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="CoreGroundUnits.ars">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="CoreJumpships.ars">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="CoreRamships.ars">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="CoreStarships.ars">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="NPETrader.ars">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="FallenWorlds.ars">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="CoreResources.ars">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include=".gitattributes">
+      <Filter>Documents</Filter>
+    </None>
+    <None Include=".gitignore">
+      <Filter>Documents</Filter>
+    </None>
+    <None Include="README">
+      <Filter>Documents</Filter>
+    </None>
+  </ItemGroup>
+</Project>
