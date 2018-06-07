@@ -237,7 +237,7 @@ Trait core.pressurizedHabitat {
 
 	workingConditions: 6
 
-	description: "A pressurized habit is an upgrade to a life support system. A pressurized habitat allows a larger population to survive on a barren world."
+	description: "A pressurized habitat is an upgrade to a life support system. A pressurized habitat allows a larger population to survive on a barren world."
 	}
 
 Trait core.pressurizedHabitatRuins {
