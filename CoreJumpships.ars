@@ -50,6 +50,7 @@ Trait core.jumpshipYardsDesignation {
 		{ type:core.trillumExtractor alloc:demand }
 
 		{ type:core.imperialAdministration alloc:demand }
+		{ type:core.jumpBeaconStructure alloc:demand}		
 		{ type:core.consumerGoodsAutofac alloc:demand }
 		)
 
@@ -384,7 +385,6 @@ Trait core.fleetBase {
 	name: "fleet base"
 	category: industry
 	role: shipyardIndustry
-	inheritFrom: (core.jumpBeaconAttribute)
 
 	production: (
 		core.infantry 
@@ -407,7 +407,6 @@ Trait core.fleetHQ {
 	name: "fleet HQ"
 	category: industry
 	role: shipyardIndustry
-	inheritFrom: (core.jumpBeaconAttribute)
 
 	production: (
 		core.infantry 
@@ -449,7 +448,6 @@ Trait core.jumpshipYards {
 	name: "jumpship yards"
 	category: industry
 	role: shipyardIndustry
-	inheritFrom: (core.jumpBeaconAttribute)
 
 	production: (
 		core.explorerVanguard

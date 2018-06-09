@@ -128,6 +128,24 @@ Trait core.imperialAdministration {
 	workingConditions: 10
 	}
 
+Trait core.jumpBeaconStructure {
+	name: "jumpbeacon"
+	category: improvement
+	inheritFrom: (core.jumpBeaconAttribute)
+
+	buildTime: 720
+
+	designationOnly: true
+	}
+
+Trait core.jumpBeaconCapitalStructure {
+	name: "jumpbeacon"
+	category: improvement
+	inheritFrom: (core.jumpBeaconAttribute)
+
+	designationOnly: true
+	}
+
 Trait core.neuralProcessor
 	{
 	name: "neural processor"
@@ -766,6 +784,7 @@ Trait core.capitalJumpshipDesignation {
 
 		{ type:core.imperialAdministration alloc:demand }
 		{ type:core.spaceport alloc:demand }
+		{ type:core.jumpBeaconCapitalStructure alloc:demand }
 		{ type:core.consumerGoodsAutofac alloc:demand }
 		)
 
@@ -867,6 +886,7 @@ Trait core.capitalTradeDesignation {
 
 		{ type:core.imperialAdministration alloc:demand }
 		{ type:core.militiaBase alloc:fixed allocValue:10.0 }
+		{ type:core.jumpBeaconCapitalStructure alloc:demand }
 		{ type:core.consumerGoodsAutofac alloc:demand }
 		)
 
@@ -902,6 +922,7 @@ Trait core.sectorCapitalDesignation {
 		{ type:core.trillumExtractor alloc:demand }
 
 		{ type:core.sectorCapitalAdministration alloc:demand }
+		{ type:core.jumpBeaconStructure alloc:demand }
 		{ type:core.consumerGoodsAutofac alloc:demand }
 		)
 
@@ -1014,6 +1035,7 @@ Trait core.sectorCapitalTradeDesignation {
 
 		{ type:core.sectorCapitalAdministration alloc:demand }
 		{ type:core.militiaBase alloc:fixed allocValue:10.0 }
+		{ type:core.jumpBeaconStructure alloc:demand }
 		{ type:core.consumerGoodsAutofac alloc:demand }
 		)
 
