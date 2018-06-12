@@ -54,7 +54,7 @@ Trait core.jumpshipYardsDesignation {
 		{ type:core.consumerGoodsAutofac alloc:demand }
 		)
 
-	description: "Jumpship yards build jumpships, which are fast but weaker than starships."
+	description: "A jumpship yards builds jumpships, which are fast but weaker than starships. The yards' jump beacon allows friendly jumpship fleets to navigate to destinations within 250 light-years."
 
 	imageMedium: { type:constant
 		resource: core.designationIcons
