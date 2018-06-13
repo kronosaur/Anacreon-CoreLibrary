@@ -50,10 +50,11 @@ Trait core.jumpshipYardsDesignation {
 		{ type:core.trillumExtractor alloc:demand }
 
 		{ type:core.imperialAdministration alloc:demand }
+		{ type:core.jumpBeaconStructure alloc:demand}		
 		{ type:core.consumerGoodsAutofac alloc:demand }
 		)
 
-	description: "Jumpship yards build jumpships, which are fast but weaker than starships."
+	description: "A jumpship yards builds jumpships, which are fast but weaker than starships. The yards' jump beacon allows friendly jumpship fleets to navigate to destinations within 250 light-years."
 
 	imageMedium: { type:constant
 		resource: core.designationIcons
@@ -384,7 +385,6 @@ Trait core.fleetBase {
 	name: "fleet base"
 	category: industry
 	role: shipyardIndustry
-	inheritFrom: (core.jumpBeaconAttribute)
 
 	production: (
 		core.infantry 
@@ -407,7 +407,6 @@ Trait core.fleetHQ {
 	name: "fleet HQ"
 	category: industry
 	role: shipyardIndustry
-	inheritFrom: (core.jumpBeaconAttribute)
 
 	production: (
 		core.infantry 
@@ -449,7 +448,6 @@ Trait core.jumpshipYards {
 	name: "jumpship yards"
 	category: industry
 	role: shipyardIndustry
-	inheritFrom: (core.jumpBeaconAttribute)
 
 	production: (
 		core.explorerVanguard

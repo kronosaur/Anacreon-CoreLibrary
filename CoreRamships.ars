@@ -59,7 +59,7 @@ Trait core.ramshipYardsDesignation {
 		{ type:core.consumerGoodsAutofac alloc:demand }
 		)
 
-	description: "Ramjet yards build ramjets, which use nebular gas for propulsion."
+	description: "A ramjet yards builds ramjets, which use nebular gas for propulsion."
 
 	imageMedium: { type:constant
 		resource: core.designationIcons

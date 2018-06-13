@@ -242,7 +242,7 @@ Trait core.imperialSecurityService {
 
 Trait core.militiaBase {
 	name: "militia base"
-	category: industry
+	category: improvement
 	role: academyIndustry
 
 	production: (core.infantry)

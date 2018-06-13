@@ -55,7 +55,7 @@ Trait core.starshipYardsDesignation {
 		{ type:core.consumerGoodsAutofac alloc:demand }
 		)
 
-	description: "Starship yards build starships, which are powerful but slow."
+	description: "A starship yards builds starships, which are powerful but slow."
 
 	imageMedium: { type:constant
 		resource: core.designationIcons

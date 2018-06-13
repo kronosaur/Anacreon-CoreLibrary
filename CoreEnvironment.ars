@@ -445,6 +445,8 @@ Trait core.fieryWorld
 	radius: 0.75
 
 	impartTraits: (
+		core.environmentFiery
+
 		{	type:table
 			value: (
 				(60		core.chronimiumRare)
@@ -486,35 +488,6 @@ Trait core.fieryWorld
 
 		op:defaultValue
 		}
-
-	consumption: (
-		{	type: core.radiationShielding	//	Item to consume
-			minTechLevel: 3					//	Only consume if world is this tech or higher
-			
-			amount: {
-				type:byTechAndPopulation
-				value: (
-					(atomic				0.06)
-					(digital			0.08)
-					(spacefaring		0.10)
-					(fusion				0.12)
-					(biotech			0.15)
-					(antimatter			0.19)
-					(quantum			0.24)
-					(postIndustrial		0.30)
-					)
-				}
-
-			consequences: (
-				{	demandMet: 1.0
-					deathRate: 0.01			//	1% killed if 100% of demand fails
-					revIndex: 100
-					techRegress: 0.25
-					efficiencyAdj: 0.95
-					}
-				)
-			}
-		)
 
 	techLevelAdj: { value:3.0	op:min }
 
@@ -849,6 +822,8 @@ Trait core.transuranicWorld
 	radius: 1.0
 
 	impartTraits: (
+		core.environmentRadioactive
+
 		{	type:table
 			value: (
 				(60		core.chronimiumCommon)
@@ -890,35 +865,6 @@ Trait core.transuranicWorld
 
 		op:defaultValue
 		}
-
-	consumption: (
-		{	type: core.radiationMeds		//	Item to consume
-			minTechLevel: 3					//	Only consume if world is this tech or higher
-			
-			amount: {
-				type:byTechAndPopulation
-				value: (
-					(atomic				0.06)
-					(digital			0.08)
-					(spacefaring		0.10)
-					(fusion				0.12)
-					(biotech			0.15)
-					(antimatter			0.19)
-					(quantum			0.24)
-					(postIndustrial		0.30)
-					)
-				}
-
-			consequences: (
-				{	demandMet: 1.0
-					deathRate: 0.01			//	1% killed if 100% of demand fails
-					revIndex: 100
-					techRegress: 0.25
-					efficiencyAdj: 0.95
-					}
-				)
-			}
-		)
 
 	techLevelAdj: { value:3.0	op:min }
 
@@ -1654,6 +1600,42 @@ Trait core.earthLikeBiosphere
 			}
 		)
 
+	hidden: true
+	}
+
+Trait core.environmentFiery
+	{
+	category: feature
+	name: "fiery environment"
+
+	consumption: (
+		{	type: core.radiationShielding	//	Item to consume
+			minTechLevel: 3					//	Only consume if world is this tech or higher
+			
+			amount: {
+				type:byTechAndPopulation
+				value: (
+					(atomic				0.06)
+					(digital			0.08)
+					(spacefaring		0.10)
+					(fusion				0.12)
+					(biotech			0.15)
+					(antimatter			0.19)
+					(quantum			0.24)
+					(postIndustrial		0.30)
+					)
+				}
+
+			consequences: (
+				{	demandMet: 1.0
+					deathRate: 0.01			//	1% killed if 100% of demand fails
+					revIndex: 100
+					techRegress: 0.25
+					efficiencyAdj: 0.95
+					}
+				)
+			}
+		)
 	hidden: true
 	}
 

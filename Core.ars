@@ -128,6 +128,24 @@ Trait core.imperialAdministration {
 	workingConditions: 10
 	}
 
+Trait core.jumpBeaconStructure {
+	name: "jump beacon"
+	category: improvement
+	inheritFrom: (core.jumpBeaconAttribute)
+
+	buildTime: 720
+
+	designationOnly: true
+	}
+
+Trait core.jumpBeaconCapitalStructure {
+	name: "jump beacon"
+	category: improvement
+	inheritFrom: (core.jumpBeaconAttribute)
+
+	designationOnly: true
+	}
+
 Trait core.neuralProcessor
 	{
 	name: "neural processor"
@@ -237,7 +255,7 @@ Trait core.pressurizedHabitat {
 
 	workingConditions: 6
 
-	description: "A pressurized habit is an upgrade to a life support system. A pressurized habitat allows a larger population to survive on a barren world."
+	description: "A pressurized habitat is an upgrade to a life support system. A pressurized habitat allows a larger population to survive on a barren world."
 	}
 
 Trait core.pressurizedHabitatRuins {
@@ -479,7 +497,8 @@ Trait core.starport {
 	maxTradeDist: { value:100.0 op:defaultValue }
 
 	minTechLevel: 5
-
+	destroysTo: (core.spaceport)
+	
 	designationOnly: true
 	workingConditions: 7
 
@@ -765,6 +784,7 @@ Trait core.capitalJumpshipDesignation {
 
 		{ type:core.imperialAdministration alloc:demand }
 		{ type:core.spaceport alloc:demand }
+		{ type:core.jumpBeaconCapitalStructure alloc:demand }
 		{ type:core.consumerGoodsAutofac alloc:demand }
 		)
 
@@ -866,6 +886,7 @@ Trait core.capitalTradeDesignation {
 
 		{ type:core.imperialAdministration alloc:demand }
 		{ type:core.militiaBase alloc:fixed allocValue:10.0 }
+		{ type:core.jumpBeaconCapitalStructure alloc:demand }
 		{ type:core.consumerGoodsAutofac alloc:demand }
 		)
 
@@ -901,12 +922,13 @@ Trait core.sectorCapitalDesignation {
 		{ type:core.trillumExtractor alloc:demand }
 
 		{ type:core.sectorCapitalAdministration alloc:demand }
+		{ type:core.jumpBeaconStructure alloc:demand }
 		{ type:core.consumerGoodsAutofac alloc:demand }
 		)
 
 	techLevelAdj: { value:5.0	op:min }
 
-	description: "A sector capital helps with the administration of the empire. Every imperial world must be within 250 light-years of the capital or a sector capital in order to participate in the imperial economy."
+	description: "A sector capital helps with the administration of the empire. Every imperial world must be within 250 light-years of a capital in order to participate in the imperial economy. Under the Fire and Movement doctrine, capitals have jump beacons which allow friendly jumpship fleets to navigate to destinations within 250 light-years."
 
 	imageMedium: { type:constant
 		resource: core.designationIcons
@@ -942,7 +964,7 @@ Trait core.sectorCapitalLawAndOrderDesignation {
 
 	techLevelAdj: { value:5.0	op:min }
 
-	description: "A sector capital helps with the administration of the empire. Every imperial world must be within 250 light-years of the capital or a sector capital in order to participate in the imperial economy."
+	description: "A sector capital helps with the administration of the empire. Every imperial world must be within 250 light-years of a capital in order to participate in the imperial economy."
 
 	imageMedium: { type:constant
 		resource: core.designationIcons
@@ -980,7 +1002,7 @@ Trait core.sectorCapitalStarshipDesignation {
 
 	techLevelAdj: { value:5.0	op:min }
 
-	description: "A sector capital helps with the administration of the empire. Every imperial world must be within 250 light-years of the capital or a sector capital in order to participate in the imperial economy."
+	description: "A sector capital helps with the administration of the empire. Every imperial world must be within 250 light-years of a capital in order to participate in the imperial economy."
 
 	imageMedium: { type:constant
 		resource: core.designationIcons
@@ -1013,12 +1035,13 @@ Trait core.sectorCapitalTradeDesignation {
 
 		{ type:core.sectorCapitalAdministration alloc:demand }
 		{ type:core.militiaBase alloc:fixed allocValue:10.0 }
+		{ type:core.jumpBeaconStructure alloc:demand }
 		{ type:core.consumerGoodsAutofac alloc:demand }
 		)
 
 	techLevelAdj: { value:5.0	op:min }
 
-	description: "A sector capital helps with the administration of the empire. Every imperial world must be within 250 light-years of the capital or a sector capital in order to participate in the imperial economy."
+	description: "A sector capital helps with the administration of the empire. Every imperial world must be within 250 light-years of a capital in order to participate in the imperial economy. Under the Trade and Enterprise doctrine, capitals function as trading hubs and can sell resources to Mesophon Traders Union planets."
 
 	imageMedium: { type:constant
 		resource: core.designationIcons
@@ -1052,7 +1075,7 @@ Trait core.tradingHubDesignation {
 		{ type:core.consumerGoodsAutofac alloc:demand }
 		)
 
-	description: "A trading hub allows you to trade with other empires and to move any resource between worlds."
+	description: "A trading hub allows an empire to move resources between worlds."
 
 	imageMedium: { type:constant
 		resource: core.designationIcons
