@@ -3,13 +3,13 @@
 //	Fallen Worlds Scenario
 //	Copyright (c) 2012 by Kronosaur Productions, LLC. All Rights Reserved.
 
-Scenario fallenWorlds.scenario
+Scenario fallenWorlds.scenario.e4
 	{
-	name: "Fallen Worlds"
+	name: "Fallen Worlds (Era 4)"
 	players: (1 100)
 	mapSize: (3255 3255)
 
-	libraries: (core.library)
+	libraries: (core.library.e4)
 
 	//	MAP OPTIONS
 

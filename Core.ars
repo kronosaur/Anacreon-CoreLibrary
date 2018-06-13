@@ -1,11 +1,11 @@
 //	Core.ars
 //
 //	Anacreon Core Library
-//	Copyright (c) 2012 by Kronosaur Productions, LLC. All Rights Reserved.
+//	Copyright (c) 2012-2018 Kronosaur Productions, LLC. All Rights Reserved.
 
-Library core.library
+Library core.library.era4
 	{
-	name: "Anacreon Alpha Edition Library"
+	name: "Anacreon Core Library (Era 4)"
 	}
 
 //	Currency -------------------------------------------------------------------
