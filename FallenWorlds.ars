@@ -11,8 +11,13 @@ Scenario fallenWorlds.scenario
 
 	libraries: (core.library)
 
-	createParams: ()
+	//	MAP OPTIONS
 
+	mapFeatureSize: 5	//	Nebula resolution (light-years)
+
+	//	CREATE
+
+	createParams: ()
 	onCreate: fallenWorldsCreate
 		
 	creation: (
@@ -545,7 +550,7 @@ Table worldTechTable
 			(enum (@ arcDesc 'rifts) riftDesc
 				(unvCreateRegion 'core.transpaceRift (calcNebulaArcPolygon riftDesc (@ mapDesc 'mapCenter)) {
 					procedure: 'fracturedIslands
-					detail: 25
+					detail: 50
 					})
 				)
 			)
@@ -618,7 +623,7 @@ Table worldTechTable
 		(if (@ filamentTree 'hasRift)
 			(unvCreateRegion 'core.transpaceRift mainPoly {
 				procedure: 'fracturedIslands
-				detail: 25
+				detail: 50
 				scale: 100
 				})
 			)
