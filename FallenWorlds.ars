@@ -5,7 +5,7 @@
 
 Scenario fallenWorlds.scenario.e4
 	{
-	name: "Fallen Worlds (Era 4)"
+	name: "Fallen Worlds - Era 4"
 	players: (1 100)
 	mapSize: (3255 3255)
 
@@ -47,6 +47,7 @@ Scenario fallenWorlds.scenario.e4
 			
 			region:sectorRegion
 			minDist:16
+			minEdgeDist:16
 			
 			sovereign:core.independent
 			
