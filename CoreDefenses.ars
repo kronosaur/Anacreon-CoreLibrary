@@ -43,6 +43,7 @@ ResourceType core.autocannonSatellite
 	{
 	category: orbitalUnit
 	name: "autocannon satellite"
+	shortName: "autocannon(s)"
 	mass: 2.0
 	halfLife: 5.0
 
@@ -57,12 +58,25 @@ ResourceType core.autocannonSatellite
 			)
 		minTechLevel: 5
 		}
+
+	imageLarge: { type:constant
+		resource: core.defenseIcons
+		pos: (512 0)
+		size: (256 256)
+		}
+
+	imageSmall: { type:constant
+		resource: core.defenseIconsSmall
+		pos: (128 0)
+		size: (64 64)
+		}
 	}
 
 ResourceType core.armoredSatellite
 	{
 	category: orbitalUnit
 	name: "armored satellite"
+	shortName: "armored sat(s)"
 	mass: 25.0
 	halfLife: 5.0
 
@@ -78,12 +92,25 @@ ResourceType core.armoredSatellite
 			)
 		minTechLevel: 7
 		}
+
+	imageLarge: { type:constant
+		resource: core.defenseIcons
+		pos: (512 256)
+		size: (256 256)
+		}
+
+	imageSmall: { type:constant
+		resource: core.defenseIconsSmall
+		pos: (128 64)
+		size: (64 64)
+		}
 	}
 
 ResourceType core.battlestationTitan
 	{
 	category: orbitalUnit
 	name: "Titan-class battlestation"
+	shortName: "Titan(s)"
 	mass: 100.0
 	halfLife: 5.0
 
@@ -100,12 +127,25 @@ ResourceType core.battlestationTitan
 			)
 		minTechLevel: 9
 		}
+
+	imageLarge: { type:constant
+		resource: core.defenseIcons
+		pos: (0 512)
+		size: (384 256)
+		}
+
+	imageSmall: { type:constant
+		resource: core.defenseIconsSmall
+		pos: (0 128)
+		size: (96 64)
+		}
 	}
 
 ResourceType core.GDM
 	{
 	category: fixedUnit						//	Fixed units are installations on the ground
 	name: "GDM silo"
+	shortName: "GDM(s)"
 	mass: 200.0
 	halfLife: 2.0
 
@@ -119,12 +159,25 @@ ResourceType core.GDM
 			)
 		minTechLevel: 3
 		}
+
+	imageLarge: { type:constant
+		resource: core.defenseIcons
+		pos: (0 0)
+		size: (256 256)
+		}
+
+	imageSmall: { type:constant
+		resource: core.defenseIconsSmall
+		pos: (0 0)
+		size: (64 64)
+		}
 	}
 
 ResourceType core.HELCannon
 	{
 	category: fixedUnit
 	name: "HEL cannon"
+	shortName: "HEL(s)"
 	mass: 200.0
 	halfLife: 2.0
 
@@ -139,12 +192,25 @@ ResourceType core.HELCannon
 			)
 		minTechLevel: 4
 		}
+
+	imageLarge: { type:constant
+		resource: core.defenseIcons
+		pos: (256 0)
+		size: (256 256)
+		}
+
+	imageSmall: { type:constant
+		resource: core.defenseIconsSmall
+		pos: (64 0)
+		size: (64 64)
+		}
 	}
 
 ResourceType core.hypersonicMissile
 	{
 	category: fixedUnit
 	name: "hypersonic missile site"
+	shortName: "hypersonic(s)"
 	mass: 200.0
 	halfLife: 3.0
 
@@ -159,12 +225,25 @@ ResourceType core.hypersonicMissile
 			)
 		minTechLevel: 6
 		}
+
+	imageLarge: { type:constant
+		resource: core.defenseIcons
+		pos: (0 256)
+		size: (256 256)
+		}
+
+	imageSmall: { type:constant
+		resource: core.defenseIconsSmall
+		pos: (0 64)
+		size: (64 64)
+		}
 	}
 
 ResourceType core.jumpmissilePartisan
 	{
 	category: LAMUnit
 	name: "Partisan-class jumpmissile"
+	shortName: "Partisan(s)"
 	mass: 1.0
 	halfLife: 4.0
 
@@ -191,6 +270,7 @@ ResourceType core.plasmaTower
 	{
 	category: fixedUnit
 	name: "plasma tower"
+	shortName: "plasma tower(s)"
 	mass: 200.0
 	halfLife: 4.0
 
@@ -205,6 +285,18 @@ ResourceType core.plasmaTower
 			{ type:core.chronimium amount:2.0 }
 			)
 		minTechLevel: 8
+		}
+
+	imageLarge: { type:constant
+		resource: core.defenseIcons
+		pos: (256 256)
+		size: (256 256)
+		}
+
+	imageSmall: { type:constant
+		resource: core.defenseIconsSmall
+		pos: (64 64)
+		size: (64 64)
 		}
 	}
 	
@@ -354,3 +446,12 @@ Trait core.plasmaTowerNetwork {
 	description: "HEL cannons may be upgraded to plasma towers with this improvement. Plasma towers fire a high-intensity beam of charged plasma, able to pierce through the armor of most ships."
 	}
 	
+Image core.defenseIcons
+	{
+	filename: "DefenseIcons.png"
+	}
+
+Image core.defenseIconsSmall
+	{
+	filename: "DefenseIconsSmall.png"
+	}

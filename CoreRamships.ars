@@ -79,6 +79,7 @@ Trait core.ramshipYardsDesignation {
 ResourceType core.gunshipHammerhead {
 	category: maneuveringUnit
 	name: "Hammerhead-class gunship"
+	shortName: "Hammerhead(s)"
 	role: gunship
 	FTL: { type:ramjet speed:3.0 }
 	mass: 10.0
@@ -105,6 +106,7 @@ ResourceType core.gunshipHammerhead {
 ResourceType core.starfrigateManta {
 	category: maneuveringUnit
 	name: "Manta-class starfrigate"
+	shortName: "Manta(s)"
 	role: starfrigate
 	FTL: { type:ramjet speed:1.0 }
 	mass: 200.0
@@ -132,6 +134,7 @@ ResourceType core.starfrigateManta {
 ResourceType core.starcruiserBehemoth {
 	category: maneuveringUnit
 	name: "Behemoth-class starcruiser"
+	shortName: "Behemoth(s)"
 	role: starcruiser
 	FTL: { type:ramjet speed:1.0 }
 	mass: 2000.0
@@ -161,6 +164,7 @@ ResourceType core.starcruiserBehemoth {
 ResourceType core.gunshipCerberus {
 	category: maneuveringUnit
 	name: "Cerberus-class gunship"
+	shortName: "Cerberus(es)"
 	role: gunship
 	FTL: { type:ramjet speed:5.0 }
 	mass: 20.0
@@ -188,6 +192,7 @@ ResourceType core.gunshipCerberus {
 ResourceType core.starfrigateCyclops {
 	category: maneuveringUnit
 	name: "Cyclops-class starfrigate"
+	shortName: "Cyclops(es)"
 	role: starfrigate
 	FTL: { type:ramjet speed:1.0 }
 	mass: 300.0
@@ -217,6 +222,7 @@ ResourceType core.starfrigateCyclops {
 ResourceType core.starcruiserTyphon {
 	category: maneuveringUnit
 	name: "Typhon-class starcruiser"
+	shortName: "Typhon(s)"
 	role: starcruiser
 	FTL: { type:ramjet speed:1.0 }
 	mass: 900.0

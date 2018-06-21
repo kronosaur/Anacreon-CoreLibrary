@@ -74,6 +74,7 @@ Trait core.jumpshipYardsDesignation {
 ResourceType core.jumpshipStinger {
 	category: maneuveringUnit
 	name: "Stinger-class jumpship"
+	shortName: "Stinger(s)"
 	role: jumpship
 	FTL: 50.0
 	mass: 8.0
@@ -96,11 +97,24 @@ ResourceType core.jumpshipStinger {
 		minTechLevel: 5
 		maxTechLevel: 8
 		}
+
+	imageLarge: { type:constant
+		resource: core.jumpshipIcons
+		pos: (512 0)
+		size: (256 256)
+		}
+
+	imageSmall: { type:constant
+		resource: core.jumpshipIconsSmall
+		pos: (128 0)
+		size: (64 64)
+		}
 	}
 
 ResourceType core.explorerVanguard {
 	category: maneuveringUnit
 	name: "Vanguard-class explorer"
+	shortName: "Vanguard(s)"
 	role: explorer
 	FTL: { type:explorer speed:100.0 }
 	mass: 2.0
@@ -122,11 +136,24 @@ ResourceType core.explorerVanguard {
 		minTechLevel: 6
 		maxTechLevel: 7
 		}
+
+	imageLarge: { type:constant
+		resource: core.jumpshipIcons
+		pos: (0 0)
+		size: (256 256)
+		}
+
+	imageSmall: { type:constant
+		resource: core.jumpshipIconsSmall
+		pos: (0 0)
+		size: (64 64)
+		}
 	}
 	
 ResourceType core.jumptransportReliant {
 	category: maneuveringUnit
 	name: "Reliant-class jumptransport"
+	shortName: "Reliant(s)"
 	role: jumptransport
 	FTL: 50.0
 	canLand: true
@@ -151,11 +178,24 @@ ResourceType core.jumptransportReliant {
 		minTechLevel: 6
 		maxTechLevel: 8
 		}
+
+	imageLarge: { type:constant
+		resource: core.jumpshipIcons
+		pos: (256 0)
+		size: (256 256)
+		}
+
+	imageSmall: { type:constant
+		resource: core.jumpshipIconsSmall
+		pos: (64 0)
+		size: (64 64)
+		}
 	}
 
 ResourceType core.jumpcruiserAdamant {
 	category: maneuveringUnit
 	name: "Adamant-class jumpcruiser"
+	shortName: "Adamant(s)"
 	role: jumpcruiser
 	FTL: 50.0
 	mass: 12.0
@@ -179,11 +219,24 @@ ResourceType core.jumpcruiserAdamant {
 		minTechLevel: 7
 		maxTechLevel: 9
 		}
+
+	imageLarge: { type:constant
+		resource: core.jumpshipIcons
+		pos: (0 256)
+		size: (256 256)
+		}
+
+	imageSmall: { type:constant
+		resource: core.jumpshipIconsSmall
+		pos: (0 64)
+		size: (64 64)
+		}
 	}
 
 ResourceType core.explorerHelion {
 	category: maneuveringUnit
 	name: "Helion-class explorer"
+	shortName: "Helion(s)"
 	role: explorer
 	FTL: { type:explorer speed:150.0 }
 	mass: 2.0
@@ -206,11 +259,24 @@ ResourceType core.explorerHelion {
 		minTechLevel: 8
 		minTechLevelToDisplay: 8
 		}
+
+	imageLarge: { type:constant
+		resource: core.jumpshipIcons
+		pos: (512 512)
+		size: (256 256)
+		}
+
+	imageSmall: { type:constant
+		resource: core.jumpshipIconsSmall
+		pos: (128 128)
+		size: (64 64)
+		}
 	}
 	
 ResourceType core.jumpshipEldritch {
 	category: maneuveringUnit
 	name: "Eldritch-class jumpship"
+	shortName: "Eldritch(es)"
 	role: jumpship
 	FTL: 75.0
 	mass: 18.0
@@ -234,11 +300,24 @@ ResourceType core.jumpshipEldritch {
 		minTechLevel: 9
 		minTechLevelToDisplay: 9
 		}
+
+	imageLarge: { type:constant
+		resource: core.jumpshipIcons
+		pos: (512 256)
+		size: (256 256)
+		}
+
+	imageSmall: { type:constant
+		resource: core.jumpshipIconsSmall
+		pos: (128 64)
+		size: (64 64)
+		}
 	}
 
 ResourceType core.jumptransportWarphant {
 	category: maneuveringUnit
 	name: "Warphant-class jumptransport"
+	shortName: "Warphant(s)"
 	role: jumptransport
 	FTL: 75.0
 	canLand: true
@@ -264,11 +343,24 @@ ResourceType core.jumptransportWarphant {
 		minTechLevel: 9
 		minTechLevelToDisplay: 9
 		}
+
+	imageLarge: { type:constant
+		resource: core.jumpshipIcons
+		pos: (256 256)
+		size: (256 256)
+		}
+
+	imageSmall: { type:constant
+		resource: core.jumpshipIconsSmall
+		pos: (64 64)
+		size: (64 64)
+		}
 	}
 
 ResourceType core.jumpcruiserUndine {
 	category: maneuveringUnit
 	name: "Undine-class jumpcruiser"
+	shortName: "Undine(s)"
 	role: jumpcruiser
 	FTL: 75.0
 	mass: 25.0
@@ -292,6 +384,18 @@ ResourceType core.jumpcruiserUndine {
 			)
 		minTechLevel: 10
 		minTechLevelToDisplay: 10
+		}
+
+	imageLarge: { type:constant
+		resource: core.jumpshipIcons
+		pos: (0 512)
+		size: (384 256)
+		}
+
+	imageSmall: { type:constant
+		resource: core.jumpshipIconsSmall
+		pos: (0 128)
+		size: (96 64)
 		}
 	}
 
@@ -464,3 +568,14 @@ Trait core.jumpshipYards {
 	designationOnly: true
 	workingConditions: 7
 	}
+
+Image core.jumpshipIcons
+	{
+	filename: "JumpshipIcons.png"
+	}
+
+Image core.jumpshipIconsSmall
+	{
+	filename: "JumpshipIconsSmall.png"
+	}
+

@@ -75,6 +75,7 @@ Trait core.starshipYardsDesignation {
 ResourceType core.gunshipSirius {
 	category: maneuveringUnit
 	name: "Sirius-class gunship"
+	shortName: "Sirius(es)"
 	role: gunship
 	FTL: 3.0
 	mass: 15.0
@@ -101,6 +102,7 @@ ResourceType core.gunshipSirius {
 ResourceType core.starfrigateDefiance {
 	category: maneuveringUnit
 	name: "Defiance-class starfrigate"
+	shortName: "Defiance(s)"
 	role: starfrigate
 	FTL: 0.2
 	mass: 110.0
@@ -129,6 +131,7 @@ ResourceType core.starfrigateDefiance {
 ResourceType core.starcruiserVictory {
 	category: maneuveringUnit
 	name: "Victory-class starcruiser"
+	shortName: "Victory|Victories"
 	role: starcruiser
 	FTL: 0.2
 	mass: 350.0
@@ -158,6 +161,7 @@ ResourceType core.starcruiserVictory {
 ResourceType core.gunshipMinotaur {
 	category: maneuveringUnit
 	name: "Minotaur-class gunship"
+	shortName: "Minotaur(s)"
 	role: gunship
 	FTL: 5.0
 	mass: 12.0
@@ -185,6 +189,7 @@ ResourceType core.gunshipMinotaur {
 ResourceType core.starfrigateGorgos {
 	category: maneuveringUnit
 	name: "Gorgos-class starfrigate"
+	shortName: "Gorgos(es)"
 	role: starfrigate
 	FTL: 0.2
 	mass: 200.0
@@ -214,6 +219,7 @@ ResourceType core.starfrigateGorgos {
 ResourceType core.starcruiserMegathere {
 	category: maneuveringUnit
 	name: "Megathere-class starcruiser"
+	shortName: "Megathere(s)"
 	role: starcruiser
 	FTL: 0.2
 	mass: 500.0
