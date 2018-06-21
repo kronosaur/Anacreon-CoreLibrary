@@ -480,7 +480,7 @@ Trait core.spaceport {
 	role: spaceport
 
 	maxTradeDist: { value:100.0 op:defaultValue }
-	buildExclusions: (core.tradingHubAttribute)
+	buildExclusions: (core.starport)
 	minTechLevel: 5
 	buildTime: 4
 
@@ -497,6 +497,8 @@ Trait core.starport {
 	maxTradeDist: { value:100.0 op:defaultValue }
 
 	minTechLevel: 5
+	buildTime: 4
+	buildTimeCredit: (core.spaceport)
 	destroysTo: (core.spaceport)
 	
 	designationOnly: true
