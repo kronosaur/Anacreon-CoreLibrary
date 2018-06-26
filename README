@@ -4,18 +4,21 @@ Copyright (c) 2017 Kronosaur Productions, LLC. All Rights Reserved.
 These files define the core types for Anacreon.
 
 LICENSE
-You MAY share these files in whole or in part, for commercial or non-commercial
-purposes, as long as you adhere to the following terms:
+You MAY share these files in whole or in part as long as you adhere to the 
+following terms:
 
 1. The purpose MUST be related to Anacreon and must be of benefit to the 
    Anacreon community. Examples of acceptable purposes are: new scenarios, players
    guides, walkthroughs, and let's play videos.
+
+2. You MUST NOT use this library for commercial purposes without prior 
+   permission from Kronosaur Productions, LLC.
    
-2. You MUST include this license and copyright notice in whatever you 
+3. You MUST include this license and copyright notice in whatever you 
    distribute. Where possible, we ask that you include a link to
    https://anacreon.kronosaur.com
    
-3. You MUST NOT use the registered trademark "Anacreon" nor the names of its
+4. You MUST NOT use the registered trademark "Anacreon" nor the names of its
    owner, authors or contributors to endorse or promote products derived from
    these files, without specific prior written permission.
 
