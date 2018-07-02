@@ -101,6 +101,18 @@ ResourceType core.gunshipHammerhead {
 		minTechLevel: 5
 		maxTechLevel: 7
 		}
+
+	imageLarge: { type:constant
+		resource: core.ramshipIcons
+		pos: (0 0)
+		size: (256 256)
+		}
+
+	imageSmall: { type:constant
+		resource: core.ramshipIconsSmall
+		pos: (0 0)
+		size: (64 64)
+		}
 	}
 
 ResourceType core.starfrigateManta {
@@ -128,6 +140,18 @@ ResourceType core.starfrigateManta {
 			)
 		minTechLevel: 6
 		maxTechLevel: 8
+		}
+
+	imageLarge: { type:constant
+		resource: core.ramshipIcons
+		pos: (256 0)
+		size: (256 256)
+		}
+
+	imageSmall: { type:constant
+		resource: core.ramshipIconsSmall
+		pos: (64 0)
+		size: (64 64)
 		}
 	}
 
@@ -159,6 +183,18 @@ ResourceType core.starcruiserBehemoth {
 		minTechLevel: 7
 		maxTechLevel: 9
 		}
+
+	imageLarge: { type:constant
+		resource: core.ramshipIcons
+		pos: (896 0)
+		size: (384 256)
+		}
+
+	imageSmall: { type:constant
+		resource: core.ramshipIconsSmall
+		pos: (224 0)
+		size: (96 64)
+		}
 	}
 
 ResourceType core.gunshipCerberus {
@@ -186,6 +222,18 @@ ResourceType core.gunshipCerberus {
 			)
 		minTechLevel: 8
 		minTechLevelToDisplay: 8
+		}
+
+	imageLarge: { type:constant
+		resource: core.ramshipIcons
+		pos: (0 256)
+		size: (256 256)
+		}
+
+	imageSmall: { type:constant
+		resource: core.ramshipIconsSmall
+		pos: (0 64)
+		size: (64 64)
 		}
 	}
 
@@ -217,6 +265,18 @@ ResourceType core.starfrigateCyclops {
 		minTechLevel: 9
 		minTechLevelToDisplay: 9
 		}
+
+	imageLarge: { type:constant
+		resource: core.ramshipIcons
+		pos: (256 256)
+		size: (256 256)
+		}
+
+	imageSmall: { type:constant
+		resource: core.ramshipIconsSmall
+		pos: (64 64)
+		size: (64 64)
+		}
 	}
 
 ResourceType core.starcruiserTyphon {
@@ -246,6 +306,18 @@ ResourceType core.starcruiserTyphon {
 			)
 		minTechLevel: 10
 		minTechLevelToDisplay: 10
+		}
+
+	imageLarge: { type:constant
+		resource: core.ramshipIcons
+		pos: (896 256)
+		size: (384 256)
+		}
+
+	imageSmall: { type:constant
+		resource: core.ramshipIconsSmall
+		pos: (224 64)
+		size: (96 64)
 		}
 	}
 
@@ -389,3 +461,14 @@ Trait core.ramshipYards {
 	designationOnly: true
 	workingConditions: 7
 	}
+
+Image core.ramshipIcons
+	{
+	filename: "RamshipIcons.png"
+	}
+
+Image core.ramshipIconsSmall
+	{
+	filename: "RamshipIconsSmall.png"
+	}
+
