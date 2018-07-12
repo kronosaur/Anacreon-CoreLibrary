@@ -104,7 +104,7 @@ ResourceType core.starfrigateDefiance {
 	name: "Defiance-class starfrigate"
 	shortName: "Defiance(s)"
 	role: starfrigate
-	FTL: 0.2
+	FTL: 1.0
 	mass: 110.0
 	maxDeltaV: 0.25
 	scanner: 0.5
@@ -133,7 +133,7 @@ ResourceType core.starcruiserVictory {
 	name: "Victory-class starcruiser"
 	shortName: "Victory|Victories"
 	role: starcruiser
-	FTL: 0.2
+	FTL: 1.0
 	mass: 350.0
 	maxDeltaV: 0.1
 	scanner: 0.5
@@ -191,7 +191,7 @@ ResourceType core.starfrigateGorgos {
 	name: "Gorgos-class starfrigate"
 	shortName: "Gorgos(es)"
 	role: starfrigate
-	FTL: 0.2
+	FTL: 1.0
 	mass: 200.0
 	maxDeltaV: 0.25
 	scanner: 0.5
@@ -221,7 +221,7 @@ ResourceType core.starcruiserMegathere {
 	name: "Megathere-class starcruiser"
 	shortName: "Megathere(s)"
 	role: starcruiser
-	FTL: 0.2
+	FTL: 1.0
 	mass: 500.0
 	maxDeltaV: 0.1
 	scanner: 0.5
