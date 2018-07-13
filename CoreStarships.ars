@@ -75,7 +75,7 @@ Trait core.starshipYardsDesignation {
 ResourceType core.gunshipSirius {
 	category: maneuveringUnit
 	name: "Sirius-class gunship"
-	shortName: "Sirius(es)"
+	shortName: "Sirius|Sirius"
 	role: gunship
 	FTL: 3.0
 	mass: 15.0
@@ -99,10 +99,39 @@ ResourceType core.gunshipSirius {
 		}
 	}
 
+ResourceType core.transportOrion {
+	category: maneuveringUnit
+	name: "Orion-class transport"
+	shortName: "Orion(s)"
+	role: transport
+	FTL: 1.0
+	canLand: true
+	cargoSpace: 100.0
+	mass: 120.0
+	maxDeltaV: 0.2
+	scanner: 0.0
+	visibility: 1.2
+	halfLife: 20.0
+
+	attack: { name:"A9 recoilless cannon" count:1 damage:10 type:direct range:10.0 area:0.0 }
+	defense: { armor:120 counters:{ missile:1 } }
+	unitsPerCell: 8
+
+	production: {
+		workUnits: 620.0
+		inputs: (
+			{ type:core.trillum amount:10.0 }
+			{ type:core.hexacarbide amount:25.0 }
+			)
+		minTechLevel: 5
+		maxTechLevel: 7
+		}
+	}
+
 ResourceType core.starfrigateDefiance {
 	category: maneuveringUnit
 	name: "Defiance-class starfrigate"
-	shortName: "Defiance(s)"
+	shortName: "Defiance|Defiance"
 	role: starfrigate
 	FTL: 1.0
 	mass: 110.0
@@ -186,10 +215,40 @@ ResourceType core.gunshipMinotaur {
 		}
 	}
 
+ResourceType core.transportSeraph {
+	category: maneuveringUnit
+	name: "Seraph-class transport"
+	shortName: "Seraph(s)"
+	role: transport
+	FTL: 2.0
+	canLand: true
+	cargoSpace: 100.0
+	mass: 200.0
+	maxDeltaV: 0.2
+	scanner: 0.0
+	visibility: 2.0
+	halfLife: 20.0
+
+	attack: { name:"K3X mass driver" count:1 damage:32 type:direct range:10.0 area:0.0 }
+	defense: { armor:240 counters:{ missile:2 } }
+	unitsPerCell: 8
+
+	production: {
+		workUnits: 1300.0
+		inputs: (
+			{ type:core.trillum amount:15.0 }
+			{ type:core.hexacarbide amount:20.0 }
+			{ type:core.chronimium amount:8.0 }
+			)
+		minTechLevel: 8
+		minTechLevelToDisplay: 8
+		}
+	}
+
 ResourceType core.starfrigateGorgos {
 	category: maneuveringUnit
 	name: "Gorgos-class starfrigate"
-	shortName: "Gorgos(es)"
+	shortName: "Gorgos|Gorgos"
 	role: starfrigate
 	FTL: 1.0
 	mass: 200.0
@@ -420,9 +479,11 @@ Trait core.fleetStarshipHQ {
 	production: (
 		core.infantry
 		core.gunshipSirius
+		core.transportOrion
 		core.starfrigateDefiance
 		core.starcruiserVictory
 		core.gunshipMinotaur
+		core.transportSeraph
 		core.starfrigateGorgos
 		core.starcruiserMegathere
 		)
@@ -461,9 +522,11 @@ Trait core.starshipYards {
 
 	production: (
 		core.gunshipSirius
+		core.transportOrion
 		core.starfrigateDefiance
 		core.starcruiserVictory
 		core.gunshipMinotaur
+		core.transportSeraph
 		core.starfrigateGorgos
 		core.starcruiserMegathere
 		)

@@ -115,6 +115,47 @@ ResourceType core.gunshipHammerhead {
 		}
 	}
 
+ResourceType core.transportCetus {
+	category: maneuveringUnit
+	name: "Cetus-class transport"
+	shortName: "Cetus|Cetus"
+	role: transport
+	FTL: { type:ramjet speed:1.0 }
+	canLand: true
+	cargoSpace: 100.0
+	mass: 100.0
+	maxDeltaV: 0.2
+	scanner: 0.0
+	visibility: 1.0
+	halfLife: 20.0
+
+	attack: { name:"A9 recoilless cannon" count:1 damage:10 type:direct range:10.0 area:0.0 }
+	defense: { armor:120 counters:{ missile:1 } }
+	unitsPerCell: 8
+
+	production: {
+		workUnits: 650.0
+		inputs: (
+			{ type:core.aetherium amount:8.0 }
+			{ type:core.hexacarbide amount:20.0 }
+			)
+		minTechLevel: 5
+		maxTechLevel: 7
+		}
+
+	imageLarge: { type:constant
+		resource: core.ramshipIcons
+		pos: (512 0)
+		size: (384 256)
+		}
+
+	imageSmall: { type:constant
+		resource: core.ramshipIconsSmall
+		pos: (128 0)
+		size: (96 64)
+		}
+	}
+
 ResourceType core.starfrigateManta {
 	category: maneuveringUnit
 	name: "Manta-class starfrigate"
@@ -200,7 +241,7 @@ ResourceType core.starcruiserBehemoth {
 ResourceType core.gunshipCerberus {
 	category: maneuveringUnit
 	name: "Cerberus-class gunship"
-	shortName: "Cerberus(es)"
+	shortName: "Cerberus|Cerberus"
 	role: gunship
 	FTL: { type:ramjet speed:5.0 }
 	mass: 20.0
@@ -237,10 +278,52 @@ ResourceType core.gunshipCerberus {
 		}
 	}
 
+ResourceType core.transportLuna {
+	category: maneuveringUnit
+	name: "Luna-class transport"
+	shortName: "Luna(s)"
+	role: transport
+	FTL: { type:ramjet speed:3.0 }
+	canLand: true
+	cargoSpace: 100.0
+	mass: 180.0
+	maxDeltaV: 0.2
+	scanner: 0.0
+	visibility: 1.8
+	halfLife: 20.0
+
+	attack: { name:"AX1 recoilless cannon" count:1 damage:48 type:direct range:10.0 area:0.0 }
+	defense: { armor:240 counters:{ missile:2 } }
+	unitsPerCell: 8
+
+	production: {
+		workUnits: 1300.0
+		inputs: (
+			{ type:core.aetherium amount:30.0 }
+			{ type:core.chtholon amount:25.0 }
+			{ type:core.hexacarbide amount:30.0 }
+			)
+		minTechLevel: 8
+		minTechLevelToDisplay: 8
+		}
+
+	imageLarge: { type:constant
+		resource: core.ramshipIcons
+		pos: (512 256)
+		size: (384 256)
+		}
+
+	imageSmall: { type:constant
+		resource: core.ramshipIconsSmall
+		pos: (128 64)
+		size: (96 64)
+		}
+	}
+
 ResourceType core.starfrigateCyclops {
 	category: maneuveringUnit
 	name: "Cyclops-class starfrigate"
-	shortName: "Cyclops(es)"
+	shortName: "Cyclops|Cyclops"
 	role: starfrigate
 	FTL: { type:ramjet speed:1.0 }
 	mass: 300.0
@@ -450,9 +533,11 @@ Trait core.ramshipYards {
 
 	production: (
 		core.gunshipHammerhead
+		core.transportCetus
 		core.starfrigateManta
 		core.starcruiserBehemoth
 		core.gunshipCerberus
+		core.transportLuna
 		core.starfrigateCyclops
 		core.starcruiserTyphon
 		)
