@@ -74,6 +74,7 @@ ResourceType core.infantry
 	{
 	category: groundUnit					//	Ground units are massed ground forces
 	name: "infantry brigade"
+	shortName: "infantry|infantry"
 	isCargo: true
 	mass: 20.0
 	halfLife: 4.0
@@ -87,12 +88,25 @@ ResourceType core.infantry
 		inputs: ()
 		minTechLevel: 1
 		}
+
+	imageLarge: { type:constant
+		resource: core.groundUnitIcons
+		pos: (0 0)
+		size: (256 256)
+		}
+
+	imageSmall: { type:constant
+		resource: core.groundUnitIconsSmall
+		pos: (0 0)
+		size: (64 64)
+		}
 	}
 
 ResourceType core.imperialSecurity
 	{
 	category: groundUnit
 	name: "imperial guards brigade"
+	shortName: "imperial|imperial"
 	isCargo: true
 	mass: 20.0
 	halfLife: 4.0
@@ -110,12 +124,25 @@ ResourceType core.imperialSecurity
 		inputs: ()
 		minTechLevel: 5
 		}
+
+	imageLarge: { type:constant
+		resource: core.groundUnitIcons
+		pos: (256 0)
+		size: (256 256)
+		}
+
+	imageSmall: { type:constant
+		resource: core.groundUnitIconsSmall
+		pos: (64 0)
+		size: (64 64)
+		}
 	}
 
 ResourceType core.armoredInfantry
 	{
 	category: groundUnit
 	name: "armored infantry brigade"
+	shortName: "armored|armored"
 	isCargo: true
 	mass: 30.0
 	halfLife: 4.0
@@ -131,12 +158,25 @@ ResourceType core.armoredInfantry
 			)
 		minTechLevel: 5
 		}
+
+	imageLarge: { type:constant
+		resource: core.groundUnitIcons
+		pos: (0 256)
+		size: (384 256)
+		}
+
+	imageSmall: { type:constant
+		resource: core.groundUnitIconsSmall
+		pos: (0 64)
+		size: (96 64)
+		}
 	}
 
 ResourceType core.exotroops
 	{
 	category: groundUnit
 	name: "exotroop brigade"
+	shortName: "exotrooper|exotroops"
 	isCargo: true
 	mass: 25.0
 	halfLife: 5.0
@@ -151,6 +191,18 @@ ResourceType core.exotroops
 			{ type:core.exoarmor amount:1.0 }
 			)
 		minTechLevel: 7
+		}
+
+	imageLarge: { type:constant
+		resource: core.groundUnitIcons
+		pos: (384 256)
+		size: (384 256)
+		}
+
+	imageSmall: { type:constant
+		resource: core.groundUnitIconsSmall
+		pos: (96 64)
+		size: (96 64)
 		}
 	}
 
@@ -252,3 +304,13 @@ Trait core.militiaBase {
 	workingConditions: 6
 	}
 	
+Image core.groundUnitIcons
+	{
+	filename: "GroundUnitIcons.png"
+	}
+
+Image core.groundUnitIconsSmall
+	{
+	filename: "GroundUnitIconsSmall.png"
+	}
+
