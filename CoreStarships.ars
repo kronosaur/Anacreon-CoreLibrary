@@ -97,6 +97,18 @@ ResourceType core.gunshipSirius {
 		minTechLevel: 5
 		maxTechLevel: 7
 		}
+
+	imageLarge: { type:constant
+		resource: core.starshipIcons
+		pos: (0 0)
+		size: (256 256)
+		}
+
+	imageSmall: { type:constant
+		resource: core.starshipIconsSmall
+		pos: (0 0)
+		size: (64 64)
+		}
 	}
 
 ResourceType core.transportOrion {
@@ -126,6 +138,18 @@ ResourceType core.transportOrion {
 		minTechLevel: 5
 		maxTechLevel: 7
 		}
+
+	imageLarge: { type:constant
+		resource: core.starshipIcons
+		pos: (512 0)
+		size: (384 256)
+		}
+
+	imageSmall: { type:constant
+		resource: core.starshipIconsSmall
+		pos: (128 0)
+		size: (96 64)
+		}
 	}
 
 ResourceType core.starfrigateDefiance {
@@ -154,6 +178,18 @@ ResourceType core.starfrigateDefiance {
 			)
 		minTechLevel: 6
 		maxTechLevel: 8
+		}
+
+	imageLarge: { type:constant
+		resource: core.starshipIcons
+		pos: (256 0)
+		size: (256 256)
+		}
+
+	imageSmall: { type:constant
+		resource: core.starshipIconsSmall
+		pos: (64 0)
+		size: (64 64)
 		}
 	}
 
@@ -185,6 +221,18 @@ ResourceType core.starcruiserVictory {
 		minTechLevel: 7
 		maxTechLevel: 9
 		}
+
+	imageLarge: { type:constant
+		resource: core.starshipIcons
+		pos: (896 0)
+		size: (384 256)
+		}
+
+	imageSmall: { type:constant
+		resource: core.starshipIconsSmall
+		pos: (224 0)
+		size: (96 64)
+		}
 	}
 
 ResourceType core.gunshipMinotaur {
@@ -212,6 +260,18 @@ ResourceType core.gunshipMinotaur {
 			)
 		minTechLevel: 8
 		minTechLevelToDisplay: 8
+		}
+
+	imageLarge: { type:constant
+		resource: core.starshipIcons
+		pos: (0 256)
+		size: (256 256)
+		}
+
+	imageSmall: { type:constant
+		resource: core.starshipIconsSmall
+		pos: (0 64)
+		size: (64 64)
 		}
 	}
 
@@ -243,6 +303,18 @@ ResourceType core.transportSeraph {
 		minTechLevel: 8
 		minTechLevelToDisplay: 8
 		}
+
+	imageLarge: { type:constant
+		resource: core.starshipIcons
+		pos: (512 256)
+		size: (384 256)
+		}
+
+	imageSmall: { type:constant
+		resource: core.starshipIconsSmall
+		pos: (128 64)
+		size: (96 64)
+		}
 	}
 
 ResourceType core.starfrigateGorgos {
@@ -273,6 +345,18 @@ ResourceType core.starfrigateGorgos {
 		minTechLevel: 9
 		minTechLevelToDisplay: 9
 		}
+
+	imageLarge: { type:constant
+		resource: core.starshipIcons
+		pos: (256 256)
+		size: (256 256)
+		}
+
+	imageSmall: { type:constant
+		resource: core.starshipIconsSmall
+		pos: (64 64)
+		size: (64 64)
+		}
 	}
 
 ResourceType core.starcruiserMegathere {
@@ -302,6 +386,18 @@ ResourceType core.starcruiserMegathere {
 			)
 		minTechLevel: 10
 		minTechLevelToDisplay: 10
+		}
+
+	imageLarge: { type:constant
+		resource: core.starshipIcons
+		pos: (896 256)
+		size: (384 256)
+		}
+
+	imageSmall: { type:constant
+		resource: core.starshipIconsSmall
+		pos: (224 64)
+		size: (96 64)
 		}
 	}
 
@@ -536,3 +632,13 @@ Trait core.starshipYards {
 	workingConditions: 7
 	}
 	
+Image core.starshipIcons
+	{
+	filename: "StarshipIcons.png"
+	}
+
+Image core.starshipIconsSmall
+	{
+	filename: "StarshipIconsSmall.png"
+	}
+
