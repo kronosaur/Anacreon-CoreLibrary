@@ -1,0 +1,88 @@
+//	FallenWorldsDiagnostics.ars
+//
+//	Fallen Worlds Diagnostics
+//	Copyright (c) 2019 Kronosaur Productions, LLC. All Rights Reserved.
+
+(define runDiagnostics (lambda ()
+	(block (
+		(allWorlds (unvFindObjects
+			nil
+			(list
+				{ type:'worlds }
+				)
+			))
+		)
+
+		(enum allWorlds theWorld
+			(block (
+				(sovereign (@ theWorld 'sovereign))
+				(basics {
+					id: (@ theWorld 'id)
+					name: (@ theWorld 'name)
+					sovereign: (@ sovereign 'name)
+					designation: (@ theWorld 'designation)
+					worldClass: (@ theWorld 'worldClass)
+					population: (@ theWorld 'population)
+					techLevel: (@ theWorld 'techLevel)
+					efficiency: (@ theWorld 'efficiency)
+					})
+				(economicActivity (@ theWorld 'economicActivity))
+				(shortages
+					(map economicActivity 'excludeNil theEntry
+						(if (!= (@ theEntry 'actualBaseConsumption) (@ theEntry 'desiredBaseConsumption))
+							theEntry
+							)
+						)
+					)
+
+				(industryDebug (@ theWorld 'industryDebug))
+				(totalAlloc 0)
+				)
+				(enum industryDebug theEntry
+					(set! totalAlloc (+ totalAlloc (@ theEntry 'targetAllocation)))
+					)
+
+				(switch
+					shortages
+						(block ()
+							(print "[" (@ theWorld 'id) "]: Shortages on " (@ theWorld 'name) ":")
+							(output shortages)
+							)
+
+					(> totalAlloc 101)
+						(block ()
+							(print "[" (@ theWorld 'id) "]: Industry allocation at " totalAlloc "%:")
+							(output industryDebug)
+							)
+					)
+				)
+			)
+
+		(print "Diagnostics run complete.")
+		)
+	))
+
+(define outputObj (lambda (objID)
+	(block (
+		(theObj (obj objID))
+		(sovereign (@ theObj 'sovereign))
+		(basics {
+			id: (@ theObj 'id)
+			name: (@ theObj 'name)
+			sovereign: (@ sovereign 'name)
+			designation: (@ theObj 'designation)
+			worldClass: (@ theObj 'worldClass)
+			population: (@ theObj 'population)
+			techLevel: (@ theObj 'techLevel)
+			efficiency: (@ theObj 'efficiency)
+			})
+		(economicActivity (@ theObj 'economicActivity))
+		(tradeRoutes (@ theObj 'tradeRoutes))
+		(industryDebug (@ theObj 'industryDebug))
+		)
+		(output basics)
+		(output economicActivity)
+		(output industryDebug)
+		(output tradeRoutes)
+		)
+	))

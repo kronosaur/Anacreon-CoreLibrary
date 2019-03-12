@@ -105,6 +105,19 @@ Scenario fallenWorlds.scenario.e4
 				)
 			}
 		)
+
+	//	PROGRAMS
+
+	programs: (
+		{	name:diagnostics	func:runDiagnostics	
+			desc: "Run diagnostics on the game."
+			safeModeOnly: True
+			}
+
+		{	name:obj			func:outputObj
+			desc: "Get info about the given object by ID."
+			}
+		)
 	}
 
 SovereignType core.playerEmpire
@@ -747,3 +760,5 @@ Table worldTechTable
 			)
 		)
 	))
+
+Include "FallenWorldsDiagnostics.ars"
