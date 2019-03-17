@@ -117,6 +117,10 @@ Scenario fallenWorlds.scenario.e4
 		{	name:obj			func:outputObj
 			desc: "Get info about the given object by ID."
 			}
+
+		{	name:upgrade		func:upgrade01
+			desc: "Upgrades game to latest scenario definitions."
+			}
 		)
 	}
 

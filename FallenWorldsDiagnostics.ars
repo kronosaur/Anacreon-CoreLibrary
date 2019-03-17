@@ -86,3 +86,45 @@
 		(output tradeRoutes)
 		)
 	))
+
+(define upgrade01 (lambda ()
+	(block (
+		(allWorlds (unvFindObjects
+			nil
+			(list
+				{ type:'worlds }
+				)
+			))
+		)
+		//	Add core.closedEcosystem trait to all appropriate worlds
+
+		(enum allWorlds theWorld
+			(block (
+				(worldClass (@ theWorld 'worldClass))
+				)
+				(if (|| (= worldClass 'core.aetherealWorld)
+						(= worldClass 'core.barrenWorld)
+						(= worldClass 'core.chthonicWorld)
+						(= worldClass 'core.fieryWorld)
+						(= worldClass 'core.hadeanWorld)
+						(= worldClass 'core.nebularWorld)
+						(= worldClass 'core.primordialWorld)
+						(= worldClass 'core.transuranicWorld)
+						(= worldClass 'core.volcanicWorld)
+						)
+					(if (not (find (@ theWorld 'traits) 'core.closedEcosystem))
+						(block ()
+							(objAddTrait theWorld 'core.closedEcosystem)
+							(print (@ theWorld 'name) " [" (@ theWorld 'id) "]: Added core.closedEcosystem to " worldClass ".")
+							(if (not (find (@ theWorld 'traits) 'core.closedEcosystem))
+								(print "Failed to add trait.")
+								)
+							)
+
+						(print (@ theWorld 'name) " [" (@ theWorld 'id) "]: core.closedEcosystem already set.")
+						)
+					)
+				)
+			)
+		)
+	))
