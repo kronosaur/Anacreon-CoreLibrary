@@ -212,6 +212,18 @@ ResourceType core.aetherium {
 		minTechLevel: 5
 		requirements: (core.aetheriumSource)
 		}
+
+	imageLarge: { type:constant
+		resource: core.resourceIcons
+		pos: (0 0)
+		size: (128 128)
+		}
+
+	imageSmall: { type:constant
+		resource: core.resourceIconsSmall
+		pos: (0 0)
+		size: (48 48)
+		}
 	}
 	
 ResourceType core.chronimium {
@@ -228,6 +240,18 @@ ResourceType core.chronimium {
 		inputs: ({ type:core.trillum amount:2.0 })	//	Inputs; amounts are in units (e.g., 2 tillum to create 1 chronimium).
 		minTechLevel: 7						//	Min tech level of world to produce
 		requirements: (core.chronimiumSource)
+		}
+
+	imageLarge: { type:constant
+		resource: core.resourceIcons
+		pos: (128 0)
+		size: (128 128)
+		}
+
+	imageSmall: { type:constant
+		resource: core.resourceIconsSmall
+		pos: (48 0)
+		size: (48 48)
 		}
 	}
 	
@@ -246,6 +270,18 @@ ResourceType core.chtholon {
 		minTechLevel: 7
 		requirements: (core.chtholonSource)
 		}
+
+	imageLarge: { type:constant
+		resource: core.resourceIcons
+		pos: (256 0)
+		size: (128 128)
+		}
+
+	imageSmall: { type:constant
+		resource: core.resourceIconsSmall
+		pos: (96 0)
+		size: (48 48)
+		}
 	}
 	
 ResourceType core.durableGoods {
@@ -262,6 +298,18 @@ ResourceType core.durableGoods {
 		inputs: ({ type:core.trillum amount:0.04 })
 		minTechLevel: 4
 		}
+
+	imageLarge: { type:constant
+		resource: core.resourceIcons
+		pos: (0 128)
+		size: (128 128)
+		}
+
+	imageSmall: { type:constant
+		resource: core.resourceIconsSmall
+		pos: (0 48)
+		size: (48 48)
+		}
 	}
 	
 ResourceType core.hexacarbide {
@@ -276,6 +324,18 @@ ResourceType core.hexacarbide {
 		inputs: ({ type:core.trillum amount:1.0 })
 		minTechLevel: 4
 		requirements: (core.hexacarbideSource)
+		}
+
+	imageLarge: { type:constant
+		resource: core.resourceIcons
+		pos: (128 128)
+		size: (128 128)
+		}
+
+	imageSmall: { type:constant
+		resource: core.resourceIconsSmall
+		pos: (48 48)
+		size: (48 48)
 		}
 	}
 
@@ -293,6 +353,18 @@ ResourceType core.luxuries {
 		inputs: ({ type:core.trillum amount:0.1 })
 		minTechLevel: 7
 		}
+
+	imageLarge: { type:constant
+		resource: core.resourceIcons
+		pos: (256 128)
+		size: (128 128)
+		}
+
+	imageSmall: { type:constant
+		resource: core.resourceIconsSmall
+		pos: (96 48)
+		size: (48 48)
+		}
 	}
 
 ResourceType core.organicFood {
@@ -309,6 +381,18 @@ ResourceType core.organicFood {
 		inputs: ()
 		minTechLevel: 1
 		}
+
+	imageLarge: { type:constant
+		resource: core.resourceIcons
+		pos: (0 256)
+		size: (128 128)
+		}
+
+	imageSmall: { type:constant
+		resource: core.resourceIconsSmall
+		pos: (0 96)
+		size: (48 48)
+		}
 	}
 
 ResourceType core.trillum {
@@ -324,6 +408,18 @@ ResourceType core.trillum {
 		workUnits: 1.0
 		minTechLevel: 3
 		requirements: (core.trillumSource)
+		}
+
+	imageLarge: { type:constant
+		resource: core.resourceIcons
+		pos: (128 256)
+		size: (128 128)
+		}
+
+	imageSmall: { type:constant
+		resource: core.resourceIconsSmall
+		pos: (48 96)
+		size: (48 48)
 		}
 	}
 
@@ -429,3 +525,14 @@ Trait core.trillumExtractor {
 
 	workingConditions: 3
 	}
+
+Image core.resourceIcons
+	{
+	filename: "ResourceIcons.png"
+	}
+
+Image core.resourceIconsSmall
+	{
+	filename: "ResourceIconsSmall.png"
+	}
+
