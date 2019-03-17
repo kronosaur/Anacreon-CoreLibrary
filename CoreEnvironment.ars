@@ -1089,6 +1089,18 @@ ResourceType core.airFilters {
 		inputs: ()
 		minTechLevel: 2
 		}
+
+	imageLarge: { type:constant
+		resource: core.resourceIcons
+		pos: (256 384)
+		size: (128 128)
+		}
+
+	imageSmall: { type:constant
+		resource: core.resourceIconsSmall
+		pos: (96 144)
+		size: (48 48)
+		}
 	}
 	
 ResourceType core.lifeSupportSupplies {
@@ -1104,6 +1116,18 @@ ResourceType core.lifeSupportSupplies {
 		workUnits: 0.07
 		inputs: ({ type:core.trillum amount:0.01 })
 		minTechLevel: 3
+		}
+
+	imageLarge: { type:constant
+		resource: core.resourceIcons
+		pos: (256 256)
+		size: (128 128)
+		}
+
+	imageSmall: { type:constant
+		resource: core.resourceIconsSmall
+		pos: (96 96)
+		size: (48 48)
 		}
 	}
 	
@@ -1121,6 +1145,18 @@ ResourceType core.radiationMeds {
 		inputs: ({ type:core.trillum amount:0.01 })
 		minTechLevel: 3
 		}
+
+	imageLarge: { type:constant
+		resource: core.resourceIcons
+		pos: (0 384)
+		size: (128 128)
+		}
+
+	imageSmall: { type:constant
+		resource: core.resourceIconsSmall
+		pos: (0 144)
+		size: (48 48)
+		}
 	}
 	
 ResourceType core.radiationShielding {
@@ -1136,6 +1172,18 @@ ResourceType core.radiationShielding {
 		workUnits: 0.06
 		inputs: ({ type:core.trillum amount:0.01 })
 		minTechLevel: 3
+		}
+
+	imageLarge: { type:constant
+		resource: core.resourceIcons
+		pos: (128 384)
+		size: (128 128)
+		}
+
+	imageSmall: { type:constant
+		resource: core.resourceIconsSmall
+		pos: (48 144)
+		size: (48 48)
 		}
 	}
 	
@@ -1189,77 +1237,10 @@ Trait core.radiationClinic {
 
 //	Features -------------------------------------------------------------------
 
-//	Aetherium Deposits ---------------------------------------------------------
+//	Hostile Environments -------------------------------------------------------
 //
-//	EFFECT		These traits set production adjustments for aetherium extraction.
-//
-//	USAGE		World classes should include one of these traits, either as 
-//				inherited traits or as randomly imparted traits. Do not include
-//				more than one of these per world.
-
-Trait core.aetheriumSource
-	{
-	category: feature
-	name: "aetherium deposits"
-	hidden: true
-	}
-
-Trait core.aetheriumRare
-	{
-	category: feature
-	name: "trace aetherium deposits"
-	inheritFrom: (core.aetheriumSource)
-	
-	productionAdj: (
-		{	type: core.aetherium
-			workUnitsAdj: { value:0.2		op:defaultValue }
-			}
-		)
-	}
-
-Trait core.aetheriumUncommon
-	{
-	category: feature
-	name: "minor aetherium deposits"
-	inheritFrom: (core.aetheriumSource)
-	
-	productionAdj: (
-		{	type: core.aetherium
-			workUnitsAdj: { value:0.5		op:defaultValue }
-			}
-		)
-	}
-
-Trait core.aetheriumCommon
-	{
-	category: feature
-	name: "major aetherium deposits"
-	inheritFrom: (core.aetheriumSource)
-	
-	productionAdj: (
-		{	type: core.aetherium
-			workUnitsAdj: { value:1.0		op:defaultValue }
-			}
-		)
-	}
-
-Trait core.aetheriumAbundant
-	{
-	category: feature
-	name: "abundant aetherium deposits"
-	inheritFrom: (core.aetheriumSource)
-	
-	productionAdj: (
-		{	type: core.aetherium
-			workUnitsAdj: { value:2.0		op:defaultValue }
-			}
-		)
-	}
-
-//	Atmosphere Features --------------------------------------------------------
-//
-//	EFFECT		These traits define the atmosphere of a world and affect the
-//				production of food and maximum population.
+//	EFFECT		These traits define hostile environments that require some 
+//				special resource to survive.
 //		
 //	USAGE		Include one of these traits as an inherited type on each world
 //				classe.
@@ -1268,6 +1249,8 @@ Trait core.atmosphereNone
 	{
 	category: feature
 	name: "no atmosphere"
+
+	impartTraits: (core.closedEcosystem)
 
 	consumption: (
 		{	type: core.lifeSupportSupplies	//	Item to consume
@@ -1298,13 +1281,25 @@ Trait core.atmosphereNone
 			}
 		)
 
-	hidden: true
+	imageLarge: { type:constant
+		resource: core.resourceIcons
+		pos: (256 256)
+		size: (128 128)
+		}
+
+	imageSmall: { type:constant
+		resource: core.resourceIconsSmall
+		pos: (96 96)
+		size: (48 48)
+		}
 	}
 
 Trait core.atmospherePoisonous
 	{
 	category: feature
 	name: "poisonous atmosphere"
+
+	impartTraits: (core.closedEcosystem)
 
 	consumption: (
 		{	type: core.airFilters			//	Item to consume
@@ -1336,7 +1331,234 @@ Trait core.atmospherePoisonous
 			}
 		)
 
+	imageLarge: { type:constant
+		resource: core.resourceIcons
+		pos: (256 384)
+		size: (128 128)
+		}
+
+	imageSmall: { type:constant
+		resource: core.resourceIconsSmall
+		pos: (96 144)
+		size: (48 48)
+		}
+	}
+
+Trait core.environmentFiery
+	{
+	category: feature
+	name: "solar flare danger"
+
+	impartTraits: (core.closedEcosystem)
+
+	consumption: (
+		{	type: core.radiationShielding	//	Item to consume
+			minTechLevel: 3					//	Only consume if world is this tech or higher
+			
+			amount: {
+				type:byTechAndPopulation
+				value: (
+					(atomic				0.06)
+					(digital			0.08)
+					(spacefaring		0.10)
+					(fusion				0.12)
+					(biotech			0.15)
+					(antimatter			0.19)
+					(quantum			0.24)
+					(postIndustrial		0.30)
+					)
+				}
+
+			consequences: (
+				{	demandMet: 1.0
+					deathRate: 0.01			//	1% killed if 100% of demand fails
+					revIndex: 100
+					techRegress: 0.25
+					efficiencyAdj: 0.95
+					}
+				)
+			}
+		)
+
+	imageLarge: { type:constant
+		resource: core.resourceIcons
+		pos: (128 384)
+		size: (128 128)
+		}
+
+	imageSmall: { type:constant
+		resource: core.resourceIconsSmall
+		pos: (48 144)
+		size: (48 48)
+		}
+	}
+
+Trait core.environmentRadioactive
+	{
+	category: feature
+	name: "radioactive environment"
+
+	impartTraits: (core.closedEcosystem)
+
+	consumption: (
+		{	type: core.radiationMeds		//	Item to consume
+			minTechLevel: 3					//	Only consume if world is this tech or higher
+			
+			amount: {
+				type:byTechAndPopulation
+				value: (
+					(atomic				0.06)
+					(digital			0.08)
+					(spacefaring		0.10)
+					(fusion				0.12)
+					(biotech			0.15)
+					(antimatter			0.19)
+					(quantum			0.24)
+					(postIndustrial		0.30)
+					)
+				}
+
+			consequences: (
+				{	demandMet: 1.0
+					deathRate: 0.01			//	1% killed if 100% of demand fails
+					revIndex: 100
+					techRegress: 0.25
+					efficiencyAdj: 0.95
+					}
+				)
+			}
+		)
+
+	imageLarge: { type:constant
+		resource: core.resourceIcons
+		pos: (0 384)
+		size: (128 128)
+		}
+
+	imageSmall: { type:constant
+		resource: core.resourceIconsSmall
+		pos: (0 144)
+		size: (48 48)
+		}
+	}
+
+//	Aetherium Deposits ---------------------------------------------------------
+//
+//	EFFECT		These traits set production adjustments for aetherium extraction.
+//
+//	USAGE		World classes should include one of these traits, either as 
+//				inherited traits or as randomly imparted traits. Do not include
+//				more than one of these per world.
+
+Trait core.aetheriumSource
+	{
+	category: feature
+	name: "aetherium deposits"
 	hidden: true
+	}
+
+Trait core.aetheriumRare
+	{
+	category: feature
+	name: "trace aetherium deposits"
+	inheritFrom: (core.aetheriumSource)
+	imageLabel: "2"
+	
+	productionAdj: (
+		{	type: core.aetherium
+			workUnitsAdj: { value:0.2		op:defaultValue }
+			}
+		)
+
+	imageLarge: { type:constant
+		resource: core.resourceIcons
+		pos: (0 0)
+		size: (128 128)
+		}
+
+	imageSmall: { type:constant
+		resource: core.resourceIconsSmall
+		pos: (0 0)
+		size: (48 48)
+		}
+	}
+
+Trait core.aetheriumUncommon
+	{
+	category: feature
+	name: "minor aetherium deposits"
+	inheritFrom: (core.aetheriumSource)
+	imageLabel: "5"
+	
+	productionAdj: (
+		{	type: core.aetherium
+			workUnitsAdj: { value:0.5		op:defaultValue }
+			}
+		)
+
+	imageLarge: { type:constant
+		resource: core.resourceIcons
+		pos: (0 0)
+		size: (128 128)
+		}
+
+	imageSmall: { type:constant
+		resource: core.resourceIconsSmall
+		pos: (0 0)
+		size: (48 48)
+		}
+	}
+
+Trait core.aetheriumCommon
+	{
+	category: feature
+	name: "major aetherium deposits"
+	inheritFrom: (core.aetheriumSource)
+	imageLabel: "10"
+	
+	productionAdj: (
+		{	type: core.aetherium
+			workUnitsAdj: { value:1.0		op:defaultValue }
+			}
+		)
+
+	imageLarge: { type:constant
+		resource: core.resourceIcons
+		pos: (0 0)
+		size: (128 128)
+		}
+
+	imageSmall: { type:constant
+		resource: core.resourceIconsSmall
+		pos: (0 0)
+		size: (48 48)
+		}
+	}
+
+Trait core.aetheriumAbundant
+	{
+	category: feature
+	name: "abundant aetherium deposits"
+	inheritFrom: (core.aetheriumSource)
+	imageLabel: "20"
+	
+	productionAdj: (
+		{	type: core.aetherium
+			workUnitsAdj: { value:2.0		op:defaultValue }
+			}
+		)
+
+	imageLarge: { type:constant
+		resource: core.resourceIcons
+		pos: (0 0)
+		size: (128 128)
+		}
+
+	imageSmall: { type:constant
+		resource: core.resourceIconsSmall
+		pos: (0 0)
+		size: (48 48)
+		}
 	}
 
 //	Chronimium Deposits --------------------------------------------------------
@@ -1375,12 +1597,25 @@ Trait core.chronimiumRare
 	category: feature
 	name: "trace chronimium deposits"
 	inheritFrom: (core.chronimiumSource)
+	imageLabel: "2"
 	
 	productionAdj: (
 		{	type: core.chronimium
 			workUnitsAdj: { value:0.2		op:defaultValue }
 			}
 		)
+
+	imageLarge: { type:constant
+		resource: core.resourceIcons
+		pos: (128 0)
+		size: (128 128)
+		}
+
+	imageSmall: { type:constant
+		resource: core.resourceIconsSmall
+		pos: (48 0)
+		size: (48 48)
+		}
 	}
 
 Trait core.chronimiumUncommon
@@ -1388,12 +1623,25 @@ Trait core.chronimiumUncommon
 	category: feature
 	name: "minor chronimium deposits"
 	inheritFrom: (core.chronimiumSource)
+	imageLabel: "5"
 	
 	productionAdj: (
 		{	type: core.chronimium
 			workUnitsAdj: { value:0.5		op:defaultValue }
 			}
 		)
+
+	imageLarge: { type:constant
+		resource: core.resourceIcons
+		pos: (128 0)
+		size: (128 128)
+		}
+
+	imageSmall: { type:constant
+		resource: core.resourceIconsSmall
+		pos: (48 0)
+		size: (48 48)
+		}
 	}
 
 Trait core.chronimiumCommon
@@ -1401,12 +1649,25 @@ Trait core.chronimiumCommon
 	category: feature
 	name: "major chronimium deposits"
 	inheritFrom: (core.chronimiumSource)
+	imageLabel: "10"
 	
 	productionAdj: (
 		{	type: core.chronimium
 			workUnitsAdj: { value:1.0		op:defaultValue }
 			}
 		)
+
+	imageLarge: { type:constant
+		resource: core.resourceIcons
+		pos: (128 0)
+		size: (128 128)
+		}
+
+	imageSmall: { type:constant
+		resource: core.resourceIconsSmall
+		pos: (48 0)
+		size: (48 48)
+		}
 	}
 
 Trait core.chronimiumAbundant
@@ -1414,12 +1675,25 @@ Trait core.chronimiumAbundant
 	category: feature
 	name: "abundant chronimium deposits"
 	inheritFrom: (core.chronimiumSource)
+	imageLabel: "20"
 	
 	productionAdj: (
 		{	type: core.chronimium
 			workUnitsAdj: { value:2.0		op:defaultValue }
 			}
 		)
+
+	imageLarge: { type:constant
+		resource: core.resourceIcons
+		pos: (128 0)
+		size: (128 128)
+		}
+
+	imageSmall: { type:constant
+		resource: core.resourceIconsSmall
+		pos: (48 0)
+		size: (48 48)
+		}
 	}
 
 //	Chtholon Deposits ----------------------------------------------------------
@@ -1442,12 +1716,25 @@ Trait core.chtholonRare
 	category: feature
 	name: "trace chtholon deposits"
 	inheritFrom: (core.chtholonSource)
+	imageLabel: "2"
 	
 	productionAdj: (
 		{	type: core.chtholon
 			workUnitsAdj: { value:0.2		op:defaultValue }
 			}
 		)
+
+	imageLarge: { type:constant
+		resource: core.resourceIcons
+		pos: (256 0)
+		size: (128 128)
+		}
+
+	imageSmall: { type:constant
+		resource: core.resourceIconsSmall
+		pos: (96 0)
+		size: (48 48)
+		}
 	}
 
 Trait core.chtholonUncommon
@@ -1455,12 +1742,25 @@ Trait core.chtholonUncommon
 	category: feature
 	name: "minor chtholon deposits"
 	inheritFrom: (core.chtholonSource)
+	imageLabel: "5"
 	
 	productionAdj: (
 		{	type: core.chtholon
 			workUnitsAdj: { value:0.5		op:defaultValue }
 			}
 		)
+
+	imageLarge: { type:constant
+		resource: core.resourceIcons
+		pos: (256 0)
+		size: (128 128)
+		}
+
+	imageSmall: { type:constant
+		resource: core.resourceIconsSmall
+		pos: (96 0)
+		size: (48 48)
+		}
 	}
 
 Trait core.chtholonCommon
@@ -1468,12 +1768,25 @@ Trait core.chtholonCommon
 	category: feature
 	name: "major chtholon deposits"
 	inheritFrom: (core.chtholonSource)
+	imageLabel: "10"
 	
 	productionAdj: (
 		{	type: core.chtholon
 			workUnitsAdj: { value:1.0		op:defaultValue }
 			}
 		)
+
+	imageLarge: { type:constant
+		resource: core.resourceIcons
+		pos: (256 0)
+		size: (128 128)
+		}
+
+	imageSmall: { type:constant
+		resource: core.resourceIconsSmall
+		pos: (96 0)
+		size: (48 48)
+		}
 	}
 
 Trait core.chtholonAbundant
@@ -1481,12 +1794,25 @@ Trait core.chtholonAbundant
 	category: feature
 	name: "abundant chtholon deposits"
 	inheritFrom: (core.chtholonSource)
+	imageLabel: "20"
 	
 	productionAdj: (
 		{	type: core.chtholon
 			workUnitsAdj: { value:2.0		op:defaultValue }
 			}
 		)
+
+	imageLarge: { type:constant
+		resource: core.resourceIcons
+		pos: (256 0)
+		size: (128 128)
+		}
+
+	imageSmall: { type:constant
+		resource: core.resourceIconsSmall
+		pos: (96 0)
+		size: (48 48)
+		}
 	}
 
 //	Hexacarbide Deposits -------------------------------------------------------
@@ -1524,12 +1850,25 @@ Trait core.hexacarbideRare
 	category: feature
 	name: "trace hexacarbide deposits"
 	inheritFrom: (core.hexacarbideSource)
+	imageLabel: "2"
 	
 	productionAdj: (
 		{	type: core.hexacarbide
 			workUnitsAdj: { value:0.2		op:defaultValue }
 			}
 		)
+
+	imageLarge: { type:constant
+		resource: core.resourceIcons
+		pos: (128 128)
+		size: (128 128)
+		}
+
+	imageSmall: { type:constant
+		resource: core.resourceIconsSmall
+		pos: (48 48)
+		size: (48 48)
+		}
 	}
 
 Trait core.hexacarbideUncommon
@@ -1537,12 +1876,25 @@ Trait core.hexacarbideUncommon
 	category: feature
 	name: "minor hexacarbide deposits"
 	inheritFrom: (core.hexacarbideSource)
+	imageLabel: "5"
 	
 	productionAdj: (
 		{	type: core.hexacarbide
 			workUnitsAdj: { value:0.5		op:defaultValue }
 			}
 		)
+
+	imageLarge: { type:constant
+		resource: core.resourceIcons
+		pos: (128 128)
+		size: (128 128)
+		}
+
+	imageSmall: { type:constant
+		resource: core.resourceIconsSmall
+		pos: (48 48)
+		size: (48 48)
+		}
 	}
 
 Trait core.hexacarbideCommon
@@ -1550,12 +1902,25 @@ Trait core.hexacarbideCommon
 	category: feature
 	name: "major hexacarbide deposits"
 	inheritFrom: (core.hexacarbideSource)
+	imageLabel: "10"
 	
 	productionAdj: (
 		{	type: core.hexacarbide
 			workUnitsAdj: { value:1.0		op:defaultValue }
 			}
 		)
+
+	imageLarge: { type:constant
+		resource: core.resourceIcons
+		pos: (128 128)
+		size: (128 128)
+		}
+
+	imageSmall: { type:constant
+		resource: core.resourceIconsSmall
+		pos: (48 48)
+		size: (48 48)
+		}
 	}
 
 Trait core.hexacarbideAbundant
@@ -1563,36 +1928,86 @@ Trait core.hexacarbideAbundant
 	category: feature
 	name: "abundant hexacarbide deposits"
 	inheritFrom: (core.hexacarbideSource)
+	imageLabel: "20"
 	
 	productionAdj: (
 		{	type: core.hexacarbide
 			workUnitsAdj: { value:2.0		op:defaultValue }
 			}
 		)
+
+	imageLarge: { type:constant
+		resource: core.resourceIcons
+		pos: (128 128)
+		size: (128 128)
+		}
+
+	imageSmall: { type:constant
+		resource: core.resourceIconsSmall
+		pos: (48 48)
+		size: (48 48)
+		}
 	}
 
-//	Miscellaneous Features -----------------------------------------------------
+//	Food Production Effects ----------------------------------------------------
 //
-//	EFFECT		These traits define the environment of a world.
+//	EFFECT		These traits affect organic food production.
+
+Trait core.closedEcosystem
+	{
+	category: feature
+	name: "artificial biosphere"
+	imageLabel: "5"
+
+	productionAdj: (
+		{	type: core.organicFood
+			workUnitsAdj: { value:1.0		op:defaultValue }
+			}
+		)
+
+	imageLarge: { type:constant
+		resource: core.resourceIcons
+		pos: (0 256)
+		size: (128 128)
+		}
+
+	imageSmall: { type:constant
+		resource: core.resourceIconsSmall
+		pos: (0 96)
+		size: (48 48)
+		}
+	}
 
 Trait core.desertBiosphere
 	{
 	category: feature
 	name: "desert biosphere"
+	imageLabel: "7"
 
 	productionAdj: (
 		{	type: core.organicFood
-			workUnitsAdj: { value:1.25		op:defaultValue }
+			workUnitsAdj: { value:1.4		op:defaultValue }
 			}
 		)
 
-	hidden: true
+	imageLarge: { type:constant
+		resource: core.resourceIcons
+		pos: (0 256)
+		size: (128 128)
+		}
+
+	imageSmall: { type:constant
+		resource: core.resourceIconsSmall
+		pos: (0 96)
+		size: (48 48)
+		}
 	}
 
 Trait core.earthLikeBiosphere
 	{
 	category: feature
 	name: "Earth-like biosphere"
+	imageLabel: "10"
 
 	productionAdj: (
 		{	type: core.organicFood
@@ -1600,102 +2015,67 @@ Trait core.earthLikeBiosphere
 			}
 		)
 
-	hidden: true
-	}
+	imageLarge: { type:constant
+		resource: core.resourceIcons
+		pos: (0 256)
+		size: (128 128)
+		}
 
-Trait core.environmentFiery
-	{
-	category: feature
-	name: "fiery environment"
-
-	consumption: (
-		{	type: core.radiationShielding	//	Item to consume
-			minTechLevel: 3					//	Only consume if world is this tech or higher
-			
-			amount: {
-				type:byTechAndPopulation
-				value: (
-					(atomic				0.06)
-					(digital			0.08)
-					(spacefaring		0.10)
-					(fusion				0.12)
-					(biotech			0.15)
-					(antimatter			0.19)
-					(quantum			0.24)
-					(postIndustrial		0.30)
-					)
-				}
-
-			consequences: (
-				{	demandMet: 1.0
-					deathRate: 0.01			//	1% killed if 100% of demand fails
-					revIndex: 100
-					techRegress: 0.25
-					efficiencyAdj: 0.95
-					}
-				)
-			}
-		)
-	hidden: true
-	}
-
-Trait core.environmentRadioactive
-	{
-	category: feature
-	name: "radioactive environment"
-
-	consumption: (
-		{	type: core.radiationMeds		//	Item to consume
-			minTechLevel: 3					//	Only consume if world is this tech or higher
-			
-			amount: {
-				type:byTechAndPopulation
-				value: (
-					(atomic				0.06)
-					(digital			0.08)
-					(spacefaring		0.10)
-					(fusion				0.12)
-					(biotech			0.15)
-					(antimatter			0.19)
-					(quantum			0.24)
-					(postIndustrial		0.30)
-					)
-				}
-
-			consequences: (
-				{	demandMet: 1.0
-					deathRate: 0.01			//	1% killed if 100% of demand fails
-					revIndex: 100
-					techRegress: 0.25
-					efficiencyAdj: 0.95
-					}
-				)
-			}
-		)
-
-	hidden: true
+	imageSmall: { type:constant
+		resource: core.resourceIconsSmall
+		pos: (0 96)
+		size: (48 48)
+		}
 	}
 
 Trait core.globalOcean
 	{
 	category: feature
-	name: "global ocean"
+	name: "ocean biosphere"
+	imageLabel: "9"
 
 	productionAdj: (
 		{	type: core.organicFood
-			workUnitsAdj: { value:1.75		op:defaultValue }
+			workUnitsAdj: { value:1.8		op:defaultValue }
 			}
 		)
 
-	hidden: true
+	imageLarge: { type:constant
+		resource: core.resourceIcons
+		pos: (0 256)
+		size: (128 128)
+		}
+
+	imageSmall: { type:constant
+		resource: core.resourceIconsSmall
+		pos: (0 96)
+		size: (48 48)
+		}
 	}
 
 Trait core.undergroundPopulation
 	{
 	category: feature
-	name: "underground population"
+	name: "underground biosphere"
+	imageLabel: "6"
 
-	hidden: true
+	productionAdj: (
+		{	type: core.organicFood
+			workUnitsAdj: { value:1.2		op:defaultValue }
+			}
+		)
+
+	imageLarge: { type:constant
+		resource: core.resourceIcons
+		pos: (0 256)
+		size: (128 128)
+		}
+
+	imageSmall: { type:constant
+		resource: core.resourceIconsSmall
+		pos: (0 96)
+		size: (48 48)
+		}
 	}
 
 //	Space Region Features ------------------------------------------------------
@@ -1763,12 +2143,25 @@ Trait core.trillumRare
 	category: feature
 	name: "trace trillum deposits"
 	inheritFrom: (core.trillumSource)
+	imageLabel: "2"
 	
 	productionAdj: (
 		{	type: core.trillum
 			workUnitsAdj: { value:0.2		op:defaultValue }
 			}
 		)
+
+	imageLarge: { type:constant
+		resource: core.resourceIcons
+		pos: (128 256)
+		size: (128 128)
+		}
+
+	imageSmall: { type:constant
+		resource: core.resourceIconsSmall
+		pos: (48 96)
+		size: (48 48)
+		}
 	}
 
 Trait core.trillumUncommon
@@ -1776,12 +2169,25 @@ Trait core.trillumUncommon
 	category: feature
 	name: "minor trillum deposits"
 	inheritFrom: (core.trillumSource)
+	imageLabel: "5"
 	
 	productionAdj: (
 		{	type: core.trillum
 			workUnitsAdj: { value:0.5		op:defaultValue }
 			}
 		)
+
+	imageLarge: { type:constant
+		resource: core.resourceIcons
+		pos: (128 256)
+		size: (128 128)
+		}
+
+	imageSmall: { type:constant
+		resource: core.resourceIconsSmall
+		pos: (48 96)
+		size: (48 48)
+		}
 	}
 
 Trait core.trillumCommon
@@ -1789,12 +2195,25 @@ Trait core.trillumCommon
 	category: feature
 	name: "major trillum deposits"
 	inheritFrom: (core.trillumSource)
+	imageLabel: "10"
 	
 	productionAdj: (
 		{	type: core.trillum
 			workUnitsAdj: { value:1.0		op:defaultValue }
 			}
 		)
+
+	imageLarge: { type:constant
+		resource: core.resourceIcons
+		pos: (128 256)
+		size: (128 128)
+		}
+
+	imageSmall: { type:constant
+		resource: core.resourceIconsSmall
+		pos: (48 96)
+		size: (48 48)
+		}
 	}
 
 Trait core.trillumAbundant
@@ -1802,12 +2221,25 @@ Trait core.trillumAbundant
 	category: feature
 	name: "abundant trillum deposits"
 	inheritFrom: (core.trillumSource)
+	imageLabel: "20"
 	
 	productionAdj: (
 		{	type: core.trillum
 			workUnitsAdj: { value:2.0		op:defaultValue }
 			}
 		)
+
+	imageLarge: { type:constant
+		resource: core.resourceIcons
+		pos: (128 256)
+		size: (128 128)
+		}
+
+	imageSmall: { type:constant
+		resource: core.resourceIconsSmall
+		pos: (48 96)
+		size: (48 48)
+		}
 	}
 
 //	Resources ------------------------------------------------------------------
