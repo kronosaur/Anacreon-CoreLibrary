@@ -264,6 +264,18 @@ ResourceType core.jumpmissilePartisan
 
 		minTechLevel: 7
 		}
+
+	imageLarge: { type:constant
+		resource: core.defenseIcons
+		pos: (512 512)
+		size: (256 256)
+		}
+
+	imageSmall: { type:constant
+		resource: core.defenseIconsSmall
+		pos: (128 128)
+		size: (64 64)
+		}
 	}
 
 ResourceType core.plasmaTower

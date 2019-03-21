@@ -424,6 +424,18 @@ ResourceType core.advancedRamscoop {
 			)
 		minTechLevel: 9
 		}
+
+	imageLarge: { type:constant
+		resource: core.resourceIcons
+		pos: (0 640)
+		size: (128 128)
+		}
+
+	imageSmall: { type:constant
+		resource: core.resourceIconsSmall
+		pos: (0 240)
+		size: (48 48)
+		}
 	}
 	
 ResourceType core.ARMissileLauncher {
@@ -444,6 +456,18 @@ ResourceType core.ARMissileLauncher {
 			)
 		minTechLevel: 7
 		}
+
+	imageLarge: { type:constant
+		resource: core.resourceIcons
+		pos: (0 640)
+		size: (128 128)
+		}
+
+	imageSmall: { type:constant
+		resource: core.resourceIconsSmall
+		pos: (0 240)
+		size: (48 48)
+		}
 	}
 	
 ResourceType core.heavyRamscoop {
@@ -462,6 +486,18 @@ ResourceType core.heavyRamscoop {
 			{ type:core.hexacarbide amount:5.0 }
 			)
 		minTechLevel: 6
+		}
+
+	imageLarge: { type:constant
+		resource: core.resourceIcons
+		pos: (0 640)
+		size: (128 128)
+		}
+
+	imageSmall: { type:constant
+		resource: core.resourceIconsSmall
+		pos: (0 240)
+		size: (48 48)
 		}
 	}
 	
@@ -483,6 +519,18 @@ ResourceType core.hellfireCannon {
 			)
 		minTechLevel: 9
 		}
+
+	imageLarge: { type:constant
+		resource: core.resourceIcons
+		pos: (0 640)
+		size: (128 128)
+		}
+
+	imageSmall: { type:constant
+		resource: core.resourceIconsSmall
+		pos: (0 240)
+		size: (48 48)
+		}
 	}
 	
 ResourceType core.HKMissileLauncher {
@@ -502,6 +550,18 @@ ResourceType core.HKMissileLauncher {
 			{ type:core.hexacarbide amount:20.0 }
 			)
 		minTechLevel: 10
+		}
+
+	imageLarge: { type:constant
+		resource: core.resourceIcons
+		pos: (0 640)
+		size: (128 128)
+		}
+
+	imageSmall: { type:constant
+		resource: core.resourceIconsSmall
+		pos: (0 240)
+		size: (48 48)
 		}
 	}
 

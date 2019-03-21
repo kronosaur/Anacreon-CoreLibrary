@@ -226,6 +226,18 @@ ResourceType core.exoarmor {
 			)
 		minTechLevel: 7
 		}
+
+	imageLarge: { type:constant
+		resource: core.resourceIcons
+		pos: (256 512)
+		size: (128 128)
+		}
+
+	imageSmall: { type:constant
+		resource: core.resourceIconsSmall
+		pos: (96 192)
+		size: (48 48)
+		}
 	}
 	
 ResourceType core.lightArmoredVehicle {
@@ -244,6 +256,18 @@ ResourceType core.lightArmoredVehicle {
 			{ type:core.hexacarbide amount:10 }
 			)
 		minTechLevel: 5
+		}
+
+	imageLarge: { type:constant
+		resource: core.resourceIcons
+		pos: (256 512)
+		size: (128 128)
+		}
+
+	imageSmall: { type:constant
+		resource: core.resourceIconsSmall
+		pos: (96 192)
+		size: (48 48)
 		}
 	}
 	

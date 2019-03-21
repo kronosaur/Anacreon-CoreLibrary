@@ -422,6 +422,18 @@ ResourceType core.basiliskCannon {
 		minTechLevel: 9
 		minTechLevelToDisplay: 8
 		}
+
+	imageLarge: { type:constant
+		resource: core.resourceIcons
+		pos: (0 512)
+		size: (128 128)
+		}
+
+	imageSmall: { type:constant
+		resource: core.resourceIconsSmall
+		pos: (0 192)
+		size: (48 48)
+		}
 	}
 	
 ResourceType core.grondLauncher {
@@ -443,6 +455,18 @@ ResourceType core.grondLauncher {
 		minTechLevel: 10
 		minTechLevelToDisplay: 8
 		}
+
+	imageLarge: { type:constant
+		resource: core.resourceIcons
+		pos: (0 512)
+		size: (128 128)
+		}
+
+	imageSmall: { type:constant
+		resource: core.resourceIconsSmall
+		pos: (0 192)
+		size: (48 48)
+		}
 	}
 	
 ResourceType core.heavyMissileLauncher {
@@ -463,6 +487,18 @@ ResourceType core.heavyMissileLauncher {
 			)
 		minTechLevel: 7
 		}
+
+	imageLarge: { type:constant
+		resource: core.resourceIcons
+		pos: (0 512)
+		size: (128 128)
+		}
+
+	imageSmall: { type:constant
+		resource: core.resourceIconsSmall
+		pos: (0 192)
+		size: (48 48)
+		}
 	}
 	
 ResourceType core.positronLancer {
@@ -481,6 +517,18 @@ ResourceType core.positronLancer {
 			{ type:core.hexacarbide amount:5.0 }
 			)
 		minTechLevel: 6
+		}
+
+	imageLarge: { type:constant
+		resource: core.resourceIcons
+		pos: (0 512)
+		size: (128 128)
+		}
+
+	imageSmall: { type:constant
+		resource: core.resourceIconsSmall
+		pos: (0 192)
+		size: (48 48)
 		}
 	}
 	
@@ -501,6 +549,18 @@ ResourceType core.reactorN8 {
 			{ type:core.chronimium amount:5.0 }
 			)
 		minTechLevel: 7
+		}
+
+	imageLarge: { type:constant
+		resource: core.resourceIcons
+		pos: (0 512)
+		size: (128 128)
+		}
+
+	imageSmall: { type:constant
+		resource: core.resourceIconsSmall
+		pos: (0 192)
+		size: (48 48)
 		}
 	}
 	
@@ -523,6 +583,18 @@ ResourceType core.reactorR50 {
 		minTechLevel: 9
 		minTechLevelToDisplay: 8
 		}
+
+	imageLarge: { type:constant
+		resource: core.resourceIcons
+		pos: (0 512)
+		size: (128 128)
+		}
+
+	imageSmall: { type:constant
+		resource: core.resourceIconsSmall
+		pos: (0 192)
+		size: (48 48)
+		}
 	}
 	
 ResourceType core.reactorS100 {
@@ -541,6 +613,18 @@ ResourceType core.reactorS100 {
 			{ type:core.hexacarbide amount:10.0 }
 			)
 		minTechLevel: 6
+		}
+
+	imageLarge: { type:constant
+		resource: core.resourceIcons
+		pos: (0 512)
+		size: (128 128)
+		}
+
+	imageSmall: { type:constant
+		resource: core.resourceIconsSmall
+		pos: (0 192)
+		size: (48 48)
 		}
 	}
 	
@@ -562,6 +646,18 @@ ResourceType core.reactorX9 {
 			)
 		minTechLevel: 10
 		minTechLevelToDisplay: 8
+		}
+
+	imageLarge: { type:constant
+		resource: core.resourceIcons
+		pos: (0 512)
+		size: (128 128)
+		}
+
+	imageSmall: { type:constant
+		resource: core.resourceIconsSmall
+		pos: (0 192)
+		size: (48 48)
 		}
 	}
 	
