@@ -87,6 +87,103 @@
 		)
 	))
 
+(define testSetupCombat (lambda (objID)
+	(block (
+		(theFleet (obj objID))
+		(fleetSov (@ theFleet 'sovereign))
+		(theWorld (@ theFleet 'anchorObj))
+
+		(allUnits '(
+			core.armoredInfantry
+			core.exotroops
+			core.explorerHelion
+			core.explorerVanguard
+			core.gunshipCerberus
+			core.gunshipHammerhead
+			core.gunshipMinotaur
+			core.gunshipSirius
+			core.imperialSecurity
+			core.infantry
+			core.jumpcruiserAdamant
+			core.jumpcruiserUndine
+			core.jumpshipEldritch
+			core.jumpshipStinger
+			core.jumptransportReliant
+			core.jumptransportWarphant
+			core.starcruiserBehemoth
+			core.starcruiserMegathere
+			core.starcruiserTyphon
+			core.starcruiserVictory
+			core.starfrigateCyclops
+			core.starfrigateDefiance
+			core.starfrigateGorgos
+			core.starfrigateManta
+			core.transportCetus
+			core.transportLuna
+			core.transportOrion
+			core.transportSeraph
+			))
+
+		(fleetUnits {
+			core.jumpcruiserAdamant: 1000
+			core.jumptransportReliant: 1000
+			core.infantry: 1000
+			})
+
+		(worldUnits {
+			core.jumpshipStinger: 1000
+			core.infantry: 1000
+			})
+		)
+		(switch
+			//	objID must be a Fleet belonging to a player sovereign
+
+			(!= (@ theFleet 'category) 'fleet)
+				(print (@ theFleet 'name) " must be a fleet.")
+
+			(not (@ fleetSov 'isPlayer))
+				(print (@ theFleet 'name) " must be owned by player.")
+
+			//	Fleet must be over an independent world
+
+			(|| (not theWorld) (@ (@ theWorld 'sovereign) 'isEmpire))
+				(print (@ theWorld 'name) " must be at an independent world.")
+
+			//	Set up combat
+
+			(block ()
+				//	Remove all units from fleet and from world
+
+				(enum allUnits theUnit
+					(block ()
+						(objRemoveResource theFleet theUnit)
+						(objRemoveResource theWorld theUnit)
+						)
+					)
+
+				//	Add required units to Fleet
+
+				(enum fleetUnits theUnits
+					(objAddResource theFleet (@ theUnits 0) (@ theUnits 1))
+					)
+
+				//	Add required units to world
+
+				(enum worldUnits theUnits
+					(objAddResource theWorld (@ theUnits 0) (@ theUnits 1))
+					)
+
+				//	Done
+
+				(print (@ theFleet 'name))
+				(output fleetUnits)
+				(print (@ theWorld 'name))
+				(output worldUnits)
+				)
+			)
+		)
+	))
+
 (define upgrade01 (lambda ()
 	(block (
 		(allWorlds (unvFindObjects

@@ -109,16 +109,20 @@ Scenario fallenWorlds.scenario.e4
 	//	PROGRAMS
 
 	programs: (
-		{	name:diagnostics	func:runDiagnostics	
+		{	name:diagnostics		func:runDiagnostics	
 			desc: "Run diagnostics on the game."
 			safeModeOnly: True
 			}
 
-		{	name:obj			func:outputObj
+		{	name:obj				func:outputObj
 			desc: "Get info about the given object by ID."
 			}
 
-		{	name:upgrade		func:upgrade01
+		{	name:testSetupCombat	func:testSetupCombat
+			desc: "Set up a fleet and world for combat."
+			}
+
+		{	name:upgrade			func:upgrade01
 			desc: "Upgrades game to latest scenario definitions."
 			}
 		)
